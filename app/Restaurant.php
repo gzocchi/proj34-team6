@@ -22,4 +22,9 @@ class Restaurant extends Model
     public function users() {
         return $this->belongsTo('App\User');
     }
+
+    // relazione ristorante - tipo
+    public function types() {
+        return $this->belongsToMany('App\Type');
+    }
 }

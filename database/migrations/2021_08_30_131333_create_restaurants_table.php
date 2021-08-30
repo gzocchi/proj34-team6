@@ -24,7 +24,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('bg_image')->nullable();
             $table->float('shipping', 4, 2);
             $table->float('shipping_free', 5, 2)->nullable();
-            $table->float('vote', 2, 1);
+            $table->float('vote', 2, 1)->nullable();
             $table->string('slug', 80)->unique();
             $table->timestamps();
         });
