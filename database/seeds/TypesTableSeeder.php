@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
-use App\Type;
 use Illuminate\Support\Str;
+use App\Type;
 
 class TypesTableSeeder extends Seeder
 {

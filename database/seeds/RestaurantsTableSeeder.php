@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Restaurant;
 use App\Type;
-use Illuminate\Support\Str;
 
 class RestaurantsTableSeeder extends Seeder
 {
@@ -14,28 +15,35 @@ class RestaurantsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 3; $i++) {
-            $restaurant = new Restaurant();
+        $restaurants = config('restaurants');
 
+        $img_path = base_path().DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'restaurants';
+        $dst_path = 'restaurants';
+
+        foreach ($restaurants as $item) {
+
+            $contents = file_get_contents($img_path.DIRECTORY_SEPARATOR.$item['logo']);
+            Storage::put($dst_path.DIRECTORY_SEPARATOR.$item['logo'], $contents);
+
+            $contents = file_get_contents($img_path.DIRECTORY_SEPARATOR.$item['bg_image']);
+            Storage::put($dst_path.DIRECTORY_SEPARATOR.$item['bg_image'], $contents);
+
+
+            $restaurant = new Restaurant();
             $restaurant->user_id = 1;
-            $restaurant->name = "Ristorante " . $i;
-            $restaurant->address = "Via " . $i;
-            $restaurant->p_iva = "1234567891" . $i;
-            $restaurant->shipping = 3;
+            $restaurant->name = $item['name'];
+            $restaurant->address = $item['address'];
+            $restaurant->p_iva = $item['p_iva'];
+            $restaurant->logo = $dst_path.DIRECTORY_SEPARATOR.$item['logo'];
+            $restaurant->bg_image = $dst_path.DIRECTORY_SEPARATOR.$item['bg_image'];
+            $restaurant->shipping = $item['shipping'];
+            $restaurant->shipping_free = $item['shipping_free'];
+            $restaurant->vote = $item['vote'];
             $restaurant->slug = Str::slug($restaurant->name, '-');
-            
             $restaurant->save();
 
-        }
-
-        // Get all the roles attaching up to 3 random roles to each user
-        $types = App\Type::all();
-
-        // Populate the pivot table
-        App\Restaurant::all()->each(function ($restaurant) use ($types) { 
-            $restaurant->types()->attach(
-                $types->random(rand(1, 3))->pluck('id')->toArray()
-            ); 
-        });
+            $type = App\Type::where('name', $item['type'])->first();
+            $restaurant->types()->attach($type->id);
+        }        
     }
 }
