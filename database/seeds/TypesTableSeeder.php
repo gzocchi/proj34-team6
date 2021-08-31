@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use App\Type;
 
 class TypesTableSeeder extends Seeder
@@ -16,18 +17,20 @@ class TypesTableSeeder extends Seeder
     {
         $types = config('types');
 
-        $img_path = base_path().DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'types';
+        $img_path = base_path() . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'types';
         $dst_path = 'types';
 
         foreach ($types as $item) {
-            $contents = file_get_contents($img_path.DIRECTORY_SEPARATOR.$item['image']);
-            Storage::put($dst_path.DIRECTORY_SEPARATOR.$item['image'], $contents);
-
             $type = new Type();
-
+            
             $type->name = $item['name'];
             $type->slug = Str::slug($item['name'], '-');
-            $type->image = $dst_path.DIRECTORY_SEPARATOR.$item['image'];
+
+            if (Arr::has($item, 'image')) {
+                $contents = file_get_contents($img_path . DIRECTORY_SEPARATOR . Arr::get($item, 'image'));
+                Storage::put($dst_path . DIRECTORY_SEPARATOR . Arr::get($item, 'image'), $contents);
+                $type->image = $dst_path . DIRECTORY_SEPARATOR . Arr::get($item, 'image');
+            }
 
             $type->save();
         }
