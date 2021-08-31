@@ -21,4 +21,9 @@ class Dish extends Model
     public function categories() {
         return $this->belongsTo('App\Category');
     }
+
+    // relazione piatto - ordine
+    public function orders() {
+        return $this->belongsToMany('App\Order');
+    }
 }
