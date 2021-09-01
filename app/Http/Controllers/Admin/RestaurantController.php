@@ -128,7 +128,7 @@ class RestaurantController extends Controller
     public function edit(Restaurant $restaurant)
     {
         $types = Type::all();
-        return view('admin.restaurants.edit', compact('types'));
+        return view('admin.restaurants.edit', compact('restaurant', 'types'));
     }
 
     /**
