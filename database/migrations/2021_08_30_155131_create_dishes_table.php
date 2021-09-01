@@ -20,7 +20,7 @@ class CreateDishesTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name', 100);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('img')->nullable();
             $table->float('price', 5, 2);
             $table->boolean('visible')->default(true);

@@ -36,7 +36,7 @@ return $restaurants = [
     ],
     [
         'name' => 'China Town',
-        'address' => '',
+        'address' => 'Via Di Vittorio 33, Foggia',
         'p_iva' => '00000000004',
         'logo' => 'china_town_logo.png',
         'bg_image' => 'china_town_bg.jpg',
