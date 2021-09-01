@@ -2,6 +2,9 @@
 
 @section('content')
 <section class="py-4">
+    @php
+        // dd($restaurant);
+    @endphp
 
     @if (session('message'))
         <div class="alert alert-info mb-4">
@@ -30,11 +33,11 @@
             @endif
         </div>
     </div>
-
     
     <div class="text-center mt-4">
         <a href="{{ route("admin.restaurants.index") }}" class="btn btn-sm btn-info text-uppercase">Index</a>
         <a href="{{ route("admin.restaurants.edit", $restaurant->id) }}" class="btn btn-sm btn-outline-info text-uppercase">Edit</a>
+        <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm btn-outline-info text-uppercase">>Menu</a>
     </div>
 
 </section>

@@ -8,10 +8,7 @@
             {{ session('deleted') }}
         </div>
     @endif
-@php
-// dump($restaurants->id)
-    // dd($restaurants)
-@endphp
+
     <table class="my-3 table table-striped table-bordered table-responsive-md">
         <thead class="table-dark text-uppercase">
           <tr>
@@ -24,10 +21,6 @@
         </thead>
         <tbody>
             @foreach ($restaurants as $item)
-            @php
-// dump($restaurants->id)
-    // dd($item)
-@endphp
                 <tr>
                     <th scope="row">{{ $item->id }}</th>
                     <td>{{ $item->name }}</td>

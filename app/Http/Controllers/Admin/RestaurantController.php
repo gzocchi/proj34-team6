@@ -129,7 +129,6 @@ class RestaurantController extends Controller
         } else {
             return view("admin.home");
         }
-        
     }
 
     /**
@@ -140,8 +139,12 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        $types = Type::all();
-        return view('admin.restaurants.edit', compact('restaurant', 'types'));
+        if ($restaurant->user_id == $this->getUserId()) {
+            $types = Type::all();
+            return view('admin.restaurants.edit', compact('restaurant', 'types'));
+        } else {
+            return view("admin.home");
+        }
     }
 
     /**
