@@ -11,22 +11,22 @@
     
     <div class="title mb-4">
         <small>{{ $restaurant->slug }}</small>
-        <h1 class="text-info">{{ $restaurant->title }}</h1>
+        <h1 class="text-info">{{ $restaurant->name }}</h1>
     </div>    
  
     <div class="row">
         <div class="col-md-4">
             @if ($restaurant->logo)
-                <img class="img-fluid" src="{{ asset('storage/' . $restaurant->logo) }}" alt="{{ $restaurant->title }}">
+                <img class="img-fluid" src="{{ asset('storage/' . $restaurant->logo) }}" alt="{{ $restaurant->name }}">
             @else 
-                <img class="img-fluid" src="{{ asset('images/placeholder.png') }}" alt="{{ $restaurant->title }}">    
+                <img class="img-fluid" src="{{ asset('images/placeholder.png') }}" alt="{{ $restaurant->name }}">    
             @endif
         </div>
         <div class="col-md-4">
             @if ($restaurant->bg_image)
-                <img class="img-fluid" src="{{ asset('storage/' . $restaurant->bg_image) }}" alt="{{ $restaurant->title }}">
+                <img class="img-fluid" src="{{ asset('storage/' . $restaurant->bg_image) }}" alt="{{ $restaurant->name }}">
             @else 
-                <img class="img-fluid" src="{{ asset('images/placeholder.png') }}" alt="{{ $restaurant->title }}">    
+                <img class="img-fluid" src="{{ asset('images/placeholder.png') }}" alt="{{ $restaurant->name }}">    
             @endif
         </div>
     </div>
