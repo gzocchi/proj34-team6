@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
@@ -50,6 +51,11 @@ class RestaurantController extends Controller
         return $slug;
     }
 
+    public function getUserId() {
+        $user = Auth::user();
+        return $user->id;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +64,8 @@ class RestaurantController extends Controller
     public function index()
     {
         // $restaurants = Restaurant::all();
-        $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
+        // $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
+        $restaurants = Restaurant::where('user_id', $this->getUserId())->get();
         return view('admin.restaurants.index', compact('restaurants'));
     }
 
@@ -86,7 +93,8 @@ class RestaurantController extends Controller
         $request->validate($this->restaurantValidationArray);
 
         $newRestaurant = new Restaurant();
-        // $data['user_id'] = USER_ID!!!!;
+
+        $data['user_id'] = $this->getUserId();
 
         $slug = $this->generateSlug($data);
         $data['slug'] = $slug;
@@ -116,7 +124,12 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view("admin.restaurants.show", compact('restaurant'));
+        if ($restaurant->user_id == $this->getUserId()) {
+            return view("admin.restaurants.show", compact('restaurant'));
+        } else {
+            return view("admin.home");
+        }
+        
     }
 
     /**
