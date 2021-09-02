@@ -43,7 +43,7 @@
     </div>
 
     <div>
-        <a href="#" class="btn btn-sm btn-outline-success">Menu</a>
+        <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm btn-outline-success">Menu</a>
         <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-outline-info">Edit</a>
         
         <form 

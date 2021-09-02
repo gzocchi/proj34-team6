@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,8 +37,9 @@ class DishController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $dishes = Dish::where('restaurant_id', $this->restaurantId())->get();
-        return view('admin.dishes.index', compact('dishes'));
+        return view('admin.dishes.index', compact('dishes', 'categories'));
     }
 
     /**
@@ -67,9 +69,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dishes, Restaurant $restaurant)
+    public function show(Dish $dish)
     {
-        //
+        return view("admin.dishes.show", compact('dish'));
     }
 
     /**
@@ -78,7 +80,7 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dishes)
+    public function edit(Dish $dish)
     {
         //
     }
@@ -90,7 +92,7 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dishes)
+    public function update(Request $request, Dish $dish)
     {
         //
     }
@@ -101,7 +103,7 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dish $dishes)
+    public function destroy(Dish $dish)
     {
         //
     }
