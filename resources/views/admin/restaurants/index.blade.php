@@ -9,54 +9,33 @@
         </div>
     @endif
 
-    <table class="my-3 table table-striped table-bordered table-responsive-md">
-        <thead class="table-dark text-uppercase">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Slug</th>
-            <th>Tipo</th>
-            <th colspan="3" class="text-center">Azioni</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($restaurants as $item)
-                <tr>
-                    <th scope="row">{{ $item->id }}</th>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->slug }}</td>
 
-                    <td>
-                        @if ($item->types()->first()->name)
-                            @foreach ($item->types()->get() as $type)
-                                {{ $type->name }}
-                            @endforeach
-                        @else
-                            N/D
-                        @endif
-                    </td>
+    <h1>{{ Arr::get($restaurant, 'name') }}</h1>
 
-                    <td class="text-uppercase text-center align-middle">
-                        <a href="{{ route("admin.restaurants.show", $item->id) }}" class="btn btn-sm btn-outline-success">Show</a>
-                    </td>
-                    <td class="text-uppercase text-center align-middle">
-                        <a href="{{ route("admin.restaurants.edit", $item->id) }}" class="btn btn-sm btn-outline-info">Edit</a>
-                    </td>
-                    <td class="text-uppercase text-center align-middle">
-                        <form 
-                            action="{{ route('admin.restaurants.destroy', $item->id) }}" method="POST"
-                            onSubmit = "return confirm(`Cancellare l'articolo '{{ addslashes($item->name) }}'?`)">
-                            @csrf
-                            @method('DELETE')
+    <ul>
+        <li>Address: {{ Arr::get($restaurant, 'address') }}</li>
+        <li>P. IVA: {{ Arr::get($restaurant, 'p_iva') }}</li>
+        <li>Shipping: {{ Arr::get($restaurant, 'shipping') }}</li>
+        <li>Shipping Free: {{ Arr::get($restaurant, 'shipping_free') }}</li>
+        <li>Vote: {{ Arr::get($restaurant, 'vote') }}</li>
+    </ul>
 
-                            <button type="submit" class="btn btn-sm btn-danger text-uppercase">Delete</button>
+    <img class="img-fluid" src="{{ asset('storage/' . Arr::get($restaurant, 'logo')) }}" alt="{{ Arr::get($restaurant, 'name') }}">
+    <img class="img-fluid" src="{{ asset('storage/' . Arr::get($restaurant, 'bg_image')) }}" alt="{{ Arr::get($restaurant, 'name') }}">
 
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-      </table>
+    <div>
+        <a href="#" class="btn btn-sm btn-outline-success">Menu</a>
+        <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-outline-info">Edit</a>
+        <form 
+            action="{{ route('admin.restaurants.destroy', Arr::get($restaurant, 'id')) }}" method="POST"
+            onSubmit = "return confirm(`Cancellare l'articolo '{{ addslashes(Arr::get($restaurant, 'name')) }}'?`)">
+            @csrf
+            @method('DELETE')
+    
+            <button type="submit" class="btn btn-sm btn-danger text-uppercase">Delete</button>
+    
+        </form>
+    </div>
 
 </section>
 @endsection

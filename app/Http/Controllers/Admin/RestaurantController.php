@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Illuminate\Validation\Rule;
 use App\Restaurant;
 use App\User;
 use App\Type;
@@ -15,16 +16,16 @@ use App\Dish;
 
 class RestaurantController extends Controller
 {
+
     private $restaurantValidationArray = [
         'user_id' => 'exists:users,id',
         'name' => 'required|max:60',
         'address' => 'required|max:255',
-        'p_iva' => 'required|max:11',
+        // 'p_iva' => 'required|max:11|unique:restaurants',
         'logo' => 'nullable|image|max:2048',
         'bg_image' => 'nullable|image|max:2048',
-        'shipping' => 'required|numeric|max:99.99',
-        'shipping_free' => 'nullable|numeric|max:999.99',
-        'vote' => 'nullable|numeric|between:1,5',
+        'shipping' => 'required|numeric|between:0,99.99',
+        'shipping_free' => 'nullable|numeric|between:0,999.99',
         'slug' => 'unique:restaurants|max:80',
     ];
 
@@ -51,7 +52,8 @@ class RestaurantController extends Controller
         return $slug;
     }
 
-    public function getUserId() {
+    public function getUserId()
+    {
         $user = Auth::user();
         return $user->id;
     }
@@ -65,8 +67,8 @@ class RestaurantController extends Controller
     {
         // $restaurants = Restaurant::all();
         // $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
-        $restaurants = Restaurant::where('user_id', $this->getUserId())->get();
-        return view('admin.restaurants.index', compact('restaurants'));
+        $restaurant = Restaurant::where('user_id', $this->getUserId())->first();
+        return view('admin.restaurants.index', compact('restaurant'));
     }
 
     /**
@@ -76,8 +78,14 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        $types = Type::all();
-        return view('admin.restaurants.create', compact('types'));
+        $restaurant = Restaurant::where('user_id', $this->getUserId())->first();
+
+        if (!$restaurant) {
+            $types = Type::all();
+            return view('admin.restaurants.create', compact('types'));
+        } else {
+            return view("admin.home");
+        }
     }
 
     /**
@@ -113,7 +121,8 @@ class RestaurantController extends Controller
             $newRestaurant->types()->attach($data["types"]);
         }
 
-        return redirect()->route('admin.restaurants.show', $newRestaurant->id);
+        // return redirect()->route('admin.restaurants.show', $newRestaurant->id);
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
@@ -124,11 +133,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        if ($restaurant->user_id == $this->getUserId()) {
-            return view("admin.restaurants.show", compact('restaurant'));
-        } else {
-            return view("admin.home");
-        }
+        // if ($restaurant->user_id == $this->getUserId()) {
+        //     return view("admin.restaurants.show", compact('restaurant'));
+        // } else {
+        //     return view("admin.home");
+        // }
     }
 
     /**
@@ -158,7 +167,20 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
 
-        $request->validate($this->restaurantValidationArray);
+        // $request->validate($this->restaurantValidationArray,);
+        $request->validate(
+            [
+                $this->restaurantValidationArray,
+                'p_iva' => [
+                    Rule::unique('p_iva')->ignore($restaurant->id),
+                ],
+            ],
+            [
+                'p_iva.unique' => 'La Partita IVA esiste',
+                'required' => ':attribute is a mandatory field!'
+            ]
+
+        );
 
         if (Str::lower($restaurant->name) != Str::lower($data["name"])) {
             $slug = $this->generateSlug($data);
@@ -186,7 +208,8 @@ class RestaurantController extends Controller
             $restaurant->types()->detach();
         }
 
-        return redirect()->route('admin.restaurants.show', $restaurant->id);
+        // return redirect()->route('admin.restaurants.show', $restaurant->id);
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
@@ -207,7 +230,7 @@ class RestaurantController extends Controller
         $restaurant->delete();
 
         return redirect()
-            ->route('admin.restaurants.index')
+            ->route('admin.home')
             ->with('deleted', "Ristorante '" . $restaurant->name . "' eliminato!");
     }
 }

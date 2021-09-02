@@ -19,6 +19,12 @@
 
                     {{ Auth::user()->name }} {{ __('you are logged in!') }}
                 </div>
+
+                @if (Auth::user()->restaurants()->first())
+                    <a class="nav-link" href="{{ route('admin.restaurants.index') }}">Il mio ristorante</a>
+                @else
+                    <a class="nav-link" href="{{ route('admin.restaurants.create') }}">Crea ristorante</a>
+                @endif
             </div>
         </div>
     </div>

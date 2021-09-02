@@ -19,7 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name', 60);
             $table->string('address');
-            $table->char('p_iva', 11);
+            $table->char('p_iva', 11)->unique();
             $table->string('logo')->nullable();
             $table->string('bg_image')->nullable();
             $table->float('shipping', 4, 2);
