@@ -23,9 +23,14 @@ class RestaurantsTableSeeder extends Seeder
 
             $restaurant = new Restaurant();
 
-            $admin = App\User::where('email', 'admin@deliveboo.com')->first();
-            $restaurant->user_id = $admin->id;
-
+            if (Arr::has($item, 'index')) {
+                $user = App\User::where('email', 'user@deliveboo.com')->first();
+                $restaurant->user_id = $user->id;
+            } else {
+                $admin = App\User::where('email', 'admin@deliveboo.com')->first();
+                $restaurant->user_id = $admin->id;
+            }
+            
             $restaurant->name = $item['name'];
             $restaurant->address = $item['address'];
             $restaurant->p_iva = $item['p_iva'];

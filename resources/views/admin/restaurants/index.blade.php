@@ -12,14 +12,16 @@
 
     <h1 class="text-center">{{ Arr::get($restaurant, 'name') }}</h1>
 
-    <div>
-        <h3>Tipo ristorante:</h3>
-        <ul>
-             @foreach ($restaurant->types as $type)
-            <li>{{$type->name}}</li>
-        @endforeach
-        </ul>
-    </div>
+    @if (count($restaurant->types))
+        <div>
+            <h3>Tipo ristorante:</h3>
+            <ul>
+                @foreach ($restaurant->types as $type)
+                <li>{{$type->name}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
    
     <div>
         <h3>Info ristorante:</h3>
@@ -28,7 +30,10 @@
             <li>P. IVA: {{ Arr::get($restaurant, 'p_iva') }}</li>
             <li>Shipping: {{ Arr::get($restaurant, 'shipping') }}</li>
             <li>Shipping Free: {{ Arr::get($restaurant, 'shipping_free') }}</li>
+            @if (Arr::get($restaurant, 'vote'))
             <li>Vote: {{ Arr::get($restaurant, 'vote') }}</li>
+            @endif
+                
         </ul>
     </div>
 

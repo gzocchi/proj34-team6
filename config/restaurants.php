@@ -11,6 +11,7 @@ return $restaurants = [
         'shipping_free' => NULL,
         'vote' => 4.3,
         'type' => 'Americano',
+        'index' => 'test'
     ],
     [
         'name' => 'Krusty Burger',

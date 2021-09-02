@@ -24,5 +24,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@deliveboo.com',
             'password' => bcrypt('password!'),
         ]);
+        User::create([
+            'name' => 'User',
+            'email' => 'user@deliveboo.com',
+            'password' => bcrypt('password!'),
+        ]);
     }
 }
