@@ -71,7 +71,8 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        return view("admin.dishes.show", compact('dish'));
+        $category = Category::where('id', $dish->category_id)->firstOrFail();
+        return view("admin.dishes.show", compact('dish', 'category'));
     }
 
     /**

@@ -9,9 +9,7 @@
         </div>
     @endif
     
-@php
-    dd($dish->categories);
-@endphp
+{{-- @dd($dish->category->name); --}}
 
     <ul>
         <li>
@@ -20,7 +18,7 @@
                 <li>{{ $dish->description}}</li>
                 <li>{{ $dish->price}}</li>
                 <li>{{ $dish->img}}</li>
-                <li>categoria {{ $dish->category->name}}</li>
+                <li>categoria: {{ $dish->category->name}}</li>
             </ul>
         </li>
     </ul>

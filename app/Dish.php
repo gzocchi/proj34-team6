@@ -18,7 +18,7 @@ class Dish extends Model
     ];
     
     // relazione piatto - categoria
-    public function categories() {
+    public function category() {
         return $this->belongsTo('App\Category');
     }
 
