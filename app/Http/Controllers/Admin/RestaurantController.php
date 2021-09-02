@@ -21,7 +21,7 @@ class RestaurantController extends Controller
         'user_id' => 'exists:users,id',
         'name' => 'required|max:60',
         'address' => 'required|max:255',
-        // 'p_iva' => 'required|max:11|unique:restaurants',
+        'p_iva' => 'required|digits:11|unique:restaurants',
         'logo' => 'nullable|image|max:2048',
         'bg_image' => 'nullable|image|max:2048',
         'shipping' => 'required|numeric|between:0,99.99',
@@ -167,19 +167,18 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
 
-        // $request->validate($this->restaurantValidationArray,);
+        // $request->validate($this->restaurantValidationArray);
         $request->validate(
             [
                 $this->restaurantValidationArray,
                 'p_iva' => [
-                    Rule::unique('p_iva')->ignore($restaurant->id),
-                ],
+                    Rule::unique('restaurants')->ignore($restaurant->id)
+                ]
             ],
             [
-                'p_iva.unique' => 'La Partita IVA esiste',
-                'required' => ':attribute is a mandatory field!'
+                'p_iva.unique' => 'Partita IVA esistente',
+                'required' => ':attribute è un campo obbligatorio!'
             ]
-
         );
 
         if (Str::lower($restaurant->name) != Str::lower($data["name"])) {

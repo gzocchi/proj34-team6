@@ -18,6 +18,7 @@
         @method('PATCH')
 
         <div class="form-row mt-4">
+
             <div class="form-group col-md-4">
                 <label for="name">Nome</label>
                 <input type="text"
@@ -25,9 +26,11 @@
                 id="name"
                 placeholder="Inserisci il nome"
                 name="name"
+                maxlength="60"
                 value="{{ old('name', $restaurant->name) }}"
                 required>
             </div>
+
             <div class="form-group col-md-4">
                 <label for="address">Indirizzo</label>
                 <input type="text"
@@ -38,6 +41,7 @@
                 value="{{ old('address', $restaurant->address) }}"
                 required>
             </div>
+
             <div class="form-group col-md-4">
                 <label for="p_iva">Partita IVA</label>
                 <input type="text"
@@ -45,6 +49,7 @@
                 id="p_iva"
                 placeholder="Partita IVA"
                 name="p_iva"
+                minlength="11"
                 maxlength="11"
                 value="{{ old('p_iva', $restaurant->p_iva) }}"
                 required>
@@ -62,6 +67,7 @@
                 max="99"
                 required>
             </div>
+
             <div class="form-group col-md-4">
                 <label for="shipping_free">Spedizione gratuita da</label>
                 <input type="number"
@@ -87,9 +93,11 @@
                 <label for="logo" class="custom-file-label">Modifica Logo</label>
                 <input type="file" name="logo" class="custom-file-input @error('logo') is-invalid @enderror" id="logo">
             </div>
+
         </div>
 
         <div class="form-row">
+
             @if ($restaurant->bg_image)
                 <div class="col-md-2">
                     <img class="img-fluid" src="{{ asset('storage/' . $restaurant->bg_image) }}" alt="{{ $restaurant->name }}"> 
@@ -101,8 +109,33 @@
             </div>
 
         </div>
-        
-        
+
+        <div class="form-group col-md-8 my-3">
+
+            @foreach ($types as $type)
+                <div class="form-check form-check-inline">
+                    @if ($errors->any())
+                        <input class="form-check-input"
+                        type="checkbox"
+                        id="tag-{{ $type->id }}"
+                        value="{{ $type->id }}"
+                        name="types[]"
+                        {{ in_array($type->id, old('types', [])) ? 'checked' : '' }}
+                        >
+                    @else
+                        <input class="form-check-input"
+                        type="checkbox"
+                        id="tag-{{ $type->id }}"
+                        value="{{ $type->id }}"
+                        name="types[]"
+                        {{ $restaurant->types->contains($type->id) ? 'checked' : '' }}
+                        > 
+                    @endif
+                    <label class="form-check-label" for="tag-{{ $type->id }}">{{ $type->name }}</label>
+                </div>     
+            @endforeach
+
+        </div>
 
         <div class="text-center mt-4">
             <a href="{{ route("admin.restaurants.index") }}" class="btn btn-sm btn-info text-uppercase">torna al ristorante</a>
