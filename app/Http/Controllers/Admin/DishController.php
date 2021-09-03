@@ -104,7 +104,7 @@ class DishController extends Controller
     {
         if ($dish->restaurant_id == $this->getRestaurantId()) {
             $categories = Category::all();
-            return view('admin.dishes.edit', compact('categories'));
+            return view('admin.dishes.edit', compact('dish', 'categories'));
         } else {
             return redirect()->route("admin.dishes.index");
         }
@@ -120,6 +120,23 @@ class DishController extends Controller
     public function update(Request $request, Dish $dish)
     {
         $data = $request->all();
+
+        $request->validate($this->dishValidationArray);
+
+        $data['category_id'] = intval($data['category_id']);
+        $data['visible'] = boolval($data['visible']);
+        $data['price'] = floatval($data['price']);
+
+        if (Arr::has($data, 'img')) {
+            if ($dish->img) {
+                Storage::delete($dish->img);
+            }
+            $data["img"] = Storage::put('dishes', $data["img"]);
+        }
+
+        $dish->update($data);
+
+        return redirect()->route('admin.dishes.index');
     }
 
     /**

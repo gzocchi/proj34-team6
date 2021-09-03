@@ -69,12 +69,12 @@
 
         </div>
 
-        <div class="form-group col-md-8 my-3">
+        <div class="form-group col-md-12 my-3">
 
             
             @foreach ($categories as $category)
             
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio d-inline">
 
                 <input type="radio" class="custom-control-input"
                 id="{{$category->id}}"
@@ -89,12 +89,12 @@
 
         </div>
 
-        <div class="form-group col-md-8 my-3">
-            <div class="custom-control custom-radio">
+        <div class="form-group col-md-12 my-3">
+            <div class="custom-control custom-radio d-inline">
                 <input type="radio" id="true" name="visible" value="1" {{old('visible')}} checked class="custom-control-input">
                 <label class="custom-control-label" for="true">Piatto visibile</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio d-inline">
                 <input type="radio" id="false" name="visible" value="0" {{old('visible')}} class="custom-control-input">
                 <label class="custom-control-label" for="false">Piatto non visibile</label>
             </div>
