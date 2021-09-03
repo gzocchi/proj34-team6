@@ -70,8 +70,8 @@
                 name="description"
                 placeholder="Inserisci ingredienti / descrizione"
                 rows="5"
-                maxlength="255"
-                required>{{ old('description', $dish->description) }}</textarea>
+                maxlength="1000"
+                >{{ old('description', $dish->description) }}</textarea>
             </div>
 
         </div>
@@ -82,12 +82,21 @@
             
             <div class="custom-control custom-radio d-inline">
 
-                <input type="radio" class="custom-control-input"
-                id="{{$category->id}}"
-                value="{{$category->id}}"
-                name="category_id"
-                {{ old('category_id', $category->id) ? 'checked' : '' }}
-                required>
+                @if ($errors->any())
+                    <input type="radio" class="custom-control-input"
+                    id="{{$category->id}}"
+                    value="{{$category->id}}"
+                    name="category_id"
+                    {{ old('category_id') == $category->id ? 'checked' : '' }}
+                    required>
+                @else
+                    <input type="radio" class="custom-control-input"
+                    id="{{$category->id}}"
+                    value="{{$category->id}}"
+                    name="category_id"
+                    {{ $dish->category->id == $category->id ? 'checked' : '' }}
+                    required>
+                @endif
                 <label class="custom-control-label"for="{{$category->id}}">{{ $category->name }}</label>
             </div>
 

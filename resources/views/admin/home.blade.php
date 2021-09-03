@@ -25,6 +25,7 @@
                 @else
                     <a class="nav-link" href="{{ route('admin.restaurants.create') }}">Crea ristorante</a>
                 @endif
+                <a class="nav-link" href="#">Ordini</a>
             </div>
         </div>
     </div>
