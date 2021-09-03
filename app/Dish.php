@@ -10,7 +10,6 @@ class Dish extends Model
         'restaurant_id',
         'category_id',
         'name',
-        'ingredients',
         'description',
         'img',
         'price',
@@ -20,6 +19,11 @@ class Dish extends Model
     // relazione piatto - categoria
     public function category() {
         return $this->belongsTo('App\Category');
+    }
+
+    // relazione piatto - ristorante
+    public function restaurant() {
+        return $this->belongsTo('App\Restaurant');
     }
 
     // relazione piatto - ordine

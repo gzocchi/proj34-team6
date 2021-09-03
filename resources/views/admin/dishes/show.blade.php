@@ -19,6 +19,7 @@
                 <li>{{ $dish->price}}</li>
                 <li>{{ $dish->img}}</li>
                 <li>categoria: {{ $dish->category->name}}</li>
+                <li>ristorante: {{ $dish->restaurant->name}}</li>
             </ul>
         </li>
     </ul>

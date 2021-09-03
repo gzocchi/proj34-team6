@@ -23,6 +23,11 @@ class Restaurant extends Model
         return $this->belongsTo('App\User');
     }
 
+    // relazione piatto - ristorante
+    public function dishes() {
+        return $this->HasMany('App\Dish');
+    }
+
     // relazione ristorante - tipo
     public function types() {
         return $this->belongsToMany('App\Type', 'restaurant_type', 'restaurant_id', 'type_id');

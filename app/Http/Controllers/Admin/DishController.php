@@ -21,10 +21,10 @@ class DishController extends Controller
         'description' => 'nullable',
         'img' => 'nullable|image|max:2048',
         'price' => 'required|numeric|max:999.99',
-        'visible' => 'boolean|default:true',
+        'visible' => 'boolean',
     ];
 
-    public function restaurantId() {
+    public function getRestaurantId() {
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         return $restaurant->id;
@@ -38,7 +38,7 @@ class DishController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $dishes = Dish::where('restaurant_id', $this->restaurantId())->get();
+        $dishes = Dish::where('restaurant_id', $this->getRestaurantId())->get();
         return view('admin.dishes.index', compact('dishes', 'categories'));
     }
 
@@ -49,7 +49,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.dishes.create', compact('categories'));
     }
 
     /**
@@ -60,7 +61,33 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        
+        $request->validate($this->dishValidationArray);
+
+        
+        $data['restaurant_id'] = $this->getRestaurantId();
+        // $data['category_id'] = intval($data['category_id']);
+        $data['visible'] = boolval($data['visible']);
+        $data['price'] = floatval($data['price']);
+
+        
+        $newDish = new Dish();
+        
+        if (Arr::has($data, 'img')) {
+            $data["img"] = Storage::put('dishes', $data["img"]);
+        } else {
+            $data["img"] = 'images/placeholder_dish.svg';
+        }
+
+        $newDish->fill($data);
+        $newDish->save();
+
+        if (Arr::has($data, 'category_id')) {
+            $newDish->category()->attach($data["category_id"]);
+        }
+        // return view("admin.dishes.edit" , compact('data'));
+        return redirect()->route('admin.dishes.index');
     }
 
     /**

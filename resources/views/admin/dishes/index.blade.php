@@ -8,6 +8,8 @@
             {{ session('deleted') }}
         </div>
     @endif
+
+    <a class="nav-link" href="{{ route('admin.dishes.create') }}">Aggiungi piatto</a>
     
         @foreach ($dishes as $dish)
         <ul>
@@ -18,6 +20,7 @@
                     <li>{{ $dish->price}}</li>
                     <li>{{ $dish->img}}</li>
                     <li>categoria: {{ $dish->category->name}}</li>
+                    <li>ristorante: {{ $dish->restaurant->name}}</li>
                 </ul>
             </li>
         </ul>

@@ -84,7 +84,7 @@ class RestaurantController extends Controller
             $types = Type::all();
             return view('admin.restaurants.create', compact('types'));
         } else {
-            return view("admin.home");
+            return redirect()->route("admin.home");
         }
     }
 
@@ -152,7 +152,7 @@ class RestaurantController extends Controller
             $types = Type::all();
             return view('admin.restaurants.edit', compact('restaurant', 'types'));
         } else {
-            return view("admin.home");
+            return redirect()->route("admin.home");
         }
     }
 
