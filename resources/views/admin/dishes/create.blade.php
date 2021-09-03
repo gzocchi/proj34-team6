@@ -72,17 +72,17 @@
         <div class="form-group col-md-8 my-3">
 
             
-            @foreach ($categories as $item)
+            @foreach ($categories as $category)
             
             <div class="custom-control custom-radio">
 
                 <input type="radio" class="custom-control-input"
-                id="{{$item->id}}"
-                value="{{$item->id}}"
+                id="{{$category->id}}"
+                value="{{$category->id}}"
                 name="category_id"
                 {{ old('category_id') }}
                 required>
-                <label class="custom-control-label"for="{{$item->id}}">{{ $item->name }}</label>
+                <label class="custom-control-label"for="{{$category->id}}">{{ $category->name }}</label>
             </div>
 
             @endforeach

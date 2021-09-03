@@ -24,12 +24,18 @@
                 </ul>
             </li>
         </ul>
+
+        @if (Arr::get($dish, 'img'))
+            <img class="img-fluid d-block" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
+        @else
+            <img class="img-fluid d-block" src="{{ asset('images/placeholder_dish.svg') }}" alt="{{ Arr::get($dish, 'name') }}">
+        @endif
         
         <div>
-            <a href="{{ route("admin.dishes.show", Arr::get($dish, 'id')) }}" class="btn btn-sm btn-outline-info">Show</a>
+            <a href="{{ route("admin.dishes.edit", Arr::get($dish, 'id')) }}" class="btn btn-sm btn-outline-info">Modifica</a>
             
             <form 
-            action="{{ route('admin.restaurants.destroy', Arr::get($dish, 'id')) }}" method="POST"
+            action="{{ route('admin.dishes.destroy', Arr::get($dish, 'id')) }}" method="POST"
             onSubmit = "return confirm(`Cancellare l'articolo '{{ addslashes(Arr::get($dish, 'name')) }}'?`)"
             >
             @csrf

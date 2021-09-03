@@ -16,7 +16,7 @@ class DishController extends Controller
 {
     private $dishValidationArray = [
         'restaurant_id' => 'exists:restaurant,id',
-        'category_id' => 'exists:category,id',
+        'category_id' => 'exists:categories,id',
         'name' => 'required|max:100',
         'description' => 'nullable',
         'img' => 'nullable|image|max:2048',
@@ -65,28 +65,20 @@ class DishController extends Controller
         
         $request->validate($this->dishValidationArray);
 
-        
         $data['restaurant_id'] = $this->getRestaurantId();
-        // $data['category_id'] = intval($data['category_id']);
+        $data['category_id'] = intval($data['category_id']);
         $data['visible'] = boolval($data['visible']);
         $data['price'] = floatval($data['price']);
 
-        
         $newDish = new Dish();
         
         if (Arr::has($data, 'img')) {
             $data["img"] = Storage::put('dishes', $data["img"]);
-        } else {
-            $data["img"] = 'images/placeholder_dish.svg';
         }
 
         $newDish->fill($data);
         $newDish->save();
 
-        if (Arr::has($data, 'category_id')) {
-            $newDish->category()->attach($data["category_id"]);
-        }
-        // return view("admin.dishes.edit" , compact('data'));
         return redirect()->route('admin.dishes.index');
     }
 
@@ -110,7 +102,12 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        if ($dish->restaurant_id == $this->getRestaurantId()) {
+            $categories = Category::all();
+            return view('admin.dishes.edit', compact('categories'));
+        } else {
+            return redirect()->route("admin.dishes.index");
+        }
     }
 
     /**
@@ -122,7 +119,7 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        //
+        $data = $request->all();
     }
 
     /**
@@ -133,6 +130,14 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        if ($dish->img) {
+            Storage::delete($dish->img);
+        }
+
+        $dish->delete();
+
+        return redirect()
+            ->route('admin.dishes.index')
+            ->with('deleted', "Piatto '" . $dish->name . "' eliminato!");
     }
 }
