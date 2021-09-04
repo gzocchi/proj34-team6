@@ -66,7 +66,7 @@
                     class="d-inline"
                     action="{{ route('admin.restaurants.destroy', Arr::get($restaurant, 'id')) }}"
                     method="POST"
-                    onSubmit = "return confirm(`Cancellare definitivamente il ristorante '{{ addslashes(Arr::get($restaurant, 'name')) }}'?`)"
+                    onSubmit = "return confirm(`Cancellare definitivamente il ristorante '{{ addslashes(Arr::get($restaurant, 'name')) }}'?\nTutti i piatti del Menu verranno eliminati definitivamente`)"
                     >
                     @csrf
                     @method('DELETE')
