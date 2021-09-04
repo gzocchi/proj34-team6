@@ -30,8 +30,10 @@
         </div> --}}
 
         <div class="dashboard_card col-10 col-md-4 my-3">
-            @if (count(Auth::user()->restaurants))
-                <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.index') }}">Il mio Ristorante</a>
+            @if (count(Auth::user()->restaurants) == 1)
+                <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.show', Auth::user()->restaurants()->first()->id) }}">Il mio Ristorante</a>
+            @elseif(count(Auth::user()->restaurants) > 1)
+                <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.index') }}">I miei Ristoranti</a>
             @else
                 <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.create') }}">Aggiungi Ristorante</a>
             @endif

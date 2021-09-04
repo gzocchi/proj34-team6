@@ -64,10 +64,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        // $restaurants = Restaurant::all();
-        // $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
-        $restaurant = Restaurant::where('user_id', $this->getUserId())->first();
-        return view('admin.restaurants.index', compact('restaurant'));
+        $restaurants = Restaurant::where('user_id', $this->getUserId())->get();
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -132,11 +130,12 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        // if ($restaurant->user_id == $this->getUserId()) {
-        //     return view("admin.restaurants.show", compact('restaurant'));
-        // } else {
-        //     return view("admin.home");
-        // }
+        if ($restaurant->user_id == $this->getUserId()) {
+            $restaurant = Restaurant::where('user_id', $this->getUserId())->first();
+            return view('admin.restaurants.show', compact('restaurant'));
+        } else {
+            return view("admin.home");
+        }
     }
 
     /**

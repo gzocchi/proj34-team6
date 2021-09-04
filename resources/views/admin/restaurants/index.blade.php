@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="restaurant_table">
+<section class="restaurant">
 
     @if (session('deleted'))
         <div class="alert alert-danger">
             {{ session('deleted') }}
         </div>
     @endif
+
+    @foreach ($restaurants as $restaurant)
 
     <h1 class="text-center mt-4">{{ Arr::get($restaurant, 'name') }}</h1>
 
@@ -62,6 +64,8 @@
         <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm btn-outline-success">Menu ristorante</a>
         <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-outline-info">Modifica ristorante</a>
     </div>
+        
+    @endforeach
 
 </section>
 @endsection
