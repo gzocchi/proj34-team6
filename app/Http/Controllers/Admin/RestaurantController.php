@@ -224,6 +224,19 @@ class RestaurantController extends Controller
             Storage::delete($restaurant->bg_image);
         }
 
+        if (count($restaurant->dishes) === 1) {
+            if($restaurant->dishes->first()->img){
+                Storage::delete($restaurant->dishes->first()->img);
+            }
+            $restaurant->dishes()->delete();
+        } elseif (count($restaurant->dishes) > 1) {
+            $allDish = $restaurant->dishes()->get();
+            foreach ($allDish as $singleDish) {
+                Storage::delete($singleDish->img);
+            }
+            $restaurant->dishes()->delete();
+        }
+
         $restaurant->delete();
 
         return redirect()
