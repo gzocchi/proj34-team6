@@ -33,19 +33,18 @@ class RestaurantController extends Controller
     {
         $slug = Str::slug($data["name"], '-');
 
-        $existingRestaurant = Restaurant::where('name', $data["name"])->get();
+        $existingRestaurant = Restaurant::where('slug', $slug)->first();
 
         if (!$existingRestaurant) {
-            return $slug . "-1";
+            return $slug;
         }
 
-        $howMany = count($existingRestaurant);
-
+        $counter = 1;
         $slugBase = $slug;
-        while ($existingRestaurant) {
-            $howMany++;
-            $slug = $slugBase . "-" . $howMany;
 
+        while ($existingRestaurant) {
+            $counter++;
+            $slug = $slugBase . "-" . $counter;
             $existingRestaurant = Restaurant::where('slug', $slug)->first();
         }
 
