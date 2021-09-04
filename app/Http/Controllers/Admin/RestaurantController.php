@@ -119,7 +119,7 @@ class RestaurantController extends Controller
         }
 
         // return redirect()->route('admin.restaurants.show', $newRestaurant->id);
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.show', $newRestaurant->id);
     }
 
     /**
@@ -205,8 +205,8 @@ class RestaurantController extends Controller
             $restaurant->types()->detach();
         }
 
-        // return redirect()->route('admin.restaurants.show', $restaurant->id);
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.show', $restaurant->id);
+        // return redirect()->route('admin.restaurants.index');
     }
 
     /**
