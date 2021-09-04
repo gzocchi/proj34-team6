@@ -65,6 +65,7 @@
                 value="{{ old('shipping', $restaurant->shipping) }}"
                 min="0"
                 max="99"
+                step="0.01"
                 required>
             </div>
 
@@ -78,6 +79,7 @@
                 value="{{ old('shipping_free', $restaurant->shipping_free) }}"
                 min="0"
                 max="999"
+                step="0.01"
                 >
             </div>
         </div>
