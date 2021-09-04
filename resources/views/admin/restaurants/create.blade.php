@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="py-4">
+<section class="restaurant_create">
     
     <h1 class="text-center text-info mb-4">Nuovo Ristorante</h1>
 
@@ -20,11 +20,11 @@
         <div class="form-row mt-4">
 
             <div class="form-group col-md-4">
-                <label for="name">Nome</label>
+                <label for="name">*Nome</label>
                 <input type="text"
                 class="form-control @error('name') is-invalid @enderror"
                 id="name"
-                placeholder="Inserisci il nome"
+                placeholder="Inserisci il nome del ristorante"
                 name="name"
                 maxlength="60"
                 value="{{ old('name') }}"
@@ -32,18 +32,18 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="address">Indirizzo</label>
+                <label for="address">*Indirizzo</label>
                 <input type="text"
                 class="form-control @error('address') is-invalid @enderror"
                 id="address"
-                placeholder="Inserisci l'indirizzo"
+                placeholder="Inserisci l'indirizzo del ristorante"
                 name="address"
                 value="{{ old('address') }}"
                 required>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="p_iva">Partita IVA</label>
+                <label for="p_iva">*Partita IVA</label>
                 <input type="text"
                 class="form-control @error('p_iva') is-invalid @enderror"
                 id="p_iva"
@@ -55,12 +55,16 @@
                 required>
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="shipping">Spese di spedizione</label>
+        </div>
+
+        <div class="form-row flex-column mt-4">
+
+            <div class="form-group">
+                <label for="shipping">*Spese di spedizione</label>
                 <input type="number"
-                class="form-control @error('shipping') is-invalid @enderror"
+                class="form-control col-3 @error('shipping') is-invalid @enderror"
                 id="shipping"
-                placeholder="Spese di spedizione"
+                placeholder="0"
                 name="shipping"
                 value="{{ old('shipping') }}"
                 min="0"
@@ -69,12 +73,12 @@
                 required>
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="shipping_free">Spedizione gratuita da</label>
+            <div class="form-group">
+                <label for="shipping_free">Seleziona la cifra oltre la quale la spedizione sarà gratuita</label>
                 <input type="number"
-                class="form-control @error('shipping_free') is-invalid @enderror"
+                class="form-control col-3 @error('shipping_free') is-invalid @enderror"
                 id="shipping_free"
-                placeholder="Spedizione gratuita"
+                placeholder="0"
                 name="shipping_free"
                 value="{{ old('shipping_free') }}"
                 min="0"
@@ -84,38 +88,38 @@
             </div>
         </div>
 
-        <div class="form-row">
+        <div class="form-row mt-4">
 
-            <div class="form-group col-md-4 offset-md-2 my-3">
+            <div class="form-group col-md-4 my-3">
                 <label for="logo" class="custom-file-label">Carica Logo</label>
                 <input type="file" name="logo" class="custom-file-input @error('logo') is-invalid @enderror" id="logo">
             </div>
 
-        </div>
-
-        <div class="form-row">
-
-            <div class="form-group col-md-4 offset-md-2 my-3">
+            <div class="form-group col-md-4 offset-md-4 my-3">
                 <label for="bg_image" class="custom-file-label">Carica Immagine</label>
                 <input type="file" name="bg_image" class="custom-file-input @error('bg_image') is-invalid @enderror" id="bg_image">
             </div>
 
         </div>
 
-        <div class="form-group col-md-8 my-3">
+        <div class="form-row mt-4">
 
-            @foreach ($types as $type)
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input"
-                    type="checkbox"
-                    id="tag-{{ $type->id }}"
-                    value="{{ $type->id }}"
-                    name="types[]"
-                    {{ in_array($type->id, old('types', [])) ? 'checked' : '' }}
-                    >
-                    <label class="form-check-label" for="tag-{{ $type->id }}">{{ $type->name }}</label>
-                </div>     
-            @endforeach
+            <div class="form-group col-md-6 offset-md-3 my-3">
+    
+                @foreach ($types as $type)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                        type="checkbox"
+                        id="tag-{{ $type->id }}"
+                        value="{{ $type->id }}"
+                        name="types[]"
+                        {{ in_array($type->id, old('types', [])) ? 'checked' : '' }}
+                        >
+                        <label class="form-check-label" for="tag-{{ $type->id }}">{{ $type->name }}</label>
+                    </div>     
+                @endforeach
+    
+            </div>
 
         </div>
 
