@@ -138,7 +138,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.restaurants.index") }}" class="btn btn-sm btn-info text-uppercase">torna al ristorante</a>
+            <a href="{{ route("admin.restaurants.show", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-info text-uppercase">torna al ristorante</a>
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Salva modifiche</button>
         </div>
         

@@ -9,60 +9,84 @@
         </div>
     @endif
 
-    <div class="title my-4">
-        <h1 class="text-center">{{ Arr::get($restaurant, 'name') }}</h1>
-    
-        <form 
-            class="text-center"
-            action="{{ route('admin.restaurants.destroy', Arr::get($restaurant, 'id')) }}"
-            method="POST"
-            onSubmit = "return confirm(`Cancellare l'articolo '{{ addslashes(Arr::get($restaurant, 'name')) }}'?`)"
-            >
-            @csrf
-            @method('DELETE')
-        
-                <button type="submit" class="btn btn-sm btn-danger text-uppercase">Elimina Ristorante</button>
-        
-        </form>
-    </div>
+    <div class="row my-4">
 
-    @if (count($restaurant->types))
-        <div class="my-3">
-            <h3>Tipologia ristorante:</h3>
-            <ul>
-                @foreach ($restaurant->types as $type)
-                <li>{{$type->name}}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-   
-    <div class="my-3">
-        <h3>Info ristorante:</h3>
-        <ul>
-            <li>Indirizzo: {{ Arr::get($restaurant, 'address') }}</li>
-            <li>P. IVA: {{ Arr::get($restaurant, 'p_iva') }}</li>
-            <li>Spedizione: {{ Arr::get($restaurant, 'shipping') }} €</li>
-            @if (Arr::get($restaurant, 'shipping_free') > 0)
-            <li>Spedizione gratuita sopra: {{ Arr::get($restaurant, 'shipping_free') }} €</li>
+        <div class="col-12 col-md-2">
+            @if (Arr::get($restaurant, 'logo'))
+                <img class="img-fluid " src="{{ asset('storage/' . Arr::get($restaurant, 'logo')) }}" alt="{{ Arr::get($restaurant, 'name') }}">
             @else
-            <li>Spedizione gratuita</li>
+                <img class="img-fluid img-thumbnail" src="{{ asset('images/placeholder_dish.svg') }}" alt="{{ Arr::get($restaurant, 'name') }}">
             @endif
-            @if (Arr::get($restaurant, 'vote'))
-            <li>Voto ristorante: {{ Arr::get($restaurant, 'vote') }}</li>
+        </div>
+
+        <div class="title col-12 col-md-8 d-flex flex-column justify-content-center align-items-center">
+
+            <h1 class="text-center">{{ Arr::get($restaurant, 'name') }}</h1>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-header text-center">
+            -- Info Ristorante --
+        </div>
+
+        <div class="card-body">
+
+            <h5 class="card-title text-center">{{ Arr::get($restaurant, 'name') }}</h5>
+            <h6 class="card-subtitle mb-2 text-center text-muted">P.IVA: {{ Arr::get($restaurant, 'p_iva') }}</h6>
+
+            @if (count($restaurant->types) > 0)
+            <div class="text-center">
+                @foreach ($restaurant->types as $type)
+                <span class="badge badge-info text-light">{{ Arr::get($type, 'name') }}</span>   
+                @endforeach  
+            </div>
             @endif
+
+            <ul class="list-group list-group-flush my-4">
+                <li class="list-group-item">Indirizzo: {{ Arr::get($restaurant, 'address') }}</li>
+                @if (Arr::get($restaurant, 'shipping') == 0)
+                    <li class="list-group-item">Spedizione gratuita</li>
+                @else
+                    <li class="list-group-item">Spese di spedizione: {{ Arr::get($restaurant, 'shipping') }} €</li>
+                    @if (Arr::get($restaurant, 'shipping_free') > 0)
+                        <li class="list-group-item">Spedizione gratuita per ordini superiori a {{ Arr::get($restaurant, 'shipping_free') }} €</li>
+                    @endif
+                @endif
+            </ul>
+
+            <div class="text-center">
+
+                <a href="{{ route("admin.dishes.index") }}" class="btn btn-success mr-2">Menu ristorante</a>
+                <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn btn-primary mr-2">Modifica Ristorante</a>
+                <form 
+                    class="d-inline"
+                    action="{{ route('admin.restaurants.destroy', Arr::get($restaurant, 'id')) }}"
+                    method="POST"
+                    onSubmit = "return confirm(`Cancellare l'articolo '{{ addslashes(Arr::get($restaurant, 'name')) }}'?`)"
+                    >
+                    @csrf
+                    @method('DELETE')
                 
-        </ul>
-    </div>
+                    <button type="submit" class="btn btn-danger text-uppercase">Elimina Ristorante</button>
+                
+                </form>
 
-    <div class="row my-3">
-        <img class="img-fluid" src="{{ asset('storage/' . Arr::get($restaurant, 'logo')) }}" alt="{{ Arr::get($restaurant, 'name') }}">
-        <img class="img-fluid" src="{{ asset('storage/' . Arr::get($restaurant, 'bg_image')) }}" alt="{{ Arr::get($restaurant, 'name') }}">
-    </div>
+            </div>
 
-    <div class="text-center my-4">
-        <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm btn-outline-success">Menu ristorante</a>
-        <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-outline-info">Modifica ristorante</a>
+        </div>
+
+        <img src="{{ asset('storage/' . Arr::get($restaurant, 'bg_image')) }}" class="card-img-top" alt="{{ Arr::get($restaurant, 'name') }}">
+
+        <div class="card-footer text-center text-muted">
+            @if (Arr::get($restaurant, 'vote'))
+            Il voto del tuo ristorante: {{ Arr::get($restaurant, 'vote') }}
+            @endif
+        </div>
+
     </div>
 
 </section>
