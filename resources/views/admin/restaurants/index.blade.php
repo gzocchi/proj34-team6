@@ -81,11 +81,15 @@
 
         </div>
 
-        <img src="{{ asset('storage/' . Arr::get($restaurant, 'bg_image')) }}" class="card-img-top" alt="{{ Arr::get($restaurant, 'name') }}">
+        @if (Arr::get($restaurant, 'bg_image'))
+            <img src="{{ asset('storage/' . Arr::get($restaurant, 'bg_image')) }}" class="card-img-top" alt="{{ Arr::get($restaurant, 'name') }}">
+        @endif
 
         <div class="card-footer text-center text-muted">
             @if (Arr::get($restaurant, 'vote'))
             Il voto del tuo ristorante: {{ Arr::get($restaurant, 'vote') }}
+            @else
+            Il tuo ristorante non ha ancora ricevuto votazioni
             @endif
         </div>
 
