@@ -60,13 +60,13 @@
         <div class="form-row flex-column mt-4">
 
             <div class="form-group">
-                <label for="shipping">*Spese di spedizione</label>
+                <label for="shipping">Spese di spedizione (0 = spedizione gratuita)</label>
                 <input type="number"
                 class="form-control col-3 @error('shipping') is-invalid @enderror"
                 id="shipping"
                 placeholder="0"
                 name="shipping"
-                value="{{ old('shipping') }}"
+                value="{{ old('shipping', 0) }}"
                 min="0"
                 max="99"
                 step="0.01"
