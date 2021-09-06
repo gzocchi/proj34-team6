@@ -24,6 +24,9 @@
           <li class="nav-item">
               <a href="/login" class="nav-link">Admin</a>
           </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'dishes', params: { slug: 'cippirimerlo' }}" class="nav-link">Restaurant Menu test</router-link>
+          </li>
         </ul>
       </div>
     </nav>
