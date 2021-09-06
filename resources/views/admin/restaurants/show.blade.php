@@ -9,7 +9,9 @@
         </div>
     @endif
 
-    <div class="row my-4">
+    @include('admin.partials.restaurant_view');
+
+    {{-- <div class="row my-4">
 
         <div class="col-12 col-md-2">
             @if (Arr::get($restaurant, 'logo'))
@@ -91,7 +93,7 @@
             @endif
         </div>
 
-    </div>
+    </div> --}}
 
 </section>
 @endsection
