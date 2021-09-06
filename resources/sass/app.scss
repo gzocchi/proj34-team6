@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Partials
+@import 'partials/back/_common.scss';
+@import 'partials/back/_header.scss';
+@import 'partials/back/_main.scss';
+@import 'partials/back/_footer.scss';

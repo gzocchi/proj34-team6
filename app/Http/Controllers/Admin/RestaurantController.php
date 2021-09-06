@@ -33,19 +33,18 @@ class RestaurantController extends Controller
     {
         $slug = Str::slug($data["name"], '-');
 
-        $existingRestaurant = Restaurant::where('name', $data["name"])->get();
+        $existingRestaurant = Restaurant::where('slug', $slug)->first();
 
         if (!$existingRestaurant) {
-            return $slug . "-1";
+            return $slug;
         }
 
-        $howMany = count($existingRestaurant);
-
+        $counter = 1;
         $slugBase = $slug;
-        while ($existingRestaurant) {
-            $howMany++;
-            $slug = $slugBase . "-" . $howMany;
 
+        while ($existingRestaurant) {
+            $counter++;
+            $slug = $slugBase . "-" . $counter;
             $existingRestaurant = Restaurant::where('slug', $slug)->first();
         }
 
@@ -65,10 +64,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        // $restaurants = Restaurant::all();
-        // $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
-        $restaurant = Restaurant::where('user_id', $this->getUserId())->first();
-        return view('admin.restaurants.index', compact('restaurant'));
+        $restaurants = Restaurant::where('user_id', $this->getUserId())->get();
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -122,7 +119,7 @@ class RestaurantController extends Controller
         }
 
         // return redirect()->route('admin.restaurants.show', $newRestaurant->id);
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.show', $newRestaurant->id);
     }
 
     /**
@@ -133,11 +130,12 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        // if ($restaurant->user_id == $this->getUserId()) {
-        //     return view("admin.restaurants.show", compact('restaurant'));
-        // } else {
-        //     return view("admin.home");
-        // }
+        if ($restaurant->user_id == $this->getUserId()) {
+            $restaurant = Restaurant::where('user_id', $this->getUserId())->first();
+            return view('admin.restaurants.show', compact('restaurant'));
+        } else {
+            return view("admin.home");
+        }
     }
 
     /**
@@ -207,8 +205,8 @@ class RestaurantController extends Controller
             $restaurant->types()->detach();
         }
 
-        // return redirect()->route('admin.restaurants.show', $restaurant->id);
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.show', $restaurant->id);
+        // return redirect()->route('admin.restaurants.index');
     }
 
     /**
@@ -224,6 +222,19 @@ class RestaurantController extends Controller
         }
         if ($restaurant->bg_image) {
             Storage::delete($restaurant->bg_image);
+        }
+
+        if (count($restaurant->dishes) === 1) {
+            if($restaurant->dishes->first()->img){
+                Storage::delete($restaurant->dishes->first()->img);
+            }
+            $restaurant->dishes()->delete();
+        } elseif (count($restaurant->dishes) > 1) {
+            $allDish = $restaurant->dishes()->get();
+            foreach ($allDish as $singleDish) {
+                Storage::delete($singleDish->img);
+            }
+            $restaurant->dishes()->delete();
         }
 
         $restaurant->delete();

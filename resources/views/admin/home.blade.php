@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<section class="dashboard">
 
-    <h1 class="text-center my-4">Admin Home</h1>
+    <h1 class="text-center my-4">Dashboard Ristoratore - {{ Auth::user()->name }}</h1>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row flex-column align-content-center">
+        {{-- <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -20,14 +20,30 @@
                     {{ Auth::user()->name }} {{ __('you are logged in!') }}
                 </div>
 
-                @if (Auth::user()->restaurants()->first())
-                    <a class="nav-link" href="{{ route('admin.restaurants.index') }}">Il mio ristorante</a>
+                @if (count(Auth::user()->restaurants))
+                    <a class="nav-link" href="{{ route('admin.restaurants.index') }}">Il mio Ristorante</a>
                 @else
-                    <a class="nav-link" href="{{ route('admin.restaurants.create') }}">Crea ristorante</a>
+                    <a class="nav-link" href="{{ route('admin.restaurants.create') }}">Aggiungi Ristorante</a>
                 @endif
                 <a class="nav-link" href="#">Ordini</a>
             </div>
+        </div> --}}
+
+        <div class="dashboard_card col-10 col-md-4 my-3">
+            @if (count(Auth::user()->restaurants) == 1)
+                <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.show', Auth::user()->restaurants()->first()->id) }}">Il mio Ristorante</a>
+            @elseif(count(Auth::user()->restaurants) > 1)
+                <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.index') }}">I miei Ristoranti</a>
+            @else
+                <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.restaurants.create') }}">Aggiungi Ristorante</a>
+            @endif
         </div>
+
+        <div class="dashboard_card col-10 col-md-4 my-3">
+            <a class="d-block p-5 font-weight-bolder" href="#">Ordini</a>
+        </div>
+
     </div>
-</div>
+</section>
 @endsection
+

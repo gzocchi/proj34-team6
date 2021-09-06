@@ -56,28 +56,30 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="shipping">Spese di spedizione</label>
+                <label for="shipping">Spese di spedizione (0 = spedizione gratuita)</label>
                 <input type="number"
                 class="form-control @error('shipping') is-invalid @enderror"
                 id="shipping"
-                placeholder="Spese di spedizione"
+                placeholder="0"
                 name="shipping"
                 value="{{ old('shipping', $restaurant->shipping) }}"
                 min="0"
                 max="99"
+                step="0.01"
                 required>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="shipping_free">Spedizione gratuita da</label>
+                <label for="shipping_free">Seleziona la cifra oltre la quale la spedizione sarà gratuita</label>
                 <input type="number"
                 class="form-control @error('shipping_free') is-invalid @enderror"
                 id="shipping_free"
-                placeholder="Spedizione gratuita"
+                placeholder="0"
                 name="shipping_free"
                 value="{{ old('shipping_free', $restaurant->shipping_free) }}"
                 min="0"
                 max="999"
+                step="0.01"
                 >
             </div>
         </div>
@@ -138,7 +140,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.restaurants.index") }}" class="btn btn-sm btn-info text-uppercase">torna al ristorante</a>
+            <a href="{{ route("admin.restaurants.show", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-info text-uppercase">torna al ristorante</a>
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Salva modifiche</button>
         </div>
         
