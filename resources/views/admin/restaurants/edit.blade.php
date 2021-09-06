@@ -56,11 +56,11 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="shipping">Spese di spedizione</label>
+                <label for="shipping">Spese di spedizione (0 = spedizione gratuita)</label>
                 <input type="number"
                 class="form-control @error('shipping') is-invalid @enderror"
                 id="shipping"
-                placeholder="Spese di spedizione"
+                placeholder="0"
                 name="shipping"
                 value="{{ old('shipping', $restaurant->shipping) }}"
                 min="0"
@@ -70,11 +70,11 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="shipping_free">Spedizione gratuita da</label>
+                <label for="shipping_free">Seleziona la cifra oltre la quale la spedizione sarà gratuita</label>
                 <input type="number"
                 class="form-control @error('shipping_free') is-invalid @enderror"
                 id="shipping_free"
-                placeholder="Spedizione gratuita"
+                placeholder="0"
                 name="shipping_free"
                 value="{{ old('shipping_free', $restaurant->shipping_free) }}"
                 min="0"
