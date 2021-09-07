@@ -20,6 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Api')
     ->group(function () {
+        // tipologie ristoranti
+        Route::get('types', 'TypeController@index');
+        Route::get('type/{slug}', 'TypeController@show');
+
+        // recupero i ristoranti - tipologia
         Route::get('restaurants', 'RestaurantController@index');
-        Route::get('dishes/{slug}', 'DishController@dishesRestaurant');
+        Route::get('restaurant/{slug}', 'RestaurantController@show');
+
+        // recupero i piatti di un ristorante
+        // Route::get('dishes/{slug}', 'DishController@dishesRestaurant');
     });

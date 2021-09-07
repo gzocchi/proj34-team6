@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Restaurants",
+  name: "Type",
   data() {
     return {
       srvApi: "http://127.0.0.1:8000",
@@ -23,14 +23,14 @@ export default {
     };
   },
   mounted() {
-    this.getRestaurants();
+    this.getRestaurants(this.$route.params.slug);
   },
   methods: {
-    getRestaurants() {
+    getRestaurants(slug) {
       axios
-        .get(`${this.srvApi}/api/restaurants`)
+        .get(`${this.srvApi}/api/type/${slug}`)
         .then((res) => {
-          this.restaurants = res.data;
+          this.restaurants = res.data.restaurants;
         })
         .catch((err) => {
           console.log(err);

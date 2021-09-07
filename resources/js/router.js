@@ -6,7 +6,8 @@ Vue.use(VueRouter);
 
 import Home from "./pages/Home";
 import Restaurants from "./pages/Restaurants";
-import Dishes from "./pages/Dishes";
+import Type from "./pages/Type";
+import Restaurant from "./pages/Restaurant";
 
 const router = new VueRouter({
     mode: "history",
@@ -18,14 +19,19 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: "/restaurants",
+            path: "/type/:slug",
+            name: "type",
+            component: Type
+        },
+        {
+            path: "/restaurants/",
             name: "restaurants",
             component: Restaurants
         },
         {
-            path: "/restaurant/:slug/dishes",
-            name: "dishes",
-            component: Dishes
+            path: "/restaurant/:slug",
+            name: "restaurant",
+            component: Restaurant
         }
     ]
 });
