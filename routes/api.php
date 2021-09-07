@@ -20,15 +20,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Api')
     ->group(function () {
+
         // tipologie ristoranti
         Route::get('types', 'TypeController@index');
         Route::get('type/{slug}', 'TypeController@show');
 
         // recupero i ristoranti - tipologia
         Route::get('restaurants', 'RestaurantController@index');
+
+        // recupero ristoranti
         Route::get('restaurant/{slug}', 'RestaurantController@show');
         Route::get('{restaurant_id}/shipping', 'RestaurantController@shipping');
 
         // recupero i piatti di un ristorante
-        // Route::get('dishes/{slug}', 'DishController@dishesRestaurant');
-    });
+        Route::get('dishes/{slug}', 'DishController@dishesRestaurant');
+
+
+
+
+        // token generate
+        Route::get('orders/generate',"Orders\OrderController@generate");
+
+        // pagamento
+        Route::post('orders/make/payment',"Orders\OrderController@makePayment");
+});
