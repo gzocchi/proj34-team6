@@ -16,13 +16,20 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
+          <li class="nav-item">
             <router-link :to="{ name: 'home' }" class="nav-link"
               >Home <span class="sr-only">(current)</span></router-link
             >
           </li>
+
           <li class="nav-item">
-              <a href="/login" class="nav-link">Admin</a>
+            <a href="/login" class="nav-link">Admin</a>
+          </li>
+
+          <li class="nav-item">
+            <router-link :to="{ name: 'restaurants' }" class="nav-link"
+              >Restaurants</router-link
+            >
           </li>
         </ul>
       </div>
@@ -37,5 +44,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
