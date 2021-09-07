@@ -2115,7 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import { add, remove, destroy, quantity, list, total } from 'cart-localstorage';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Dishes",
@@ -2146,9 +2145,17 @@ __webpack_require__.r(__webpack_exports__);
     // this.renderCart(cartLs.list())
   },
   methods: {
-    logging: function logging(par) {
-      console.log(par);
-      console.log(this.cartLs.list());
+    addDish: function addDish(dish) {
+      if (this.cartLs.list()) {
+        if (dish.restaurant_id == this.cartLs.list()[0].restaurant_id) {
+          cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["add"](dish);
+        } else {
+          cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["destroy"]();
+          cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["add"](dish);
+        }
+      } else {
+        cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["add"](dish);
+      }
     },
     getDishes: function getDishes(slug) {
       var _this2 = this;
@@ -3660,7 +3667,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.cartLs.add(dish)
+                        return _vm.addDish(dish)
                       }
                     }
                   },

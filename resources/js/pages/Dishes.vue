@@ -12,7 +12,7 @@
             <button
               type="button"
               class="btn btn-block btn-outline-primary"
-              @click="cartLs.add(dish)"
+              @click="addDish(dish)"
             >
               Add to Cart
             </button>
@@ -95,7 +95,6 @@
 </template>
 
 <script>
-// import { add, remove, destroy, quantity, list, total } from 'cart-localstorage';
 import * as cartLs from "cart-localstorage";
 
 export default {
@@ -128,11 +127,18 @@ export default {
     // this.renderCart(cartLs.list())
   },
   methods: {
-    logging(par) {
-      console.log(par);
-      console.log(this.cartLs.list());
+    addDish(dish) {
+      if (this.cartLs.list()) {
+        if (dish.restaurant_id == this.cartLs.list()[0].restaurant_id) {
+          cartLs.add(dish);
+        } else {
+          cartLs.destroy();
+          cartLs.add(dish);
+        }
+      } else {
+        cartLs.add(dish);
+      }
     },
-
     getDishes(slug) {
       axios
         .get(`${this.srvApi}/api/dishes/${slug}`)
