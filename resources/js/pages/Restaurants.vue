@@ -2,7 +2,7 @@
   <section class="text-center py-5 my-5">
     <h1>Restaurants</h1>
 
-    <div v-for="restaurant in restaurants" :key="restaurant.slug">
+    <div class="my-4" v-for="restaurant in restaurants" :key="restaurant.slug">
       <h3>{{ restaurant.name }}</h3>
       <router-link :to="{ name: 'dishes', params: { slug: restaurant.slug } }"
         >Menu</router-link
@@ -21,14 +21,14 @@ export default {
     };
   },
   mounted() {
-    this.getPost();
+    this.getRestaurants();
   },
   methods: {
-    getPost() {
+    getRestaurants() {
       axios
         .get(`${this.srvApi}/api/restaurants`)
         .then((res) => {
-          this.restaurants = res.data.data;
+          this.restaurants = res.data;
         })
         .catch((err) => {
           console.log(err);

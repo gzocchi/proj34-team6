@@ -26,7 +26,7 @@ const router = new VueRouter({
             path: "/restaurant/:slug/dishes",
             name: "dishes",
             component: Dishes
-        },
+        }
     ]
 });
 

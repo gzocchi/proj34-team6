@@ -2003,10 +2003,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header"
 });
@@ -2119,10 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 // import { add, remove, destroy, quantity, list, total } from 'cart-localstorage';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2130,85 +2122,45 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cartLs: cart_localstorage__WEBPACK_IMPORTED_MODULE_0__,
-      cartItem: [],
-      products: [{
-        id: 7,
-        name: "Panino",
-        price: 5.0,
-        restaurant_id: 1
-      }, {
-        id: 8,
-        name: "Panino Grande",
-        price: 12,
-        restaurant_id: 1
-      }, {
-        id: 3,
-        name: "Bibita",
-        price: 2,
-        restaurant_id: 1
-      }]
+      srvApi: "http://127.0.0.1:8000",
+      dishes: [],
+      cartItem: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     // restaurant slug ---> this.$route.params.slug
-    console.log(this.$route.params.slug); // Carico inizialmente carrello da storage
+    // Chiamata api piatti - ristorante
+    this.getDishes(this.$route.params.slug); // Carico carrello da storage
 
-    this.cartItem = this.cartLs.list(); // refresh carrello ogni cambiamento
+    this.cartItem = this.cartLs.list(); // Ricarico carrello a ogni cambiamento
 
     cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["onChange"](function () {
       _this.cartItem = _this.cartLs.list();
     }); // cartLs.destroy();
-
-    cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["add"]({
-      id: 1,
-      name: "Product 1",
-      price: 100,
-      restaurant_id: 3
-    });
-    cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["add"]({
-      id: 2,
-      name: "Product 2",
-      price: 100,
-      restaurant_id: 3
-    }, 2);
-    console.log(this.cartLs.total());
-    console.log(this.cartLs.list());
-    console.log(localStorage);
-    console.log(localStorage.__cart); // this.renderCart(cartLs.list())
+    // console.log(this.cartLs.total());
+    // console.log(this.cartLs.list());
+    // console.log(localStorage);
+    // console.log(localStorage.__cart);
+    // this.renderCart(cartLs.list())
   },
   methods: {
     logging: function logging(par) {
       console.log(par);
       console.log(this.cartLs.list());
-    } // renderCart(items) {
-    // console.log(items);
-    // const $cart = document.querySelector(".cart")
-    // const $total = document.querySelector(".total")
-    // $cart.innerHTML = items.map((item) => `
-    // 		<tr>
-    // 			<td>#${item.id}</td>
-    // 			<td>${item.name}</td>
-    // 			<td>${item.quantity}</td>
-    // 			<td style="width: 60px;">
-    // 				<button type="button" class="btn btn-block btn-sm btn-outline-primary"
-    // 					@click="prodPlus(${item.id})">+</button>
-    // 			</td>
-    // 			<td style="width: 60px;">
-    // 				<button type="button" class="btn btn-block btn-sm btn-outline-primary"
-    // 					@click="quantity(${item.id},-1)">-</button>
-    // 			</td>
-    // 			<td class="text-right">€${item.price}</td>
-    // 			<td class="text-right"><Button class="btn btn-primary" @click="remove(${item.id})">Delete</Button></td>
-    // 		</tr>`).join("")
-    // $total.innerHTML = "€" + cartLs.total()
-    // },
-    // renderCart(cartLS.list()),
-    // cartLS.onChange(renderCart),
+    },
+    getDishes: function getDishes(slug) {
+      var _this2 = this;
 
-  },
-  computed: {}
+      axios.get("".concat(this.srvApi, "/api/dishes/").concat(slug)).then(function (res) {
+        _this2.dishes = res.data;
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2265,14 +2217,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getPost();
+    this.getRestaurants();
   },
   methods: {
-    getPost: function getPost() {
+    getRestaurants: function getRestaurants() {
       var _this = this;
 
       axios.get("".concat(this.srvApi, "/api/restaurants")).then(function (res) {
-        _this.restaurants = res.data.data;
+        _this.restaurants = res.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3584,7 +3536,7 @@ var render = function() {
             _c("ul", { staticClass: "navbar-nav mr-auto" }, [
               _c(
                 "li",
-                { staticClass: "nav-item " },
+                { staticClass: "nav-item" },
                 [
                   _c(
                     "router-link",
@@ -3607,7 +3559,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "li",
-                { staticClass: "nav-item " },
+                { staticClass: "nav-item" },
                 [
                   _c(
                     "router-link",
@@ -3616,24 +3568,6 @@ var render = function() {
                       attrs: { to: { name: "restaurants" } }
                     },
                     [_vm._v("Restaurants")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: { name: "dishes", params: { slug: "cippirimerlo" } }
-                      }
-                    },
-                    [_vm._v("Restaurant Menu test")]
                   )
                 ],
                 1
@@ -3703,20 +3637,20 @@ var render = function() {
       _c(
         "div",
         { staticClass: "card-deck mt-4 mb-4 text-center" },
-        _vm._l(_vm.products, function(product) {
+        _vm._l(_vm.dishes, function(dish) {
           return _c(
             "div",
-            { key: product.id, staticClass: "card mb-4 shadow-sm" },
+            { key: dish.id, staticClass: "card mb-4 shadow-sm" },
             [
               _c("div", { staticClass: "card-header" }, [
                 _c("h4", { staticClass: "my-0 font-weight-normal" }, [
-                  _vm._v(_vm._s(product.name))
+                  _vm._v(_vm._s(dish.name))
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("h1", { staticClass: "card-title pricing-card-title" }, [
-                  _vm._v("$" + _vm._s(product.price))
+                  _vm._v("$" + _vm._s(dish.price))
                 ]),
                 _vm._v(" "),
                 _c(
@@ -3726,7 +3660,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.cartLs.add(product)
+                        return _vm.cartLs.add(dish)
                       }
                     }
                   },
@@ -3740,7 +3674,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.cartLs.quantity(product.id, 1)
+                        return _vm.cartLs.quantity(dish.id, 1)
                       }
                     }
                   },
@@ -3754,7 +3688,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.cartLs.quantity(product.id, -1)
+                        return _vm.cartLs.quantity(dish.id, -1)
                       }
                     }
                   },
@@ -3767,7 +3701,7 @@ var render = function() {
                     staticClass: "btn btn-primary",
                     on: {
                       click: function($event) {
-                        return _vm.cartLs.remove(product.id)
+                        return _vm.cartLs.remove(dish.id)
                       }
                     }
                   },
@@ -3940,7 +3874,7 @@ var render = function() {
       _vm._l(_vm.restaurants, function(restaurant) {
         return _c(
           "div",
-          { key: restaurant.slug },
+          { key: restaurant.slug, staticClass: "my-4" },
           [
             _c("h3", [_vm._v(_vm._s(restaurant.name))]),
             _vm._v(" "),
