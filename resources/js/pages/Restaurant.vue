@@ -1,8 +1,13 @@
 <template>
   <section class="text-center py-5 my-5">
+
+<div class="info">
+  <h3>{{restaurant.name}}</h3>
+</div>
+    
     <div class="container">
       <div class="card-deck mt-4 mb-4 text-center">
-        <div class="card mb-4 shadow-sm" v-for="dish in dishes" :key="dish.id">
+        <div class="card mb-4 shadow-sm" v-for="dish in restaurant.dishes" :key="dish.id">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">{{ dish.name }}</h4>
           </div>
@@ -98,12 +103,12 @@
 import * as cartLs from "cart-localstorage";
 
 export default {
-  name: "Dishes",
+  name: "Restaurant",
   data() {
     return {
       cartLs,
       srvApi: "http://127.0.0.1:8000",
-      dishes: [],
+      restaurant: [],
       cartItem: [],
     };
   },
@@ -128,7 +133,8 @@ export default {
   },
   methods: {
     addDish(dish) {
-      if (this.cartLs.list()) {
+      console.log(this.cartLs.list());
+      if (this.cartLs.list().length > 0) {
         if (dish.restaurant_id == this.cartLs.list()[0].restaurant_id) {
           cartLs.add(dish);
         } else {
@@ -141,10 +147,10 @@ export default {
     },
     getDishes(slug) {
       axios
-        .get(`${this.srvApi}/api/dishes/${slug}`)
+        .get(`${this.srvApi}/api/restaurant/${slug}`)
         .then((res) => {
-          this.dishes = res.data;
-          console.log(res.data);
+          this.restaurant = res.data;
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
