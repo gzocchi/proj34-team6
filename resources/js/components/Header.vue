@@ -21,9 +21,17 @@
               >Home <span class="sr-only">(current)</span></router-link
             >
           </li>
+          
           <li class="nav-item">
               <a href="/login" class="nav-link">Admin</a>
           </li>
+
+          <li class="nav-item ">
+            <router-link :to="{ name: 'restaurants' }" class="nav-link"
+              >Restaurants</router-link
+            >
+          </li>
+
           <li class="nav-item">
             <router-link :to="{ name: 'dishes', params: { slug: 'cippirimerlo' }}" class="nav-link">Restaurant Menu test</router-link>
           </li>
