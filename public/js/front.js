@@ -2283,6 +2283,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2296,7 +2310,8 @@ __webpack_require__.r(__webpack_exports__);
       srvApi: "http://127.0.0.1:8000",
       shipping: 0,
       shipping_free: 0,
-      cartItem: []
+      cartItem: [],
+      orderFree: false
     };
   },
   mounted: function mounted() {
@@ -2311,6 +2326,15 @@ __webpack_require__.r(__webpack_exports__);
 
     this.getShipping(this.cartItem[0].restaurant_id);
   },
+  watch: {
+    cartItem: function cartItem(val) {
+      if (this.shipping_free) {
+        return cart_localstorage__WEBPACK_IMPORTED_MODULE_0__["total"]() > this.shipping_free ? this.orderFree = true : this.orderFree = false;
+      } else {
+        this.orderFree = false;
+      }
+    }
+  },
   methods: {
     getShipping: function getShipping(restaurant_id) {
       var _this2 = this;
@@ -2318,6 +2342,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("".concat(this.srvApi, "/api/").concat(restaurant_id, "/shipping")).then(function (res) {
         _this2.shipping = res.data.shipping;
         _this2.shipping_free = res.data.shipping_free;
+
+        if (_this2.shipping == 0) {
+          _this2.orderFree = true;
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4306,13 +4334,21 @@ var render = function() {
         _c("div", { staticClass: "card-header" }, [
           _c("h2", [_vm._v("Cart")]),
           _vm._v(" "),
-          _c("h6", [
-            _vm._v(
-              "\n          Spedizione gratuita per ordini superiori a: " +
-                _vm._s(_vm.shipping_free) +
-                " €\n        "
-            )
-          ])
+          _vm.shipping > 0
+            ? _c("h5", [
+                _vm._v("Spese di spedizione " + _vm._s(_vm.shipping) + " €")
+              ])
+            : _c("h5", [_vm._v("Spedizione Gratuita!")]),
+          _vm._v(" "),
+          _vm.shipping > 0 && _vm.shipping_free > 0
+            ? _c("h6", [
+                _vm._v(
+                  "\n          Spedizione gratuita per ordini superiori a:\n          " +
+                    _vm._s(_vm.shipping_free) +
+                    " €\n        "
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
@@ -4384,27 +4420,43 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("tfoot", [
-              _c("td", { attrs: { colspan: "3" } }),
+              _c("td", { attrs: { colspan: [_vm.orderFree ? 5 : 3] } }),
               _vm._v(" "),
-              _c("td", { staticClass: "text-right" }, [
-                _vm._v("\n              Spedizione: " + _vm._s(_vm.shipping)),
-                _c("strong", { staticClass: "total" })
-              ]),
+              _vm.orderFree
+                ? _c("td", { staticClass: "text-right" }, [
+                    _vm._v("\n              Spedizione Gratuita"),
+                    _c("strong", { staticClass: "total" })
+                  ])
+                : _c("td", { staticClass: "text-right" }, [
+                    _vm._v(
+                      "\n              Spedizione: " + _vm._s(_vm.shipping)
+                    ),
+                    _c("strong", { staticClass: "total" })
+                  ]),
               _vm._v(" "),
-              _c("td", { staticClass: "text-right" }, [
-                _vm._v(
-                  "\n              SubTotal: " + _vm._s(_vm.cartLs.total())
-                ),
-                _c("strong", { staticClass: "total" })
-              ]),
+              !_vm.orderFree
+                ? _c("td", { staticClass: "text-right" }, [
+                    _vm._v(
+                      "\n              SubTotal: " + _vm._s(_vm.cartLs.total())
+                    ),
+                    _c("strong", { staticClass: "total" })
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c("td", { staticClass: "text-right" }, [
-                _vm._v(
-                  "\n              Total: " +
-                    _vm._s(_vm.cartLs.total() + _vm.shipping)
-                ),
-                _c("strong", { staticClass: "total" })
-              ]),
+              !_vm.orderFree
+                ? _c("td", { staticClass: "text-right" }, [
+                    _vm._v(
+                      "\n              Total: " +
+                        _vm._s(_vm.cartLs.total() + _vm.shipping)
+                    ),
+                    _c("strong", { staticClass: "total" })
+                  ])
+                : _c("td", { staticClass: "text-right" }, [
+                    _vm._v(
+                      "\n              Total: " + _vm._s(_vm.cartLs.total())
+                    ),
+                    _c("strong", { staticClass: "total" })
+                  ]),
               _vm._v(" "),
               _c("td")
             ])
