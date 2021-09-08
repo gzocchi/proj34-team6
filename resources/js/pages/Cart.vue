@@ -59,157 +59,112 @@
               <td></td>
             </tfoot>
           </table>
-              <v-form class="form">
-                        <template>
-                            <h2>Indirizzo di consegna</h2>
-                            <!-- INPUT ADDRESS -->
-                            <label for="address">Indirizzo</label>
-                            <v-text-field
-                            class="input"
-                            id="address"
-                            placeholder="es.Via Ettore Ponti, 21"
-                            v-model="form.customer_address"
-                            color="#006d68"
-                            :rules="[
-                                v => !!v || 'Indirizzo obbligatorio',
-                                v => (v && v.length <= 50) || 'l\'indirizzo può contenere massimo 50 caratteri',
-                                v => (v && v.length >= 3) || 'l\'indirizzo deve contenere minimo 3 caratteri'
-                            ]"
-                            hide-details="auto"
-                            ></v-text-field>
-                            <!-- ERROR -->
-                            <div class="form-error" v-show="any_errors">
-                                <span v-for="error in errors['customer_telephone']" :key="error">
-                                    {{error}}
-                                </span>
-                            </div>
-                            <label for="telephone">Telefono</label>
-                            <v-text-field
-                            class="input"
-                            id="telephone"
-                            placeholder="es. 333333333333"
-                            v-model="form.customer_telephone"
-                            color="#006d68"
-                            :rules="[
-                                v => !!v || 'Numero obbligatorio',
-                                v => (v && v.length <= 10) || 'il numero deve contenere massimo 9 caratteri',
-                                v => (v && v.length >= 9) || 'il numero deve contenere minimo 10 caratteri'
-                            ]"
-                            hide-details="auto"
-                            ></v-text-field>
-                            <!-- ERROR -->
-                            <div class="form-error" v-show="any_errors">
-                                <span v-for="error in errors['payer_address']" :key="error">
-                                    {{error}}
-                                </span>
-                            </div>
-                            <!-- CAP AND CITY -->
-                            <!-- <div class="cap-and-city" id="cap-and-city">
-                                <div class="cap" id="cap">
-                                    <label for="cap">Cap</label>
-                                    <v-text-field
-                                    class="input"
-                                    id="cap"
-                                    v-model="form.payer_cap"
-                                    placeholder="es. 20143"
-                                    color="#006d68"
-                                    :rules="[
-                                        v => !!v || 'Cap obbligatorio',
-                                        v => (v && v.length == 5) || 'Il Cap deve contenere 5 numeri',
-                                        v => /^\d+$/.test(v) || 'Il Cap deve contenere solo numeri',
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
 
-                                    <div class="form-error" v-show="any_errors">
-                                        <span v-for="error in errors['payer_cap']" :key="error">
-                                        {{error}}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="city" id="city">
-                                    <label for="city">Città</label>
-                                    <v-text-field
-                                    class="input"
-                                    id="city"
-                                    v-model="form.payer_city"
-                                    placeholder="es. Milano"
-                                    color="#006d68"
-                                    :rules="[
-                                        v => !!v || 'Città obbligatoria',
-                                        v => (v && v.length <= 50) || 'La città può contenere massimo 50 caratteri',
-                                        v => (v && v.length >= 3) || 'La città deve contenere minimo 3 caratteri'
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
-
-                                    <div class="form-error" v-show="any_errors">
-                                        <span v-for="error in errors['payer_city']" :key="error">
-                                        {{error}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- NAME AND EMAIL -->
-                            <div class="name-and-email" id="name-and-email">
-                                <div class="name" id="name">
-                                    <label for="nome">Nome</label>
-                                    <v-text-field
-                                    class="input"
-                                    color="#006d68"
-                                    placeholder="es. Luigi Verdi"
-                                    v-model="form.payer_name"
-                                    :rules="[
-                                        v => !!v || 'Nome obbligatorio',
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
-                                    <!-- ERROR -->
-                                    <div class="form-error" v-show="any_errors">
-                                        <span v-for="error in errors['payer_name']" :key="error">
-                                        {{error}}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="email" id="email">
-                                    <label for="email">Email</label>
-                                    <v-text-field
-                                    class="input"
-                                    color="#006d68"
-                                    v-model="form.payer_email"
-                                    placeholder="es. verdiluigi@gmail.com"
-                                    :rules="[
-                                        v => !!v || 'Email obbligatoria',
-                                        v => /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Inserisci una mail valida',
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
-                                    <!-- ERROR -->
-                                    <div class="form-error" v-show="any_errors">
-                                        <span v-for="error in errors['payer_email']" :key="error">
-                                        {{error}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </template>
-                    <h2 class="payment-method">Metodo di pagamento</h2>
-                    <v-braintree
-                        class="braintree"
-                        locale="it_IT"
-                        :vaultManager="true"
-                        :authorization=tokenApi
-                        @success="onSuccess"
-                        @error="onError"
-                        >
-                        <template v-slot:button="slotProps">
-                            <v-btn class="submit" @click="slotProps.submit">
-                                <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"><path d="M18 9H20V21H4V9H6C6 5.69158 8.69158 3 12 3C15.3084 3 18 5.69158 18 9ZM6 19H18V11H6V19ZM8 9H16C16 6.79442 14.2056 5 12 5C9.79442 5 8 6.79442 8 9ZM11.5 16V14H12.5V16H11.5Z"></path></svg>
-                                Ordina per la consegna
-                            </v-btn>
-                        </template>
-                    </v-braintree>
-                </v-form>
+          <!-- FORM -->
+          <v-form class="form">
+            <template>
+              <h2>Indirizzo di consegna</h2>
+              <!-- INPUT ADDRESS -->
+              <label class="mt-3" for="address">Indirizzo</label>
+              <v-text-field
+                class="input"
+                id="address"
+                placeholder="es.Via Ettore Ponti, 21"
+                v-model="form.customer_address"
+                color="#006d68"
+                :rules="[
+                  v => !!v || 'Indirizzo obbligatorio',
+                  v => (v && v.length <= 50) || 'l\'indirizzo può contenere massimo 50 caratteri',
+                  v => (v && v.length >= 3) || 'l\'indirizzo deve contenere minimo 3 caratteri'
+                ]"
+                hide-details="auto"
+              ></v-text-field>
+              <!-- ERROR -->
+              <div class="form-error" v-show="any_errors">
+                <span v-for="error in errors['customer_telephone']" :key="error">
+                  {{error}}
+                </span>
+              </div>
+              <label class="mt-3" for="telephone">Telefono</label>
+              <v-text-field
+                class="input"
+                id="telephone"
+                placeholder="es. 333333333333"
+                v-model="form.customer_telephone"
+                color="#006d68"
+                :rules="[
+                  v => !!v || 'Numero obbligatorio',
+                  v => (v && v.length <= 10) || 'il numero deve contenere massimo 9 caratteri',
+                  v => (v && v.length >= 9) || 'il numero deve contenere minimo 10 caratteri'
+                ]"
+                hide-details="auto"
+              ></v-text-field>
+              <!-- ERROR -->
+              <div class="form-error" v-show="any_errors">
+                <span v-for="error in errors['payer_address']" :key="error">
+                  {{error}}
+                </span>
+              </div>
+              <!-- NAME AND EMAIL -->
+              <div class="name-and-email" id="name-and-email">
+                <div class="name mt-3" id="name">
+                  <label for="nome">Nome</label>
+                  <v-text-field
+                    class="input"
+                    color="#006d68"
+                    placeholder="es. Luigi Verdi"
+                    v-model="form.payer_name"
+                    :rules="[
+                      v => !!v || 'Nome obbligatorio',
+                    ]"
+                    hide-details="auto"
+                  ></v-text-field>
+                  <!-- ERROR -->
+                  <div class="form-error" v-show="any_errors">
+                    <span v-for="error in errors['payer_name']" :key="error">
+                      {{error}}
+                    </span>
+                  </div>
+                </div>
+                <div class="email mt-3" id="email">
+                  <label for="email">Email</label>
+                  <v-text-field
+                    class="input"
+                    color="#006d68"
+                    v-model="form.payer_email"
+                    placeholder="es. verdiluigi@gmail.com"
+                    :rules="[
+                      v => !!v || 'Email obbligatoria',
+                      v => /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Inserisci una mail valida',
+                    ]"
+                    hide-details="auto"
+                  ></v-text-field>
+                  <!-- ERROR -->
+                  <div class="form-error" v-show="any_errors">
+                    <span v-for="error in errors['payer_email']" :key="error">
+                      {{error}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </template>
+            <h2 class="payment-method mt-5">Metodo di pagamento</h2>
+            <v-braintree
+              class="braintree"
+              locale="it_IT"
+              :vaultManager="true"
+              :authorization=tokenApi
+              @success="onSuccess"
+              @error="onError"
+              >
+              <template v-slot:button="slotProps">
+                <v-btn class="submit btn btn-success" @click="slotProps.submit">
+                  <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"><path d="M18 9H20V21H4V9H6C6 5.69158 8.69158 3 12 3C15.3084 3 18 5.69158 18 9ZM6 19H18V11H6V19ZM8 9H16C16 6.79442 14.2056 5 12 5C9.79442 5 8 6.79442 8 9ZM11.5 16V14H12.5V16H11.5Z"></path></svg>
+                      Paga
+                </v-btn>
+              </template>
+            </v-braintree>
+          </v-form>
         </div>
       </div>
     </div>

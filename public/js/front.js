@@ -2416,51 +2416,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -28721,9 +28676,11 @@ var render = function() {
                 [
                   _c("h2", [_vm._v("Indirizzo di consegna")]),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "address" } }, [
-                    _vm._v("Indirizzo")
-                  ]),
+                  _c(
+                    "label",
+                    { staticClass: "mt-3", attrs: { for: "address" } },
+                    [_vm._v("Indirizzo")]
+                  ),
                   _vm._v(" "),
                   _c("v-text-field", {
                     staticClass: "input",
@@ -28775,18 +28732,20 @@ var render = function() {
                     _vm._l(_vm.errors["customer_telephone"], function(error) {
                       return _c("span", { key: error }, [
                         _vm._v(
-                          "\n                                  " +
+                          "\n                " +
                             _vm._s(error) +
-                            "\n                              "
+                            "\n              "
                         )
                       ])
                     }),
                     0
                   ),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "telephone" } }, [
-                    _vm._v("Telefono")
-                  ]),
+                  _c(
+                    "label",
+                    { staticClass: "mt-3", attrs: { for: "telephone" } },
+                    [_vm._v("Telefono")]
+                  ),
                   _vm._v(" "),
                   _c("v-text-field", {
                     staticClass: "input",
@@ -28838,9 +28797,9 @@ var render = function() {
                     _vm._l(_vm.errors["payer_address"], function(error) {
                       return _c("span", { key: error }, [
                         _vm._v(
-                          "\n                                  " +
+                          "\n                " +
                             _vm._s(error) +
-                            "\n                              "
+                            "\n              "
                         )
                       ])
                     }),
@@ -28856,7 +28815,7 @@ var render = function() {
                     [
                       _c(
                         "div",
-                        { staticClass: "name", attrs: { id: "name" } },
+                        { staticClass: "name mt-3", attrs: { id: "name" } },
                         [
                           _c("label", { attrs: { for: "nome" } }, [
                             _vm._v("Nome")
@@ -28899,9 +28858,9 @@ var render = function() {
                             _vm._l(_vm.errors["payer_name"], function(error) {
                               return _c("span", { key: error }, [
                                 _vm._v(
-                                  "\n                                      " +
+                                  "\n                    " +
                                     _vm._s(error) +
-                                    "\n                                      "
+                                    "\n                  "
                                 )
                               ])
                             }),
@@ -28913,7 +28872,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "email", attrs: { id: "email" } },
+                        { staticClass: "email mt-3", attrs: { id: "email" } },
                         [
                           _c("label", { attrs: { for: "email" } }, [
                             _vm._v("Email")
@@ -28963,9 +28922,9 @@ var render = function() {
                             _vm._l(_vm.errors["payer_email"], function(error) {
                               return _c("span", { key: error }, [
                                 _vm._v(
-                                  "\n                                      " +
+                                  "\n                    " +
                                     _vm._s(error) +
-                                    "\n                                      "
+                                    "\n                  "
                                 )
                               ])
                             }),
@@ -28978,7 +28937,7 @@ var render = function() {
                   )
                 ],
                 _vm._v(" "),
-                _c("h2", { staticClass: "payment-method" }, [
+                _c("h2", { staticClass: "payment-method mt-5" }, [
                   _vm._v("Metodo di pagamento")
                 ]),
                 _vm._v(" "),
@@ -28998,7 +28957,7 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              staticClass: "submit",
+                              staticClass: "submit btn btn-success",
                               on: { click: slotProps.submit }
                             },
                             [
@@ -29023,7 +28982,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(
-                                "\n                              Ordina per la consegna\n                          "
+                                "\n                    Paga\n              "
                               )
                             ]
                           )
