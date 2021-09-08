@@ -2,20 +2,23 @@
   <section class="text-center py-5 my-5">
     <h1>Restaurants</h1>
 
-    <div class="my-4" v-for="restaurant in restaurants" :key="restaurant.slug">
-
-      <h3>{{ restaurant.name }}</h3>
-
-      <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }"
-        >Menu</router-link>
-
+    <div class="row">
+      <RestaurantCard
+      class="col-md-4"
+        :restaurant="restaurant"
+        v-for="restaurant in restaurants"
+        :key="restaurant.slug"
+      />
     </div>
   </section>
 </template>
 
 <script>
+import RestaurantCard from "../components/RestaurantCard";
+
 export default {
   name: "Restaurants",
+  components: { RestaurantCard },
   data() {
     return {
       srvApi: "http://127.0.0.1:8000",

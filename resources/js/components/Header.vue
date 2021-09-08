@@ -31,6 +31,12 @@
               >Restaurants</router-link
             >
           </li>
+
+          <li class="nav-item cart">
+            <router-link :to="{ name: 'cart' }" class="nav-link"
+              >Carrello</router-link
+            >
+          </li>
         </ul>
       </div>
     </nav>
@@ -40,6 +46,7 @@
 <script>
 export default {
   name: "Header",
+  data() {},
 };
 </script>
 
