@@ -10950,7 +10950,6 @@ main {
 main section.dashboard .dashboard_card {
   border-radius: 10px;
   text-align: center;
-  background-color: red;
 }
 
 main section.dashboard .dashboard_card:first-child {

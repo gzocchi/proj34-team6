@@ -16,7 +16,8 @@ class RestaurantController extends Controller
         return response()->json($restaurants);
     }
 
-    public function show($slug) {
+    public function show($slug)
+    {
 
         // $restaurant = Restaurant::where('slug', $slug)->first();
         $restaurant = Restaurant::where('slug', $slug)->with(['dishes'])->first();
@@ -24,5 +25,15 @@ class RestaurantController extends Controller
         return response()->json($restaurant);
     }
 
+    public function shipping($restaurant_id)
+    {
 
+        $restaurant = Restaurant::where('id', $restaurant_id)->first();
+        $shipping = [
+            'shipping' => $restaurant->shipping,
+            'shipping_free' => $restaurant->shipping_free
+        ];
+
+        return response()->json($shipping);
+    }
 }

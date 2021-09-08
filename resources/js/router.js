@@ -5,9 +5,11 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Home from "./pages/Home";
-import Restaurants from "./pages/Restaurants";
+import Cart from "./pages/Cart";
 import Type from "./pages/Type";
+import Restaurants from "./pages/Restaurants";
 import Restaurant from "./pages/Restaurant";
+import NotFound from "./pages/NotFound";
 
 const router = new VueRouter({
     mode: "history",
@@ -17,6 +19,11 @@ const router = new VueRouter({
             path: "/",
             name: "home",
             component: Home
+        },
+        {
+            path: "/cart",
+            name: "cart",
+            component: Cart
         },
         {
             path: "/type/:slug",
@@ -32,6 +39,11 @@ const router = new VueRouter({
             path: "/restaurant/:slug",
             name: "restaurant",
             component: Restaurant
+        },
+        {
+            path: "*",
+            name: "not-found",
+            component: NotFound
         }
     ]
 });
