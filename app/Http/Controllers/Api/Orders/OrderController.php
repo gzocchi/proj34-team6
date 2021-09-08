@@ -28,8 +28,6 @@ class OrderController extends Controller
         ];
         
         return response()->json($data,200);
-        // dd($gateway->clientToken()->generate());
-        // return 'generate';
     }
 
     // Request vs OrderRequest?
@@ -37,11 +35,11 @@ class OrderController extends Controller
 
         $validator = Validator::make($request->all(),[
             "token" => "required",
-            "dish" => "required", // ?
             'customer_name' => "required|string|min:5|max:60",
             'customer_mail' => "required|max:100",
             'customer_address' => "required|min:5",
-            'customer_telephone' => "required|numeric|min:9|max:10",
+            'customer_telephone' => "required|min:9|max:10",
+            "dishes" => "required", // ?
         ],
         [
             'required'=> 'Questo campo è obbligatorio',
