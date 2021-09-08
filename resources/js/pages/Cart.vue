@@ -4,8 +4,13 @@
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header">
           <h2>Cart</h2>
-          <h6>
-            Spedizione gratuita per ordini superiori a: {{ shipping_free }} €
+
+          <h5 v-if="shipping > 0">Spese di spedizione {{ shipping }} €</h5>
+          <h5 v-else>Spedizione Gratuita!</h5>
+
+          <h6 v-if="shipping > 0 && shipping_free > 0">
+            Spedizione gratuita per ordini superiori a:
+            {{ shipping_free }} €
           </h6>
         </div>
         <div class="card-body">
@@ -45,17 +50,26 @@
               </tr>
             </tbody>
             <tfoot>
-              <td colspan="3"></td>
-              <td class="text-right">
+              <td :colspan="[orderFree ? 5 : 3]"></td>
+
+              <td v-if="orderFree" class="text-right">
+                Spedizione Gratuita<strong class="total"></strong>
+              </td>
+              <td v-else class="text-right">
                 Spedizione: {{ shipping }}<strong class="total"></strong>
               </td>
-              <td class="text-right">
+
+              <td v-if="!orderFree" class="text-right">
                 SubTotal: {{ cartLs.total() }}<strong class="total"></strong>
               </td>
-              <td class="text-right">
-                Total: {{ cartLs.total() + shipping
-                }}<strong class="total"></strong>
+
+              <td v-if="!orderFree" class="text-right">
+                Total: {{ cartLs.total() + shipping }}<strong class="total"></strong>
               </td>
+              <td v-else class="text-right">
+                Total: {{ cartLs.total() }}<strong class="total"></strong>
+              </td>
+              
               <td></td>
             </tfoot>
           </table>
@@ -81,6 +95,7 @@ export default {
       shipping: 0,
       shipping_free: 0,
       cartItem: [],
+      orderFree: false
     };
   },
   mounted() {
@@ -95,6 +110,17 @@ export default {
     // Chiamata api ristorante shipping
     this.getShipping(this.cartItem[0].restaurant_id);
   },
+  watch: {
+    cartItem(val) {
+      if (this.shipping_free) {
+        return cartLs.total() > this.shipping_free
+          ? (this.orderFree = true)
+          : (this.orderFree = false);
+      } else {
+        this.orderFree = false;
+      }
+    },
+  },
   methods: {
     getShipping(restaurant_id) {
       axios
@@ -102,6 +128,9 @@ export default {
         .then((res) => {
           this.shipping = res.data.shipping;
           this.shipping_free = res.data.shipping_free;
+          if(this.shipping == 0) {
+            this.orderFree = true
+          }
         })
         .catch((err) => {
           console.log(err);
