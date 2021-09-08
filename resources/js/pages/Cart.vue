@@ -59,7 +59,7 @@
               <td></td>
             </tfoot>
           </table>
-                                <v-form class="form">
+              <v-form class="form">
                         <template>
                             <h2>Indirizzo di consegna</h2>
                             <!-- INPUT ADDRESS -->
