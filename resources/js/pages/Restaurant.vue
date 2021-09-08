@@ -89,6 +89,7 @@
               <td colspan="5"></td>
               <td class="text-right">
                 Total: {{ cartLs.total() }}<strong class="total"></strong>
+                <router-link :to="{ name: 'payment', params: { total: cartLs.total() } }">Vai alla cassa</router-link>
               </td>
               <td></td>
             </tfoot>

@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Restaurants from "./pages/Restaurants";
 import Type from "./pages/Type";
 import Restaurant from "./pages/Restaurant";
+import Payment from "./pages/Payment";
 
 const router = new VueRouter({
     mode: "history",
@@ -32,6 +33,11 @@ const router = new VueRouter({
             path: "/restaurant/:slug",
             name: "restaurant",
             component: Restaurant
+        },
+        {
+            path: "/payment",
+            name: "payment",
+            component: Payment
         }
     ]
 });

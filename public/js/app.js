@@ -50017,9 +50017,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /media/Dati/1_git_gzocchi/proj34-team6/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /media/Dati/1_git_gzocchi/proj34-team6/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /media/Dati/1_git_gzocchi/proj34-team6/resources/sass/front.scss */"./resources/sass/front.scss");
+__webpack_require__(/*! C:\progetti-boolean\proj34-team6\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\progetti-boolean\proj34-team6\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\progetti-boolean\proj34-team6\resources\sass\front.scss */"./resources/sass/front.scss");
 
 
 /***/ })
