@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 
+import vuebraintree from "vue-braintree";
+import Vuetify from 'vuetify';
+
 
 window.Vue = require('vue');
 
@@ -28,6 +31,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ Vue.use(vuebraintree);
+ Vue.use(Vuetify);
+
 const app = new Vue({
-    el: '#app',
+    el: '#app'
 });
