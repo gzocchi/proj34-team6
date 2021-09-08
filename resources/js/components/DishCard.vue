@@ -37,7 +37,6 @@ export default {
       cartLs,
     };
   },
-  mounted() {},
   methods: {
     addDish(dish) {
       if (this.cartLs.list().length > 0) {

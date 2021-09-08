@@ -1981,7 +1981,6 @@ __webpack_require__.r(__webpack_exports__);
       cartLs: cart_localstorage__WEBPACK_IMPORTED_MODULE_0__
     };
   },
-  mounted: function mounted() {},
   methods: {
     addDish: function addDish(dish) {
       if (this.cartLs.list().length > 0) {
@@ -2076,8 +2075,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Header",
-  data: function data() {}
+  name: "Header"
 });
 
 /***/ }),
