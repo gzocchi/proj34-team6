@@ -10,6 +10,7 @@ import Type from "./pages/Type";
 import Restaurants from "./pages/Restaurants";
 import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/NotFound";
+import Payment from "./pages/Payment";
 
 const router = new VueRouter({
     mode: "history",
@@ -44,6 +45,11 @@ const router = new VueRouter({
             path: "*",
             name: "not-found",
             component: NotFound
+        },
+        {
+            path: "/payment",
+            name: "payment",
+            component: Payment
         }
     ]
 });

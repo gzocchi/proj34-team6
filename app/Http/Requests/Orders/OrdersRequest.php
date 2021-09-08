@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Orders;
 
-use App\Rules\ValidDish;
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrderRequest extends FormRequest
+class OrdersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +25,13 @@ class OrderRequest extends FormRequest
     {
         return [
             'token' => 'required',
-            'dish' => [
-                'required',
-                new ValidDish()
-            ]
+            //qua sarà da modificare inserendo nel required che cosa deve andare a recuperarsi. Si può fare:
+            // 'amount' => '12.50'
+            // si potrà fare 
+            // 'amount' => local_cart_dish_id_filtrato_per_restaurant_id_PRICE ????
+            
+            // localStorage__cart
+            'amount' => 'required'
         ];
     }
 }
