@@ -134,7 +134,19 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-    }
+    },
+
+    // aggiunta per utilizzare il NOSTRO token
+    async generateKey(){
+            this.loader = false;
+            await axios.get("http://127.0.0.1:8000/api/orders/generate")
+            .then(res=>{
+                this.tokenApi = res.data.token;
+                this.loader = true;
+            }).catch(err=>{
+                console.log(err);
+            })
+        },
   }
 };
 </script>
