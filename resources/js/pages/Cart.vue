@@ -64,12 +64,13 @@
               </td>
 
               <td v-if="!orderFree" class="text-right">
-                Total: {{ cartLs.total() + shipping }}<strong class="total"></strong>
+                Total: {{ cartLs.total() + shipping
+                }}<strong class="total"></strong>
               </td>
               <td v-else class="text-right">
                 Total: {{ cartLs.total() }}<strong class="total"></strong>
               </td>
-              
+
               <td></td>
             </tfoot>
           </table>
@@ -88,30 +89,24 @@ import Loader from "../components/Loader";
 export default {
   name: "Cart",
   components: { Loader },
+  props: {
+    cart: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       cartLs,
       srvApi: "http://127.0.0.1:8000",
       shipping: 0,
       shipping_free: 0,
-      // cartItem: [],
-      orderFree: false
+      orderFree: false,
     };
   },
-  props:['cart'],
   mounted() {
-    // Carico carrello da storage
-    // this.cartItem = this.cartLs.list();
-
-    // Ricarico carrello a ogni cambiamento
-    // cartLs.onChange(() => {
-    //   console.log('change cart');
-    //   this.cartItem = this.cartLs.list();
-    // });
-
     // Chiamata api ristorante shipping
-    // this.getShipping(this.cartItem[0].restaurant_id);
-    this.getShipping(this.cart[0].restaurant_id);
+    this.getShipping(this.cartLs.list()[0].restaurant_id);
   },
   watch: {
     cartItem(val) {
@@ -131,8 +126,8 @@ export default {
         .then((res) => {
           this.shipping = res.data.shipping;
           this.shipping_free = res.data.shipping_free;
-          if(this.shipping == 0) {
-            this.orderFree = true
+          if (this.shipping == 0) {
+            this.orderFree = true;
           }
         })
         .catch((err) => {

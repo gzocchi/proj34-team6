@@ -32,7 +32,7 @@
             >
           </li>
 
-          <li class="nav-item cart">
+          <li class="nav-item cart" v-if="totalQuantity > 0">
             <router-link :to="{ name: 'cart' }" class="nav-link"
               >Carrello <span>{{ totalQuantity }}</span>
             </router-link>
@@ -44,15 +44,19 @@
 </template>
 
 <script>
-
 export default {
   name: "Header",
-  props:['totalQuantity']
+  props: {
+    totalQuantity: {
+      type: Number,
+      required: true,
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-span{
-background-color: red;
+span {
+  background-color: red;
 }
 </style>
