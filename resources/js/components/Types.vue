@@ -4,7 +4,7 @@
       class="type_card col-md-6"
       v-for="type in types"
       :key="type.id"
-      :style="{ 'background-image': 'url(storage/' + type.image + ')' }"
+      :style=" `background-image: url(/storage/${type.image} )` "
     >
       <router-link :to="{ name: 'type', params: { slug: type.slug } }">
         <span>{{ type.name }}</span></router-link
