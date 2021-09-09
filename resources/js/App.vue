@@ -36,7 +36,6 @@ export default {
 
         // Ricarico carrello a ogni cambiamento
         this.cartLs.onChange(() => {
-            console.log("change app");
             this.cartItem = this.cartLs.list();
             this.totalQuantity();
         });
