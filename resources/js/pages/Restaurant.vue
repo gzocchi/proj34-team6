@@ -12,7 +12,7 @@
       <div class="col-12 col-md-8">
         <h1>{{ restaurant.name }}</h1>
         <h3>Indirizzo: {{ restaurant.address }}</h3>
-        <h5 v-if="shipping > 0">
+        <h5 v-if="restaurant.shipping > 0">
           Spese di spedizione {{ restaurant.shipping }} €
         </h5>
         <h5 v-else>Spedizione Gratuita!</h5>
