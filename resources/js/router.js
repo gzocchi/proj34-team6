@@ -10,7 +10,8 @@ import Type from "./pages/Type";
 import Restaurants from "./pages/Restaurants";
 import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/NotFound";
-import Payment from "./pages/Payment";
+import Payment_Stefano from "./pages/Payment_Stefano";
+import Payment_Fabio from "./pages/Payment_Fabio";
 
 const router = new VueRouter({
     mode: "history",
