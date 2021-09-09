@@ -7,6 +7,8 @@ import Vue from "vue";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import vuebraintree from "vue-braintree";
+import swal from 'sweetalert';
+
 
 Vue.use(Vuetify);
 Vue.use(vuebraintree);
