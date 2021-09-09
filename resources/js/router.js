@@ -47,9 +47,14 @@ const router = new VueRouter({
             component: NotFound
         },
         {
-            path: "/payment",
-            name: "payment",
-            component: Payment
+            path: "/paymentS",
+            name: "paymentS",
+            component: Payment_Stefano
+        },
+        {
+            path: "/paymentF",
+            name: "paymentF",
+            component: Payment_Fabio
         }
     ]
 });
