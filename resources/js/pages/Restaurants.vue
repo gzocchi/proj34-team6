@@ -1,10 +1,11 @@
 <template>
-  <section class="text-center py-5 my-5">
+  <section class="text-center">
     <h1>Restaurants</h1>
 
     <div class="row">
+      <!-- originale  -->
       <RestaurantCard
-      class="col-md-4"
+      class="col-12"
         :restaurant="restaurant"
         v-for="restaurant in restaurants"
         :key="restaurant.slug"
@@ -18,7 +19,7 @@ import RestaurantCard from "../components/RestaurantCard";
 
 export default {
   name: "Restaurants",
-  components: { RestaurantCard },
+  components: { RestaurantCard},
   data() {
     return {
       srvApi: "http://127.0.0.1:8000",
@@ -43,4 +44,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h1 {
+  margin-bottom: 40px;
+}
+// .row {
+//     box-shadow: 0px 0px 5px 0px;
+// }
+</style>

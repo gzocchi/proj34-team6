@@ -12,7 +12,7 @@ use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\Orders\OrdersRequest; // utile?
+use App\Http\Requests\Orders\OrdersRequest;
 
 class OrderController extends Controller
 {
@@ -39,7 +39,7 @@ class OrderController extends Controller
             'customer_mail' => "required|max:100",
             'customer_address' => "required|min:5",
             'customer_telephone' => "required|min:9|max:10",
-            "dishes" => "required", // ?
+            "dishes" => "required"
         ],
         [
             'required'=> 'Questo campo è obbligatorio',
@@ -57,14 +57,22 @@ class OrderController extends Controller
         // $restaurant = Restaurant::find($request->id);
         $amount = 0; // totale del carello
         $all_dishes = [];
-        foreach($request->dishes as $dish) {
+        $dishes = $request->dishes;
+        
+        // dd($dishes);
 
-            $newDish = Dish::where('restaurant_id', $dish->restaurant_id)->where('id', $dish->id)->first();
+        foreach($dishes as $dish) {
+            // dd($dish);
+
+            $newDish = Dish::where('id', $dish['id'])->where('restaurant_id', $dish['restaurant_id'])->first();
 
             $amount += $newDish->price * $dish['quantity'];
             $newDish['quantity'] = $dish['quantity'];
 
             array_push($all_dishes, $newDish);
+
+            $x = json_decode($newDish);
+            dd($x);
         }
 
         // generate order table

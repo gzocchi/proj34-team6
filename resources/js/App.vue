@@ -14,6 +14,7 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+
 export default {
     name: "App",
     components: {
@@ -24,6 +25,11 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 body {
     background-color: #f8f9fa;
 }
