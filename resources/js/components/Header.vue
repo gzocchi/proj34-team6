@@ -56,7 +56,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/front";
+
 span {
-  background-color: red;
+  background-color: $red;
+  color: white;
 }
 </style>

@@ -50,6 +50,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/front";
+
 div.types {
   .type_card {
     text-align: center;
@@ -59,7 +61,7 @@ div.types {
       padding: 100px 0;
       font-size: 2em;
       text-decoration: none;
-      color: #e2004f;
+      color: $violet;
 
       span {
         padding: 10px;

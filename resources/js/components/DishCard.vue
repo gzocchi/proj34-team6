@@ -43,8 +43,25 @@ export default {
         if (dish.restaurant_id == this.cartLs.list()[0].restaurant_id) {
           cartLs.add(dish);
         } else {
-          cartLs.destroy();
-          cartLs.add(dish);
+          swal({
+            title: "Sei sicuro?",
+            text: "Con l'aggiunta di questo piatto il carrello verrà eliminato!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          }).then((willDelete) => {
+            if (willDelete) {
+              swal("Il nuovo prodotto è stato aggiunto al carrello", {
+                icon: "success",
+              });
+            } else {
+              swal("Il tuo carrello è al sicuro!");
+            }
+            if (willDelete) {
+              cartLs.destroy();
+              cartLs.add(dish);
+            }
+          });
         }
       } else {
         cartLs.add(dish);
