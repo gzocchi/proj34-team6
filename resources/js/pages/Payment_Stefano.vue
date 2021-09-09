@@ -86,7 +86,7 @@
 import * as cartLs from "cart-localstorage";
 
 export default {
-  name: "Cart",
+  name: "Payment_Stefano",
   data() {
     return {
       cartLs,
