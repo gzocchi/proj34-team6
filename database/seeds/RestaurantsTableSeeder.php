@@ -52,8 +52,10 @@ class RestaurantsTableSeeder extends Seeder
             $restaurant->slug = Str::slug($restaurant->name, '-');
             $restaurant->save();
 
-            $type = App\Type::where('name', $item['type'])->first();
-            $restaurant->types()->attach($type->id);
+            foreach ($item['type'] as $type) {
+                $restaurantType = App\Type::where('name', $type)->first();
+                $restaurant->types()->attach($restaurantType->id);
+           }
         }
     }
 }
