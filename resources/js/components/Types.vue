@@ -1,7 +1,7 @@
 <template>
   <div class="types row" v-if="!loading && types">
     <div
-      class="type_card col-md-6"
+      class="type_card col-md-4"
       v-for="type in types"
       :key="type.id"
       :style=" `background-image: url(/storage/${type.image} )` "
