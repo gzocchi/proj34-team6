@@ -30,7 +30,7 @@ class RestaurantsTableSeeder extends Seeder
                 $admin = App\User::where('email', 'admin@deliveboo.com')->first();
                 $restaurant->user_id = $admin->id;
             }
-            
+
             $restaurant->name = $item['name'];
             $restaurant->address = $item['address'];
             $restaurant->p_iva = $item['p_iva'];
@@ -55,7 +55,12 @@ class RestaurantsTableSeeder extends Seeder
             foreach ($item['type'] as $type) {
                 $restaurantType = App\Type::where('name', $type)->first();
                 $restaurant->types()->attach($restaurantType->id);
+
            }
+
+            }
+
+
         }
     }
 }

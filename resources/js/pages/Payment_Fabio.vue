@@ -11,7 +11,7 @@
         <div class="card-body">
           <table class="table">
             <tbody class="cart">
-              <tr v-for="item in cartItem" :key="item.id">
+              <tr v-for="item in cart" :key="item.id">
                 <td>#{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
@@ -73,16 +73,23 @@
                 v-model="form.customer_address"
                 color="#006d68"
                 :rules="[
-                  v => !!v || 'Indirizzo obbligatorio',
-                  v => (v && v.length <= 50) || 'l\'indirizzo può contenere massimo 50 caratteri',
-                  v => (v && v.length >= 3) || 'l\'indirizzo deve contenere minimo 3 caratteri'
+                  (v) => !!v || 'Indirizzo obbligatorio',
+                  (v) =>
+                    (v && v.length <= 50) ||
+                    'l\'indirizzo può contenere massimo 50 caratteri',
+                  (v) =>
+                    (v && v.length >= 3) ||
+                    'l\'indirizzo deve contenere minimo 3 caratteri',
                 ]"
                 hide-details="auto"
               ></v-text-field>
               <!-- ERROR -->
               <div class="form-error" v-show="any_errors">
-                <span v-for="error in errors['customer_telephone']" :key="error">
-                  {{error}}
+                <span
+                  v-for="error in errors['customer_telephone']"
+                  :key="error"
+                >
+                  {{ error }}
                 </span>
               </div>
               <label class="mt-3" for="telephone">Telefono</label>
@@ -93,16 +100,20 @@
                 v-model="form.customer_telephone"
                 color="#006d68"
                 :rules="[
-                  v => !!v || 'Numero obbligatorio',
-                  v => (v && v.length <= 10) || 'il numero deve contenere massimo 9 caratteri',
-                  v => (v && v.length >= 9) || 'il numero deve contenere minimo 10 caratteri'
+                  (v) => !!v || 'Numero obbligatorio',
+                  (v) =>
+                    (v && v.length <= 10) ||
+                    'il numero deve contenere massimo 9 caratteri',
+                  (v) =>
+                    (v && v.length >= 9) ||
+                    'il numero deve contenere minimo 10 caratteri',
                 ]"
                 hide-details="auto"
               ></v-text-field>
               <!-- ERROR -->
               <div class="form-error" v-show="any_errors">
                 <span v-for="error in errors['payer_address']" :key="error">
-                  {{error}}
+                  {{ error }}
                 </span>
               </div>
               <!-- NAME AND EMAIL -->
@@ -114,15 +125,13 @@
                     color="#006d68"
                     placeholder="es. Luigi Verdi"
                     v-model="form.payer_name"
-                    :rules="[
-                      v => !!v || 'Nome obbligatorio',
-                    ]"
+                    :rules="[(v) => !!v || 'Nome obbligatorio']"
                     hide-details="auto"
                   ></v-text-field>
                   <!-- ERROR -->
                   <div class="form-error" v-show="any_errors">
                     <span v-for="error in errors['payer_name']" :key="error">
-                      {{error}}
+                      {{ error }}
                     </span>
                   </div>
                 </div>
@@ -134,15 +143,18 @@
                     v-model="form.payer_email"
                     placeholder="es. verdiluigi@gmail.com"
                     :rules="[
-                      v => !!v || 'Email obbligatoria',
-                      v => /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Inserisci una mail valida',
+                      (v) => !!v || 'Email obbligatoria',
+                      (v) =>
+                        /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                          v
+                        ) || 'Inserisci una mail valida',
                     ]"
                     hide-details="auto"
                   ></v-text-field>
                   <!-- ERROR -->
                   <div class="form-error" v-show="any_errors">
                     <span v-for="error in errors['payer_email']" :key="error">
-                      {{error}}
+                      {{ error }}
                     </span>
                   </div>
                 </div>
@@ -153,14 +165,23 @@
               class="braintree"
               locale="it_IT"
               :vaultManager="true"
-              :authorization=tokenApi
+              :authorization="tokenApi"
               @success="onSuccess"
               @error="onError"
-              >
+            >
               <template v-slot:button="slotProps">
                 <v-btn class="submit btn btn-success" @click="slotProps.submit">
-                  <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"><path d="M18 9H20V21H4V9H6C6 5.69158 8.69158 3 12 3C15.3084 3 18 5.69158 18 9ZM6 19H18V11H6V19ZM8 9H16C16 6.79442 14.2056 5 12 5C9.79442 5 8 6.79442 8 9ZM11.5 16V14H12.5V16H11.5Z"></path></svg>
-                      Paga
+                  <svg
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"
+                  >
+                    <path
+                      d="M18 9H20V21H4V9H6C6 5.69158 8.69158 3 12 3C15.3084 3 18 5.69158 18 9ZM6 19H18V11H6V19ZM8 9H16C16 6.79442 14.2056 5 12 5C9.79442 5 8 6.79442 8 9ZM11.5 16V14H12.5V16H11.5Z"
+                    ></path>
+                  </svg>
+                  Paga
                 </v-btn>
               </template>
             </v-braintree>
@@ -177,8 +198,15 @@
 import * as cartLs from "cart-localstorage";
 import Loader from "../components/Loader";
 import vuebraintree from "vue-braintree";
+
 export default {
   name: "Payment_Fabio",
+  props: {
+    cart: {
+      type: Array,
+      required: true,
+    },
+  },
   components: { Loader },
   data() {
     return {
@@ -186,35 +214,28 @@ export default {
       srvApi: "http://127.0.0.1:8000",
       shipping: 0,
       shipping_free: 0,
-      cartItem: [],
       tokenApi: "sandbox_csbr2kws_f6hws46tc8hgy98s",
       loader: false,
-      form : {
-        token : "",
-        dishes : [],
-        restaurantId : this.$route.params.restaurantId,
-        customer_name : "",
-        customer_email : "",
-        customer_address : "",
-        customer_telephone: ""
+      form: {
+        token: "",
+        dishes: [],
+        restaurantId: this.$route.params.restaurantId,
+        customer_name: "",
+        customer_email: "",
+        customer_address: "",
+        customer_telephone: "",
         // customer_cap : "",
         // customer_city : "",
       },
       errors: {},
       any_errors: false,
-      my_order : [],
-      check : false,
+      my_order: [],
+      check: false,
     };
   },
   mounted() {
-    // Carico carrello da storage
-    this.cartItem = this.cartLs.list();
-    // Ricarico carrello a ogni cambiamento
-    cartLs.onChange(() => {
-      this.cartItem = this.cartLs.list();
-    });
     // Chiamata api ristorante shipping
-    this.getShipping(this.cartItem[0].restaurant_id);
+    this.getShipping(this.cartLs.list()[0].restaurant_id);
     // this.generateKey();
     // this.paymentCart();
   },
@@ -240,59 +261,66 @@ export default {
     //     });
     //   })
     // },
-    async generateKey(){
+    async generateKey() {
       this.loader = false;
-      await axios.get("http://127.0.0.1:8000/api/orders/generate")
-      .then(res=>{
-        this.tokenApi = res.data.token;
-        this.loader = true;
-      }).catch(err=>{
-        console.log(err);
-    })
+      await axios
+        .get("http://127.0.0.1:8000/api/orders/generate")
+        .then((res) => {
+          this.tokenApi = res.data.token;
+          this.loader = true;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-            onSuccess (payload) {
-            this.loader = false;
-            this.form.token = payload.nonce;
-            this.buy();
-        },
-        onError (error) {
-            let message = error.message;
-        },
-        async buy(){
-            try{
-                axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
-                .then(res=>{
-                    localStorage.clear();
-                    if(res.data.errors){
-                        this.errors = res.data.errors;
-                        this.any_errors= true;
-                        this.loader = true;
-                    }else{
-                        this.any_errors= false;
-                        return this.$router.push("/checkout/success");
-                    }
-                })
-                .catch(err=>{
-                    return this.$router.push("/checkout/error");
-                });
-            }catch(error){
-               this.loader = false;        
+    onSuccess(payload) {
+      this.loader = false;
+      this.form.token = payload.nonce;
+      this.buy();
+    },
+    onError(error) {
+      let message = error.message;
+    },
+    async buy() {
+      try {
+        axios
+          .post("http://127.0.0.1:8000/api/orders/make/payment", {
+            ...this.form,
+          })
+          .then((res) => {
+            localStorage.clear();
+            if (res.data.errors) {
+              this.errors = res.data.errors;
+              this.any_errors = true;
+              this.loader = true;
+            } else {
+              this.any_errors = false;
+              return this.$router.push("/checkout/success");
             }
-        },
-        paymentCart(){
-            let contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
-            this.my_order = contents;
-            contents.forEach(product=>{
-                this.form.products.push({
-                    productId : product.id,
-                    qty : product.qty,
-                    });
-            })
-        },
-        checked(){
-            this.check =! this.check;
-        }
-  }
+          })
+          .catch((err) => {
+            return this.$router.push("/checkout/error");
+          });
+      } catch (error) {
+        this.loader = false;
+      }
+    },
+    paymentCart() {
+      let contents = JSON.parse(
+        localStorage.getItem(this.$route.params.restaurantId)
+      );
+      this.my_order = contents;
+      contents.forEach((product) => {
+        this.form.products.push({
+          productId: product.id,
+          qty: product.qty,
+        });
+      });
+    },
+    checked() {
+      this.check = !this.check;
+    },
+  },
 };
 </script>
 

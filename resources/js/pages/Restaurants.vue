@@ -4,7 +4,7 @@
 
     <div class="row">
       <RestaurantCard
-      class="col-md-4"
+        class="col-md-4"
         :restaurant="restaurant"
         v-for="restaurant in restaurants"
         :key="restaurant.slug"
