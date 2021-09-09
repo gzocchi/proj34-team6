@@ -55,12 +55,10 @@ class RestaurantsTableSeeder extends Seeder
             foreach ($item['type'] as $type) {
                 $restaurantType = App\Type::where('name', $type)->first();
                 $restaurant->types()->attach($restaurantType->id);
-
-           }
-
             }
 
-
+            // $type = App\Type::where('name', $item['type'])->first();
+            // $restaurant->types()->attach($type->id);
         }
     }
 }
