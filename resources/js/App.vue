@@ -52,19 +52,21 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/front";
+
 body {
   background-color: #f8f9fa;
 
   .swal-modal {
     .swal-icon--warning__body,
     .swal-icon--warning__dot {
-      background-color: #ff8100;
+      background-color: $orange;
     }
     .swal-button.swal-button--cancel {
-      background-color: #00ccbc;
+      background-color: $azure;
     }
     .swal-button.swal-button--confirm {
-      background-color: #ff483b;
+      background-color: $red;
     }
   }
 }
