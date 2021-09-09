@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center py-5 my-5">
+  <section class="text-center py-5 my-5" v-if="cart.length > 0">
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header">
@@ -79,7 +79,13 @@
     </div>
   </section>
 
-  <!-- <Loader v-else /> -->
+  <section class="text-center py-5 my-5" v-else>
+    <h1>Il tuo carrello è vuoto</h1>
+    <router-link :to="{ name: 'home' }" class="nav-link"
+      >Continua la ricerca</router-link
+    >
+  </section>
+  
 </template>
 
 <script>
