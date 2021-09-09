@@ -1,9 +1,26 @@
 <template>
   <section class="py-5 my-5" v-if="!loading && restaurant">
-    <div class="info">
-      <h3>Nome: {{ restaurant.name }}</h3>
-      <h3>Indirizzo: {{ restaurant.address }}</h3>
-      <h3>Spese spedizione: {{ restaurant.shipping }}</h3>
+    <div class="row info">
+      <div class="col-12 col-md-4">
+        <img
+          :src="'/storage/' + restaurant.bg_image"
+          class="card-img-top"
+          :alt="restaurant.slug"
+        />
+      </div>
+
+      <div class="col-12 col-md-8">
+        <h1>{{ restaurant.name }}</h1>
+        <h3>Indirizzo: {{ restaurant.address }}</h3>
+        <h5 v-if="shipping > 0">
+          Spese di spedizione {{ restaurant.shipping }} €
+        </h5>
+        <h5 v-else>Spedizione Gratuita!</h5>
+        <h6 v-if="restaurant.shipping > 0 && restaurant.shipping_free > 0">
+          Spedizione gratuita per ordini superiori a:
+          {{ restaurant.shipping_free }} €
+        </h6>
+      </div>
     </div>
 
     <div class="row text-center">
