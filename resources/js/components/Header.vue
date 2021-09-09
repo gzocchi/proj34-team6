@@ -34,8 +34,8 @@
 
           <li class="nav-item cart">
             <router-link :to="{ name: 'cart' }" class="nav-link"
-              >Carrello</router-link
-            >
+              >Carrello <span>{{ totalQuantity }}</span>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -44,10 +44,15 @@
 </template>
 
 <script>
+
 export default {
   name: "Header",
+  props:['totalQuantity']
 };
 </script>
 
 <style lang="scss" scoped>
+span{
+background-color: red;
+}
 </style>

@@ -33,7 +33,7 @@ export default {
       srvApi: "http://127.0.0.1:8000",
       loading: true,
       restaurant: [],
-      cartItem: [],
+      // cartItem: [],
     };
   },
   mounted() {
@@ -42,11 +42,12 @@ export default {
     this.getDishes(this.$route.params.slug);
 
     // Carico carrello da storage
-    this.cartItem = this.cartLs.list();
+    // this.cartItem = this.cartLs.list();
     // Ricarico carrello a ogni cambiamento
-    cartLs.onChange(() => {
-      this.cartItem = this.cartLs.list();
-    });
+    // cartLs.onChange(() => {
+    //   console.log('change restaurant');
+    //   this.cartItem = this.cartLs.list();
+    // });
   },
   methods: {
     getDishes(slug) {

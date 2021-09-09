@@ -16,7 +16,7 @@
         <div class="card-body">
           <table class="table">
             <tbody class="cart">
-              <tr v-for="item in cartItem" :key="item.id">
+              <tr v-for="item in cart" :key="item.id">
                 <td>#{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
@@ -94,21 +94,24 @@ export default {
       srvApi: "http://127.0.0.1:8000",
       shipping: 0,
       shipping_free: 0,
-      cartItem: [],
+      // cartItem: [],
       orderFree: false
     };
   },
+  props:['cart'],
   mounted() {
     // Carico carrello da storage
-    this.cartItem = this.cartLs.list();
+    // this.cartItem = this.cartLs.list();
 
     // Ricarico carrello a ogni cambiamento
-    cartLs.onChange(() => {
-      this.cartItem = this.cartLs.list();
-    });
+    // cartLs.onChange(() => {
+    //   console.log('change cart');
+    //   this.cartItem = this.cartLs.list();
+    // });
 
     // Chiamata api ristorante shipping
-    this.getShipping(this.cartItem[0].restaurant_id);
+    // this.getShipping(this.cartItem[0].restaurant_id);
+    this.getShipping(this.cart[0].restaurant_id);
   },
   watch: {
     cartItem(val) {

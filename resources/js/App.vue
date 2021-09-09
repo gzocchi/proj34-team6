@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <Header />
-    
+        <Header :totalQuantity="total" />
+
         <main class="container my-3">
-            <router-view></router-view>
+            <router-view :cart="cartItem"></router-view>
         </main>
 
         <Footer />
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import * as cartLs from "cart-localstorage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -20,6 +21,34 @@ export default {
         Header,
         Footer
     },
+    data() {
+        return {
+            cartLs,
+            cartItem: [],
+            total: 0
+        };
+    },
+    mounted() {
+        // Carico carrello da storage
+        this.cartItem = this.cartLs.list();
+        
+        this.totalQuantity();
+
+        // Ricarico carrello a ogni cambiamento
+        this.cartLs.onChange(() => {
+            console.log("change app");
+            this.cartItem = this.cartLs.list();
+            this.totalQuantity();
+        });
+    },
+    methods: {
+        totalQuantity() {
+            this.total = 0;
+            this.cartLs.list().forEach(item => {
+                this.total += item.quantity;
+            });
+        }
+    }
 };
 </script>
 
