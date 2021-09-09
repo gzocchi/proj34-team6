@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import * as cartLs from "cart-localstorage";
 import Loader from "../components/Loader";
 import DishCard from "../components/DishCard";
 
@@ -29,24 +28,15 @@ export default {
   components: { Loader, DishCard },
   data() {
     return {
-      cartLs,
       srvApi: "http://127.0.0.1:8000",
       loading: true,
       restaurant: [],
-      cartItem: [],
     };
   },
   mounted() {
     // restaurant slug ---> this.$route.params.slug
     // Chiamata api piatti - ristorante
     this.getDishes(this.$route.params.slug);
-
-    // Carico carrello da storage
-    this.cartItem = this.cartLs.list();
-    // Ricarico carrello a ogni cambiamento
-    cartLs.onChange(() => {
-      this.cartItem = this.cartLs.list();
-    });
   },
   methods: {
     getDishes(slug) {
