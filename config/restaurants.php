@@ -10,7 +10,7 @@ return $restaurants = [
         'shipping' => 0,
         'shipping_free' => NULL,
         'vote' => 4.3,
-        'type' => 'Americano',
+        'type' => ['Americano'],
         'index' => 'test'
     ],
     [
@@ -22,7 +22,7 @@ return $restaurants = [
         'shipping' => 5,
         'shipping_free' => 50,
         'vote' => 5,
-        'type' => 'Americano',
+        'type' => ['Americano'],
     ],
     [
         'name' => 'Fratelli Ravioli',
@@ -33,7 +33,7 @@ return $restaurants = [
         'shipping' => 1.5,
         'shipping_free' => 15,
         'vote' => 4.5,
-        'type' => 'Cinese',
+        'type' => ['Cinese'],
     ],
     [
         'name' => 'China Town',
@@ -44,7 +44,7 @@ return $restaurants = [
         'shipping' => 0,
         'shipping_free' => NULL,
         'vote' => 3,
-        'type' => 'Cinese',
+        'type' => ['Cinese'],
     ],
     [
         'name' => 'Royal Sushi',
