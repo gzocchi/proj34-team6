@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header class="container" :totalQuantity="total" />
+    <Header :totalQuantity="total" />
 
     <Jumbotron />
 
@@ -8,7 +8,7 @@
       <router-view :cart="cartItem"></router-view>
     </main>
 
-    <Footer class="container" />
+    <Footer />
   </div>
 </template>
 

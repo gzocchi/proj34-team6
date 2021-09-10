@@ -1,6 +1,8 @@
 <template>
-  <div class="jumbotron container-fluid" v-if="$route.name === 'home'">
-  <!-- <img src="/images/jumbotron.svg" alt="DeliveBoo"> -->
+  <div class="container-fluid" v-if="$route.name === 'home'">
+    <div class="jumbotron">
+      <!-- <img src="/images/jumbotron.svg" alt="DeliveBoo"> -->
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,5 @@ export default {
   min-height: 500px;
   background-color: $green;
   background-image: -webkit-linear-gradient(100deg, $green 50%, $azure 50%);
-
 }
 </style>
