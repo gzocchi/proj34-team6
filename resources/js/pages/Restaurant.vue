@@ -11,6 +11,7 @@
 
       <div class="col-12 col-md-8">
         <h1>{{ restaurant.name }}</h1>
+        <Stars :restaurant = 'restaurant'/>
         <h3>Indirizzo: {{ restaurant.address }}</h3>
         <h5 v-if="restaurant.shipping > 0">
           Spese di spedizione {{ restaurant.shipping }} €
@@ -39,10 +40,11 @@
 <script>
 import Loader from "../components/Loader";
 import DishCard from "../components/DishCard";
+import Stars from "../components/Stars";
 
 export default {
   name: "Restaurant",
-  components: { Loader, DishCard },
+  components: { Loader, DishCard, Stars },
   data() {
     return {
       srvApi: "http://127.0.0.1:8000",
