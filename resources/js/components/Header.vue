@@ -66,7 +66,8 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/front";
 
-.my_nav .navbar-nav .nav-link.active {
+.my_nav .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover {
   color: $azure;
 }
 
