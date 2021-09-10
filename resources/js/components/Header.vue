@@ -2,7 +2,7 @@
   <header class="container">
     <nav class="my_nav navbar navbar-expand-lg navbar-light bg-white">
       <router-link :to="{ name: 'home' }" class="navbar-brand">
-        <img src="/images/logo.svg" height="30" alt="DeliveBoo" />
+        <img src="/images/logo-DeliveBoo.svg" height="30" alt="DeliveBoo" />
       </router-link>
 
       <button
