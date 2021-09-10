@@ -12,7 +12,7 @@ use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\Orders\OrdersRequest; // utile?
+use App\Http\Requests\Orders\OrdersRequest;
 
 class OrderController extends Controller
 {
@@ -24,7 +24,7 @@ class OrderController extends Controller
         $data = [
             'success' => true,
             // token di andata
-            'token' => $token
+            'token' => $token,
         ];
         
         return response()->json($data,200);
@@ -57,14 +57,17 @@ class OrderController extends Controller
         // $restaurant = Restaurant::find($request->id);
         $amount = 0; // totale del carello
         $all_dishes = [];
-        foreach($request->dishes as $dish) {
+        $dishes = $request->dishes;
+        foreach($dishes as $dish) {
 
-            $newDish = Dish::where('restaurant_id', $dish->restaurant_id)->where('id', $dish->id)->first();
+            $newDish = Dish::where('id', $dish['id'])->where('restaurant_id', $dish['restaurant_id'])->get()->first();
 
             $amount += $newDish->price * $dish['quantity'];
             $newDish['quantity'] = $dish['quantity'];
 
             array_push($all_dishes, $newDish);
+            // $x = json_decode($newDish);
+            // dd($x);
         }
 
         // generate order table
@@ -81,27 +84,27 @@ class OrderController extends Controller
 
         // token di ritorno
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $amount,
             'paymentMethodNonce' => $request->token,
             'options' => [
-                'submitForSettlement' => true
+                'submitForSettlement' => true,
             ]
         ]);
         // ritorno SUCCESSFULL
         if($result->success) {
             $data = [
                 'success' => true,
-                'message' => "Transazione eseguita"
+                'message' => "Transazione eseguita",
             ];
 
             // info USER + RESTAURANTS ?
-            $user= User::where("id", $dish->restaurant_id["user_id"])->get()->first();
+            $user= User::where("id", $dish['restaurant_id']["user_id"])->get()->first();
 
             $newOrder =  [
                 "total" => $amount,
-                // ?
-                "restaurant_name" => $dish->restaurant_id->name,
-                "restaurant_id" => $dish->restaurant_id->id,
+                
+                "restaurant_name" => $dish['restaurant_id']->name,
+                "restaurant_id" => $dish['restaurant_id']->id,
 
                 "customer_name" => $request->customer_name,
                 "customer_address" => $request->customer_address,
@@ -122,7 +125,7 @@ class OrderController extends Controller
             ];
 
             return response()->json($data,401);
-        }
+        };
         // return 'token ritorno';
     }
 }
