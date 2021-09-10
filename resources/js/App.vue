@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
+  <div>
     <Header :totalQuantity="total" />
 
-    <main class="container my-3">
+    <Jumbotron />
+
+    <main class="container">
       <router-view :cart="cartItem"></router-view>
     </main>
 
@@ -13,12 +15,14 @@
 <script>
 import * as cartLs from "cart-localstorage";
 import Header from "./components/Header";
+import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
     Header,
+    Jumbotron,
     Footer,
   },
   data() {
@@ -55,7 +59,6 @@ export default {
 @import "../sass/front";
 
 body {
-  background-color: #f8f9fa;
 
   .swal-modal {
     .swal-icon--warning__body,
