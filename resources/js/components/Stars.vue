@@ -20,6 +20,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+@import "../../sass/front.scss";
+  i {
+    display: inline-block;
+    padding: 0 8px;
+    color: $stars;
+  }
 </style>
