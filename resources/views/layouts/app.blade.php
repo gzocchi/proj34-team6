@@ -25,7 +25,7 @@
             <nav class="my_nav navbar navbar-expand-lg navbar-light bg-white">
 
                 <a class="navbar-brand" href="{{ route('admin.home') }}">
-                    <img src="/images/logo.svg" height="30" alt="{{ config('app.name', 'Laravel') }}" />
+                    <img src="/images/DeliveBoo.webp" height="30" alt="{{ config('app.name', 'Laravel') }}" />
                 </a>
           
                 <button
@@ -44,7 +44,7 @@
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}" 
-                            target="_blank"
+                            {{-- target="_blank" --}}
                             >DeliveBoo</a>
                     </li>
 

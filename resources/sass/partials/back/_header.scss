@@ -2,3 +2,8 @@
 .navbar-light .navbar-nav .nav-link:hover {
   color: $azure;
 }
+
+.my_nav .dropdown-item:hover, .dropdown-item:focus {
+  color: $azure;
+  text-decoration: none;
+}

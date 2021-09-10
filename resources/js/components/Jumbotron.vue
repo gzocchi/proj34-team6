@@ -5,7 +5,7 @@
         <div class="text col-12 col-md-6">
           <h1 class="display-4">I piatti che ami, a domicilio.</h1>
           <hr class="my-4" />
-          <p class="lead">#aCasaTuaConDeliveroo</p>
+          <p class="lead">#aCasaTuaConDeliveBoo</p>
           <router-link :to="{ name: 'restaurants' }" class="btn btn-lg"
             >Ristoranti</router-link
           >

@@ -1,0 +1,11 @@
+.my_login .card-header,
+.my_register .card-header {
+    color: white;
+    background-color: $azure;
+}
+
+.my_login .btn-primary,
+.my_register .btn-primary{
+    background-color: $azure;
+    border-color: $azure;
+}
