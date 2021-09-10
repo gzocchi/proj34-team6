@@ -98,19 +98,19 @@ class OrderController extends Controller
             ];
 
             // info USER + RESTAURANTS ?
-            $user= User::where("id", $dish['restaurant_id']["user_id"])->get()->first();
+            // $user= User::where("id", $dish['restaurant_id']["user_id"])->get()->first();
 
             $newOrder =  [
                 "total" => $amount,
                 
-                "restaurant_name" => $dish['restaurant_id']->name,
+                // "restaurant_name" => $dish['restaurant_id']->name,
                 "restaurant_id" => $dish['restaurant_id']->id,
 
                 "customer_name" => $request->customer_name,
                 "customer_address" => $request->customer_address,
 
                 "all_dishes" => $all_dishes,
-                "x" => $user['name'],
+                // "x" => $user['name'],
             ];
 
             // Mail::to($request->payer_email)->send(new SendMail($newOrder));

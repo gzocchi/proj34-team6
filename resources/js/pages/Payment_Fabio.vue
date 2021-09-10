@@ -221,7 +221,7 @@ export default {
         dishes: cartLs.list(),
         restaurantId: cartLs.list()[0].restaurant_id,
         customer_name: "",
-        // customer_email: "",
+         customer_mail: "",
         customer_address: "",
         customer_telephone: "",
         // customer_cap : "",
@@ -235,9 +235,9 @@ export default {
   },
   mounted() {
      // Chiamata api ristorante shipping
-  //   this.getShipping(this.cartLs.list()[0].restaurant_id);
+    // this.getShipping(this.cartLs.list()[0].restaurant_id);
     this.generateKey();
-  //   // this.paymentCart();
+    // this.paymentCart();
   },
   methods: {
     getShipping(restaurant_id) {
@@ -252,21 +252,21 @@ export default {
         });
     },
     // paymentCart(){
-    //   let contents = $this.cartLs.list();
-    //   this.my_order = contents;
-    //   contents.forEach(product=>{
-    //     this.form.products.push({
+    //   let contents = JSON.parse(cartLs.list());
+    //   this.form.dishes = contents;
+    //   contents.forEach(product=> {
+    //    this.form.dishes.push({
     //     productId : product.id,
-    //     qty : product.qty,
-    //     });
-    //   })
+    //      qty : product.qty,
+    //      });
+    //    })
     // },
     async generateKey() {
       this.loader = false;
       await axios
         .get("http://127.0.0.1:8000/api/orders/generate")
         .then((res) => {
-         console.log(res.data.token);
+        //  console.log(res.data.token);
           this.tokenApi = res.data.token;
           this.loader = true;
         })
