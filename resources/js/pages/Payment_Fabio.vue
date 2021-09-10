@@ -112,7 +112,7 @@
               ></v-text-field>
               <!-- ERROR -->
               <div class="form-error" v-show="any_errors">
-                <span v-for="error in errors['payer_address']" :key="error">
+                <span v-for="error in errors['customer_address']" :key="error">
                   {{ error }}
                 </span>
               </div>
@@ -124,13 +124,13 @@
                     class="input"
                     color="#006d68"
                     placeholder="es. Luigi Verdi"
-                    v-model="form.payer_name"
+                    v-model="form.customer_name"
                     :rules="[(v) => !!v || 'Nome obbligatorio']"
                     hide-details="auto"
                   ></v-text-field>
                   <!-- ERROR -->
                   <div class="form-error" v-show="any_errors">
-                    <span v-for="error in errors['payer_name']" :key="error">
+                    <span v-for="error in errors['customer_name']" :key="error">
                       {{ error }}
                     </span>
                   </div>
@@ -140,7 +140,7 @@
                   <v-text-field
                     class="input"
                     color="#006d68"
-                    v-model="form.payer_email"
+                    v-model="form.customer_mail"
                     placeholder="es. verdiluigi@gmail.com"
                     :rules="[
                       (v) => !!v || 'Email obbligatoria',
@@ -153,7 +153,7 @@
                   ></v-text-field>
                   <!-- ERROR -->
                   <div class="form-error" v-show="any_errors">
-                    <span v-for="error in errors['payer_email']" :key="error">
+                    <span v-for="error in errors['customer_mail']" :key="error">
                       {{ error }}
                     </span>
                   </div>
@@ -198,7 +198,6 @@
 import * as cartLs from "cart-localstorage";
 import Loader from "../components/Loader";
 import vuebraintree from "vue-braintree";
-
 export default {
   name: "Payment_Fabio",
   props: {
@@ -218,10 +217,10 @@ export default {
       loader: false,
       form: {
         token: "",
-        dishes: [],
-        restaurantId: this.$route.params.restaurantId,
+        dishes: cartLs.list(),
+        restaurantId: cartLs.list()[0].restaurant_id,
         customer_name: "",
-        customer_email: "",
+        // customer_email: "",
         customer_address: "",
         customer_telephone: "",
         // customer_cap : "",
@@ -234,10 +233,10 @@ export default {
     };
   },
   mounted() {
-    // Chiamata api ristorante shipping
-    this.getShipping(this.cartLs.list()[0].restaurant_id);
-    // this.generateKey();
-    // this.paymentCart();
+     // Chiamata api ristorante shipping
+  //   this.getShipping(this.cartLs.list()[0].restaurant_id);
+    this.generateKey();
+  //   // this.paymentCart();
   },
   methods: {
     getShipping(restaurant_id) {
@@ -266,6 +265,7 @@ export default {
       await axios
         .get("http://127.0.0.1:8000/api/orders/generate")
         .then((res) => {
+         console.log(res.data.token);
           this.tokenApi = res.data.token;
           this.loader = true;
         })
@@ -305,18 +305,18 @@ export default {
         this.loader = false;
       }
     },
-    paymentCart() {
-      let contents = JSON.parse(
-        localStorage.getItem(this.$route.params.restaurantId)
-      );
-      this.my_order = contents;
-      contents.forEach((product) => {
-        this.form.products.push({
-          productId: product.id,
-          qty: product.qty,
-        });
-      });
-    },
+    // paymentCart() {
+    //   let contents = JSON.parse(
+    //     localStorage.getItem(this.$route.params.restaurantId)
+    //   );
+    //   this.my_order = contents;
+    //   contents.forEach((product) => {
+    //     this.form.products.push({
+    //       productId: product.id,
+    //       qty: product.qty,
+    //     });
+    //   });
+    // },
     checked() {
       this.check = !this.check;
     },
