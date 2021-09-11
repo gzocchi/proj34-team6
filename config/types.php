@@ -3,50 +3,50 @@
 return $types = [
     [
         'name' => 'Americano',
-        'image' => 'americano.webp'
+        'image' => 'americano.png'
     ],
     [
         'name' => 'Cinese',
-        'image' => 'cinese.webp'
+        'image' => 'cinese.png'
     ],
     [
         'name' => 'Giapponese',
-        'image' => 'giapponese.webp'
+        'image' => 'giapponese.png'
     ],
     [
         'name' => 'Greco',
-        'image' => 'greco.webp'
+        'image' => 'greco.png'
     ],
     [
         'name' => 'Indiano',
-        'image' => 'indiano.webp'
+        'image' => 'indiano.png'
     ],
     [
         'name' => 'Italiano',
-        'image' => 'italiano.webp'
+        'image' => 'italiano.png'
     ],
     [
         'name' => 'Libanese',
-        'image' => 'libanese.webp'
+        'image' => 'libanese.png'
     ],
     [
         'name' => 'Messicano',
-        'image' => 'messicano.webp'
+        'image' => 'messicano.png'
     ],
     [
         'name' => 'Pizza',
-        'image' => 'pizza.webp'
+        'image' => 'pizza.png'
     ],
     [
         'name' => 'Sushi',
-        'image' => 'sushi.webp'
+        'image' => 'sushi.png'
     ],
     [
         'name' => 'Thailandese',
-        'image' => 'thailandese.webp'
+        'image' => 'thailandese.png'
     ],
     [
         'name' => 'Vegetariano',
-        'image' => 'vegetariano.webp'
+        'image' => 'vegetariano.png'
     ],
 ];
