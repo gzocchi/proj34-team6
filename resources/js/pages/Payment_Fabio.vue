@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center py-5 my-5">
+  <section v-if="loader" class="text-center py-5 my-5">
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header">
@@ -288,7 +288,7 @@ export default {
             ...this.form,
           })
           .then((res) => {
-            localStorage.clear();
+            cartLs.destroy();
             if (res.data.errors) {
               this.errors = res.data.errors;
               this.any_errors = true;
