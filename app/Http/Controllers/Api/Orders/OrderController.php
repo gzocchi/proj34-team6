@@ -50,15 +50,17 @@ class OrderController extends Controller
             ]);
         }
 
+        dd($request->dishes);
+
         // buildind data
 
         // $restaurant = Restaurant::find($request->id);
         $amount = 0; // totale del carello
         $all_dishes = [];
-        $dishes = json_decode($request->dishes);
+        $dishes = $request->dishes;
         foreach($dishes as $dish) {
 
-            $newDish = Dish::where('restaurant_id', $dish->restaurant_id)->where('id', $dish->id)->first();
+            $newDish = Dish::where('restaurant_id', $dish['restaurant_id'])->where('id', $dish['id'])->first();
 
             $amount += $newDish->price * $dish['quantity'];
             $newDish['quantity'] = $dish['quantity'];
@@ -67,16 +69,16 @@ class OrderController extends Controller
         }
 
         // generate order table
-        $newOrder = new Order();
+        // $newOrder = new Order();
         // popolate
-        $newOrder->restaurant_id = $request->restaurant_id;
-        $newOrder->customer_name = $request->customer_name;
-        $newOrder->customer_mail = $request->customer_mail;
-        $newOrder->customer_address = $request->customer_address;
-        $newOrder->customer_telephone = $request->customer_telephone;
-        // save
-        $newOrder->total = $amount;
-        $newOrder->save();
+        // $newOrder->restaurant_id = $request->restaurant_id;
+        // $newOrder->customer_name = $request->customer_name;
+        // $newOrder->customer_mail = $request->customer_mail;
+        // $newOrder->customer_address = $request->customer_address;
+        // $newOrder->customer_telephone = $request->customer_telephone;
+        // // save
+        // $newOrder->price = $amount;
+        // $newOrder->save();
 
         // token di ritorno
         $result = $gateway->transaction()->sale([
@@ -94,20 +96,20 @@ class OrderController extends Controller
             ];
 
             // info USER + RESTAURANTS ?
-            $user= User::where("id", $dish->restaurant_id["user_id"])->get()->first();
+            // $user= User::where("id", $dish['restaurant_id']["user_id"])->get()->first();
 
-            $newOrder =  [
-                "total" => $amount,
-                // ?
-                "restaurant_name" => $dish->restaurant_id->name,
-                "restaurant_id" => $dish->restaurant_id->id,
+            // $newOrder =  [
+            //     "total" => $amount,
+            //     // ?
+            //     "restaurant_name" => $dish->restaurant_id->name,
+            //     "restaurant_id" => $dish->restaurant_id->id,
 
-                "customer_name" => $request->customer_name,
-                "customer_address" => $request->customer_address,
+            //     "customer_name" => $request->customer_name,
+            //     "customer_address" => $request->customer_address,
 
-                "all_dishes" => $all_dishes,
-                "x" => $user['name'],
-            ];
+            //     "all_dishes" => $all_dishes,
+            //     "x" => $user['name'],
+            // ];
 
             // Mail::to($request->payer_email)->send(new SendMail($newOrder));
             // Mail::to($user['email'])->send(new SendAdminMail($newOrder));

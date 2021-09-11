@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center py-5 my-5">
+  <section class="text-center py-5 my-5" v-if="loader">
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header">
@@ -165,7 +165,7 @@
               class="braintree"
               locale="it_IT"
               :vaultManager="true"
-              :authorization=tokenApi
+              :authorization="tokenApi"
               @success="onSuccess"
               @error="onError"
             >
@@ -190,6 +190,13 @@
       </div>
     </div>
   </section>
+  <div v-else class="loading">
+    <v-progress-circular
+      :size="70"
+      color="#00ccbc"
+      indeterminate
+    ></v-progress-circular>
+  </div>
 
   <!-- <Loader v-else /> -->
 </template>
@@ -197,7 +204,6 @@
 <script>
 import * as cartLs from "cart-localstorage";
 import Loader from "../components/Loader";
-import vuebraintree from "vue-braintree";
 
 export default {
   name: "Payment_Fabio",
@@ -224,7 +230,8 @@ export default {
         customer_name: "",
         customer_mail: "",
         customer_address: "",
-        customer_telephone: ""
+        customer_telephone: "",
+        amount: cartLs.total()
       },
       errors: {},
       any_errors: false,
@@ -235,10 +242,10 @@ export default {
   created() {
     // Chiamata api ristorante shipping
     this.getShipping(this.cartLs.list()[0]['restaurant_id']);
-    // this.paymentCart();
   },
   mounted() {
     this.generateKey();
+    // this.paymentCart();
   },
   methods: {
     getShipping(restaurant_id) {
@@ -253,13 +260,12 @@ export default {
         });
     },
     // paymentCart(){
-    //   let contents = cartLs.list()[0];
-    //   console.log(contents);
+    //   let contents = this.cartLs.list();
     //   this.my_order = contents;
     //   contents.forEach(product=>{
-    //     this.form.products.push({
+    //     this.form.dishes.push({
     //     productId : product.id,
-    //     qty : product.qty,
+    //     qty : product.quantity,
     //     });
     //   })
     // },
