@@ -112,7 +112,7 @@
               ></v-text-field>
               <!-- ERROR -->
               <div class="form-error" v-show="any_errors">
-                <span v-for="error in errors['payer_address']" :key="error">
+                <span v-for="error in errors['customer_address']" :key="error">
                   {{ error }}
                 </span>
               </div>
@@ -124,13 +124,13 @@
                     class="input"
                     color="#006d68"
                     placeholder="es. Luigi Verdi"
-                    v-model="form.payer_name"
+                    v-model="form.customer_name"
                     :rules="[(v) => !!v || 'Nome obbligatorio']"
                     hide-details="auto"
                   ></v-text-field>
                   <!-- ERROR -->
                   <div class="form-error" v-show="any_errors">
-                    <span v-for="error in errors['payer_name']" :key="error">
+                    <span v-for="error in errors['customer_name']" :key="error">
                       {{ error }}
                     </span>
                   </div>
@@ -140,7 +140,7 @@
                   <v-text-field
                     class="input"
                     color="#006d68"
-                    v-model="form.payer_email"
+                    v-model="form.customer_mail"
                     placeholder="es. verdiluigi@gmail.com"
                     :rules="[
                       (v) => !!v || 'Email obbligatoria',
@@ -165,7 +165,7 @@
               class="braintree"
               locale="it_IT"
               :vaultManager="true"
-              :authorization="tokenApi"
+              :authorization=tokenApi
               @success="onSuccess"
               @error="onError"
             >
@@ -210,22 +210,21 @@ export default {
   components: { Loader },
   data() {
     return {
+      restaurantId: cartLs.list()[0].restaurant_id,
       cartLs,
       srvApi: "http://127.0.0.1:8000",
       shipping: 0,
       shipping_free: 0,
-      tokenApi: "sandbox_csbr2kws_f6hws46tc8hgy98s",
+      tokenApi: "",
       loader: false,
       form: {
         token: "",
-        dishes: [],
-        restaurantId: this.$route.params.restaurantId,
+        dishes: cartLs.list(),
+        restaurantId: this.restaurantId,
         customer_name: "",
-        customer_email: "",
+        customer_mail: "",
         customer_address: "",
-        customer_telephone: "",
-        // customer_cap : "",
-        // customer_city : "",
+        customer_telephone: ""
       },
       errors: {},
       any_errors: false,
@@ -233,11 +232,13 @@ export default {
       check: false,
     };
   },
-  mounted() {
+  created() {
     // Chiamata api ristorante shipping
-    this.getShipping(this.cartLs.list()[0].restaurant_id);
-    // this.generateKey();
+    this.getShipping(this.cartLs.list()[0]['restaurant_id']);
     // this.paymentCart();
+  },
+  mounted() {
+    this.generateKey();
   },
   methods: {
     getShipping(restaurant_id) {
@@ -252,7 +253,8 @@ export default {
         });
     },
     // paymentCart(){
-    //   let contents = $this.cartLs.list();
+    //   let contents = cartLs.list()[0];
+    //   console.log(contents);
     //   this.my_order = contents;
     //   contents.forEach(product=>{
     //     this.form.products.push({
@@ -264,7 +266,7 @@ export default {
     async generateKey() {
       this.loader = false;
       await axios
-        .get("http://127.0.0.1:8000/api/orders/generate")
+        .get(`${this.srvApi}/api/orders/generate`)
         .then((res) => {
           this.tokenApi = res.data.token;
           this.loader = true;
@@ -284,7 +286,7 @@ export default {
     async buy() {
       try {
         axios
-          .post("http://127.0.0.1:8000/api/orders/make/payment", {
+          .post(`${this.srvApi}/api/orders/make/payment`, {
             ...this.form,
           })
           .then((res) => {
@@ -305,18 +307,18 @@ export default {
         this.loader = false;
       }
     },
-    paymentCart() {
-      let contents = JSON.parse(
-        localStorage.getItem(this.$route.params.restaurantId)
-      );
-      this.my_order = contents;
-      contents.forEach((product) => {
-        this.form.products.push({
-          productId: product.id,
-          qty: product.qty,
-        });
-      });
-    },
+    // paymentCart() {
+    //   let contents = JSON.parse(
+    //     localStorage.getItem(this.$route.params.restaurantId)
+    //   );
+    //   this.my_order = contents;
+    //   contents.forEach((product) => {
+    //     this.form.products.push({
+    //       productId: product.id,
+    //       qty: product.qty,
+    //     });
+    //   });
+    // },
     checked() {
       this.check = !this.check;
     },

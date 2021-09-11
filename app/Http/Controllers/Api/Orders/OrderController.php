@@ -16,22 +16,20 @@ use App\Http\Requests\Orders\OrdersRequest; // utile?
 
 class OrderController extends Controller
 {
+        public function generate(Request $request, Gateway $gateway){
 
-    public function generate(Request $request, Gateway $gateway){
-
-        $token = $gateway->clientToken()->generate();
-        
-        $data = [
-            'success' => true,
-            // token di andata
-            'token' => $token
-        ];
-        
-        return response()->json($data,200);
-    }
+            $token = $gateway->clientToken()->generate();
+            
+            $data = [
+                "success" => true,
+                "token" => $gateway->clientToken()->generate(),
+            ];
+    
+            return response()->json($data,200);
+        }
 
     // Request vs OrderRequest?
-    public function makePayment(Request $request,Gateway $gateway){
+    public function makePayment(Request $request, Gateway $gateway){
 
         $validator = Validator::make($request->all(),[
             "token" => "required",
@@ -57,7 +55,8 @@ class OrderController extends Controller
         // $restaurant = Restaurant::find($request->id);
         $amount = 0; // totale del carello
         $all_dishes = [];
-        foreach($request->dishes as $dish) {
+        $dishes = json_decode($request->dishes);
+        foreach($dishes as $dish) {
 
             $newDish = Dish::where('restaurant_id', $dish->restaurant_id)->where('id', $dish->id)->first();
 

@@ -16,22 +16,20 @@ class OrdersRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    // /**
+    //  * Get the validation rules that apply to the request.
+    //  *
+    //  * @return array
+    //  */
     public function rules()
     {
         return [
-            'token' => 'required',
-            //qua sarà da modificare inserendo nel required che cosa deve andare a recuperarsi. Si può fare:
-            // 'amount' => '12.50'
-            // si potrà fare 
-            // 'amount' => local_cart_dish_id_filtrato_per_restaurant_id_PRICE ????
-            
-            // localStorage__cart
-            'amount' => 'required'
+            "token" => "required",
+            "dishes" => "required",
+            "restaurantId" => "required",
+            "customer_name" => "required|string|min:3|max:50",
+            "customer_mail" => "required",
+            "customer_address" => "required|min:3|max:200",
         ];
     }
 }

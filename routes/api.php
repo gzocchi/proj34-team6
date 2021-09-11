@@ -35,13 +35,15 @@ Route::namespace('Api')
         // recupero i piatti di un ristorante
         Route::get('dishes/{slug}', 'DishController@dishesRestaurant');
 
+        // recupero le categorie
+        Route::get('categories', 'CategoryController@getCategories');
+
         // prova per dish_id
         Route::get('restaurants/{restaurant_id}/dishes/{id}', "DishController@show");
+
+        // token generate
+        Route::get('orders/generate', 'Orders\OrderController@generate');
+    
+        // pagamento
+        Route::post('orders/make/payment', 'Orders\OrderController@makePayment');
     });
-     
-
-    // token generate
-    Route::get('orders/generate',"Api\Orders\OrderController@generate");
-
-    // pagamento
-    Route::post('orders/make/payment',"Api\Orders\OrderController@makePayment");

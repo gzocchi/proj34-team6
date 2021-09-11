@@ -74,6 +74,7 @@
               <td></td>
             </tfoot>
           </table>
+          <router-link :to="{ name: 'paymentF' }">Vai alla cassa</router-link>
         </div>
       </div>
     </div>
