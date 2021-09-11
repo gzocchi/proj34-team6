@@ -7,3 +7,8 @@
   color: $azure;
   text-decoration: none;
 }
+
+.my_nav .dropdown-item:active {
+  background-color: $azure;
+  color: white;
+}
