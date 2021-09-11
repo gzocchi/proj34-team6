@@ -13,6 +13,6 @@
 
 <script>
 export default {
-   name:"CheckoutError",
+   name:"PaymentError",
 }
 </script>

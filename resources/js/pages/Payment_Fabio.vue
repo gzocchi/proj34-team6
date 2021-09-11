@@ -295,11 +295,11 @@ export default {
               this.loader = true;
             } else {
               this.any_errors = false;
-              return this.$router.push("/checkout/success");
+              return this.$router.push({ name: "PaymentSuccess" });
             }
           })
           .catch((err) => {
-            return this.$router.push("/checkout/error");
+            return this.$router.push({ name: "PaymentError" });
           });
       } catch (error) {
         this.loader = false;

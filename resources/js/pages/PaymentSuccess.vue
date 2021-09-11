@@ -14,6 +14,6 @@
 
 <script>
 export default {
-   name:"CheckoutSuccess",
+   name:"PaymentSuccess",
 }
 </script>

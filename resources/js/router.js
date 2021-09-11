@@ -12,8 +12,8 @@ import Restaurant from "./pages/Restaurant";
 import NotFound from "./pages/NotFound";
 import Payment_Stefano from "./pages/Payment_Stefano";
 import Payment_Fabio from "./pages/Payment_Fabio";
-import CheckoutError from "./pages/CheckoutError";
-import CheckoutSuccess from "./pages/CheckoutSuccess";
+import PaymentError from "./pages/PaymentError";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 const router = new VueRouter({
     mode: "history",
@@ -45,11 +45,6 @@ const router = new VueRouter({
             component: Restaurant
         },
         {
-            path: "*",
-            name: "not-found",
-            component: NotFound
-        },
-        {
             path: "/paymentS",
             name: "paymentS",
             component: Payment_Stefano
@@ -60,14 +55,19 @@ const router = new VueRouter({
             component: Payment_Fabio
         },
         {
-            path: "/checkout/error",
-            name: "CheckoutError",
-            component: CheckoutError
+            path: "/payment/error",
+            name: "PaymentError",
+            component: PaymentError
         },
         {
-            path: "/checkout/success",
-            name: "CheckoutSuccess",
-            component: CheckoutSuccess
+            path: "/payment/success",
+            name: "PaymentSuccess",
+            component: PaymentSuccess
+        },
+        {
+            path: "*",
+            name: "not-found",
+            component: NotFound
         }
     ]
 });
