@@ -71,8 +71,8 @@ class OrderController extends Controller
 
             array_push($all_dishes, $newDish);
 
-            $x = json_decode($newDish);
-            dd($x);
+            $finalDish = json_decode($newDish);
+            dd($finalDish);
         }
 
         // generate order table
@@ -95,6 +95,7 @@ class OrderController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
+        ù
         // ritorno SUCCESSFULL
         if($result->success) {
             $data = [

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="text-center py-5 my-5">Home Page</h1>
+    <h1 class="text-center py-5 my-5">Home Page Deliveroo - Nome del sito</h1>
 
     <Types />
   </section>
