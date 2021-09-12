@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center py-5 my-5">
+  <section v-if="loader" class="text-center py-5 my-5">
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header">
@@ -213,7 +213,7 @@ export default {
       srvApi: "http://127.0.0.1:8000",
       shipping: 0,
       shipping_free: 0,
-      tokenApi: "sandbox_csbr2kws_f6hws46tc8hgy98s",
+      tokenApi: "",
       loader: false,
       form: {
         token: "",

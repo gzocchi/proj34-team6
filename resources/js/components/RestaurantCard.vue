@@ -12,7 +12,6 @@
     </div>
     <!-- parte testo  -->
     <div class="card-body col-12 col-md-8">
-      
       <!-- testo card di sinistra  -->
       <div class="container-text-left">
         <!-- container titolo e indirizzo  -->

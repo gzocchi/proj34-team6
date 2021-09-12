@@ -30,10 +30,10 @@
               <h2>{{ type.name }}</h2>
             </div>
         </router-link>
-
       </div>
     </section>
-    
+
+    <!-- bottoni utili solo se si cambia paginazione da 12 a minore  -->
     <button
       v-show="current_page > 1"
       class="btn btn-primary"
@@ -47,6 +47,7 @@
           Next
     </button>
     <!-- // SKEW V-FOR  -->
+
   </div>
 
   <Loader v-else />
@@ -95,11 +96,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/front";
+
 main {
   background-color: lightblue;
 }
 // general
 div.types {
+  padding-bottom: 4em;
+  // overflow-x: scroll;
+  margin: 20px 0;
   .type_card {
     text-align: center;
     a {
@@ -133,14 +139,15 @@ div.types {
   display: none;
 }
 .container-skew{
-  overflow-x: auto;
-  height: 300px;
-  width: 85%;  
+  // overflow-x: auto;
+  height: 200px;
+  width: 90%;  
   display: flex;
   align-items: center;
   justify-content: center;
   transform: skewX(20deg) scale(1.35);
-  margin: 50px auto;
+  margin: 10px auto;
+  border-radius: 5px;
   a:last-child {
     overflow: hidden;
   }
@@ -156,34 +163,84 @@ div.types {
   transition: 0.5s all ease-in-out;
   overflow: hidden;
   position: relative;
+  left: -10px;
   transform-origin: right;
-  border: 1px solid black;
   box-shadow: -10px 0px 5px #00000073;
-    img {
-    height: 300px;
-    }
     .section-inner{
     transform: skewX(-20deg) scale(0.65);
     z-index: 0;
     transform-origin: right;
+    position: relative;
+    left: -10px;
     }
     &:hover {
     flex-grow: 1.7;
     flex-shrink: 1;
     flex-basis: 0;
-    // width: 20%;
+    transform: scale(1.05);
     box-shadow: -10px 5px 10px;
     transform-origin: right;
     }
     &:last-child{
       overflow-x: hidden;
     }
+    a {
+      text-decoration: none;
+      color: white;
+      img {
+        height: 120px;
+      }
+      h2 {
+        transition: 0.2s ease-in-out;
+      }
+      &:hover h2 {
+        color: white;
+      }
+    }
 }
+
+
+// backgrounds cards 
 .skewed-card {
-  background-color: orange;
+  border-radius: 5px;
+  &:first-child{
+  background-color: $purple;
+  }
+  &:nth-child(2){
+  background-color: rgb(209, 61, 2);
+  }
+  &:nth-child(3){
+  background-color: $orange;
+  }
+  &:nth-child(4){
+  background-color: $green;
+  }
+  &:nth-child(5){
+  background-color: $violet;
+  }
+  &:nth-child(6){
+  background-color: #21A500;
+  }
+  &:nth-child(7){
+  background-color: $cyan;
+  }
+  &:nth-child(8){
+  background-color: $red;
+  }
+  &:nth-child(9){
+  background-color: #2e353b;
+  }
+  &:nth-child(10){
+  background-color: #2C2948;
+  }
+  &:nth-child(11){
+  background-color: $blue;
+  }
+  &:nth-child(12){
+  background-color: #8ff132;
+  }
 }
 // /skew types
-
 
 // animated icons
 .container-animated-icons {

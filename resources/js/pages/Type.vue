@@ -2,7 +2,7 @@
   <section class="text-center py-5 my-5" v-if="!loading && restaurants">
     <div class="row">
       <RestaurantCard
-      class="col-md-4"
+      class="col-12"
         :restaurant="restaurant"
         v-for="restaurant in restaurants"
         :key="restaurant.slug"

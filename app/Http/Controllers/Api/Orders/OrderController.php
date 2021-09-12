@@ -32,7 +32,7 @@ class OrderController extends Controller
 
     // Request vs OrderRequest?
     public function makePayment(Request $request,Gateway $gateway){
-
+        
         $validator = Validator::make($request->all(),[
             "token" => "required",
             'customer_name' => "required|string|min:5|max:60",
@@ -57,13 +57,16 @@ class OrderController extends Controller
         // $restaurant = Restaurant::find($request->id);
         $amount = 0; // totale del carello
         $all_dishes = [];
+
+        
         foreach($request->dishes as $dish) {
+            dd($request->dishes);
 
             $newDish = Dish::where('restaurant_id', $dish->restaurant_id)->where('id', $dish->id)->first();
-
+            
             $amount += $newDish->price * $dish['quantity'];
             $newDish['quantity'] = $dish['quantity'];
-
+            
             array_push($all_dishes, $newDish);
         }
 

@@ -1,6 +1,9 @@
 <template>
   <section class="text-center">
-    <h1>Restaurants</h1>
+    <div class="container-restaurants-p">
+      <h1>Lista dei Ristoranti</h1>
+      <p>Scegli quello che preferisci!</p>
+    </div>
 
     <div class="row">
       <!-- originale  -->
@@ -45,8 +48,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin-bottom: 40px;
+.container-restaurants-p {
+  margin-bottom: 10px;
+  h1 {
+    margin-bottom: 20px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1.2em;
+  }
 }
 // .row {
 //     box-shadow: 0px 0px 5px 0px;

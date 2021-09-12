@@ -1,4 +1,6 @@
 <template>
+
+  <!-- SEZIONE RISTORANTE SINGOLO  -->
   <section class="py-5 my-5" v-if="!loading && restaurant">
     <div class="row info">
       <div class="col-12 col-md-4">
@@ -8,7 +10,6 @@
           :alt="restaurant.slug"
         />
       </div>
-
       <div class="col-12 col-md-8">
         <h1>{{ restaurant.name }}</h1>
         <h3>Indirizzo: {{ restaurant.address }}</h3>
