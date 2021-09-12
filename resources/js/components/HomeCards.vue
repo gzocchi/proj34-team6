@@ -41,11 +41,14 @@ export default {
   margin: 40px 0 80px;
 }
 .single-card {
-  // height: 400px;
-  width: 300px;
+  border-radius: 20% 1%;
+  width: 30%;
+  height: 500px;
   transition: 0.3s;
+  box-shadow: -15px 15px 40px 0px;
+  overflow: hidden;
   .bottom-single-card {
-    padding: 30px 20px 20px 20px;
+    padding: 20px 20px 0px;
   }
   &:hover {
     transform: scale(1.01);
@@ -64,15 +67,98 @@ export default {
   img {
     width: 100%;
     height: 50%;
-    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+    clip-path: polygon(0 10%, 100% 0, 100% 89%, 0% 100%);
   }
   .bottom-single-card {
     height: 60%;
     color: white;
-    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 9%, 100% 0, 100% 100%, 0% 100%);
     position: relative;
-    // bottom: 20px;
     background-color: #FF8100;
+    p {
+      margin-bottom: 0;
+      padding-bottom: 10px;
+    }
   }
 }
+
+
+
+
+// media query
+@media screen and (max-width: 960px) {
+  .single-card {
+    height: 450px;
+    .bottom-single-card {
+      padding: 20px 20px 40px;
+      h2 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .single-card {
+    height: 560px;
+    img {
+      height: 35%;
+    }
+    .bottom-single-card {
+      clip-path: polygon(0 4%, 100% 0, 100% 100%, 0% 100%);
+      height: 80%;
+      padding: 25px 20px;
+    }
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 600px) {
+  .container-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 40px 0;
+    .single-card {
+      width: 90%;
+      margin: 20px auto;
+      .bottom-single-card {
+        clip-path: polygon(0 6%, 100% 0, 100% 90%, 0% 100%);
+        padding: 40px 20px 40px;
+        h2 {
+          font-size: 2.5rem;
+        }
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 200px) and (max-width: 320px) {
+.container-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 40px 0;
+  .single-card {
+    height: 800px;
+    width: 100%;
+    margin: 20px auto;
+    .bottom-single-card {
+      clip-path: polygon(0 5%, 100% 0, 100% 90%, 0% 100%);
+      padding: 60px 20px 40px;
+      h2 {
+          font-size: 4rem;
+        }
+        p {
+          font-size: 1.5rem;
+        }
+    }
+  }
+}
+}
+
 </style>
