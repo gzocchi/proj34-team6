@@ -18,7 +18,7 @@ class Order extends Model
     // relazione piatto - ordine
     public function dishes()
     {
-        return $this->belongsToMany('App\Dish');
+        return $this->belongsToMany('App\Dish', 'order_dish', 'order_id', 'dish_id');
     }
 
     // relazione ordine - utente
