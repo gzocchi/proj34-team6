@@ -49,19 +49,32 @@
 
         <div class="form-row">
 
-            <div class="col-md-2">
+            {{-- <div class="col-12 col-md-2">
             @if ($dish->img)
                 <img class="img-fluid" src="{{ asset('storage/' . $dish->img) }}" alt="{{ $dish->name }}"> 
             @else
                 <img class="img-fluid" src="{{ asset('images/placeholder_dish.svg') }}" alt="Placeholder"> 
             @endif
-            </div>
+            </div> --}}
 
-            <div class="form-group col-md-4 offset-md-2 my-3">
-                <label for="img" class="custom-file-label">Modifica Immagine</label>
-                <input type="file" name="img" class="custom-file-input @error('img') is-invalid @enderror" id="img">
-            </div>
+            <div class="col-md-4">
+                 <div class="form-group">
+                    <label for="img" class="custom-file-label">Modifica Immagine</label>
+                    <input type="file" name="img" class="custom-file-input @error('img') is-invalid @enderror" id="img">
+                </div>
 
+                <div class="text-center">
+                    @if ($dish->img)
+                        <img class="img-fluid" src="{{ asset('storage/' . $dish->img) }}" alt="{{ $dish->name }}"> 
+                    @else
+                        <img class="img-fluid" src="{{ asset('images/placeholder_dish.svg') }}" alt="Placeholder"> 
+                    @endif
+                </div>
+                
+            </div>
+        </div>
+           
+            <div class="form-row mt-3">
             <div class="form-group col-12">
                 <label for="description">Descrizione Piatto</label>
                 <textarea
@@ -119,7 +132,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm btn-info text-uppercase">Torna al Menu</a>
+            <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm my_btn btn-primary text-uppercase">Torna al Menu</a>
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Modifica Piatto</button>
         </div>
 

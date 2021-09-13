@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="py-4">
+<section class="restaurant_edit">
     
-    <h1 class="mb-1">Modifica - <span class="text-info">{{ $restaurant->name }}</span></h1>
+    <h1 class="text-center mb-1 text-info">{{ $restaurant->name }}</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -54,9 +54,12 @@
                 value="{{ old('p_iva', $restaurant->p_iva) }}"
                 required>
             </div>
+        </div>
+
+        <div class="form-row mt-4">
 
             <div class="form-group col-md-4">
-                <label for="shipping">Spese di spedizione (0 = spedizione gratuita)</label>
+                <label for="shipping">Spese di spedizione</label>
                 <input type="number"
                 class="form-control @error('shipping') is-invalid @enderror"
                 id="shipping"
@@ -70,7 +73,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="shipping_free">Seleziona la cifra oltre la quale la spedizione sarà gratuita</label>
+                <label for="shipping_free">Spedizione gratuita da</label>
                 <input type="number"
                 class="form-control @error('shipping_free') is-invalid @enderror"
                 id="shipping_free"
@@ -82,37 +85,42 @@
                 step="0.01"
                 >
             </div>
+
         </div>
 
-        <div class="form-row">
+        <div class="form-row mt-4">
 
-            @if ($restaurant->logo)
-                <div class="col-md-2">
-                    <img class="img-fluid" src="{{ asset('storage/' . $restaurant->logo) }}" alt="{{ $restaurant->name }}"> 
+            <div class="col-md-4">
+                <div class="form-group my-3">
+                    <label for="logo" class="custom-file-label">Modifica Logo</label>
+                    <input type="file" name="logo" class="custom-file-input @error('logo') is-invalid @enderror" id="logo">
                 </div>
-            @endif
-            <div class="form-group col-md-4 offset-md-2 my-3">
-                <label for="logo" class="custom-file-label">Modifica Logo</label>
-                <input type="file" name="logo" class="custom-file-input @error('logo') is-invalid @enderror" id="logo">
+                <div class="text-center">
+                    @if ($restaurant->logo)
+                    <img class="img-fluid " src="{{ asset('storage/' . $restaurant->logo) }}" alt="{{ $restaurant->name }}"> 
+                    @else
+                    <img class="img-fluid img-thumbnail" src="{{ asset('images/placeholder_dish.svg') }}" alt="{{ Arr::get($restaurant, 'name') }}">
+                    @endif
+                </div>
             </div>
 
-        </div>
-
-        <div class="form-row">
-
-            @if ($restaurant->bg_image)
-                <div class="col-md-2">
+            <div class="col-md-4 offset-md-4">
+                <div class="form-group my-3">
+                    <label for="bg_image" class="custom-file-label">Modifica Immagine</label>
+                    <input type="file" name="bg_image" class="custom-file-input @error('bg_image') is-invalid @enderror" id="bg_image">
+                </div>
+                <div class="text-center">
+                    @if ($restaurant->bg_image)
                     <img class="img-fluid" src="{{ asset('storage/' . $restaurant->bg_image) }}" alt="{{ $restaurant->name }}"> 
-                </div>
-            @endif
-            <div class="form-group col-md-4 offset-md-2 my-3">
-                <label for="bg_image" class="custom-file-label">Modifica Immagine</label>
-                <input type="file" name="bg_image" class="custom-file-input @error('bg_image') is-invalid @enderror" id="bg_image">
+                    @else
+                    <img class="img-fluid img-thumbnail" src="{{ asset('images/placeholder_dish.svg') }}" alt="{{ Arr::get($restaurant, 'name') }}">
+                    @endif
+            </div>
             </div>
 
         </div>
 
-        <div class="form-group col-md-8 my-3">
+        <div class="form-group col-md-8 offset-md-2 my-3 text-center">
 
             @foreach ($types as $type)
                 <div class="form-check form-check-inline">
@@ -140,7 +148,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.restaurants.show", Arr::get($restaurant, 'id')) }}" class="btn btn-sm btn-info text-uppercase">torna al ristorante</a>
+            <a href="{{ route("admin.restaurants.show", Arr::get($restaurant, 'id')) }}" class="btn btn-sm my_btn btn-primary text-uppercase">torna al ristorante</a>
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Salva modifiche</button>
         </div>
         

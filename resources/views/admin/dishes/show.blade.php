@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
+<section class="dish">
 
     @if (session('deleted'))
         <div class="alert alert-danger">
             {{ session('deleted') }}
         </div>
     @endif
-    
-{{-- @dd($dish->category->name); --}}
 
     <ul>
         <li>

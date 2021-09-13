@@ -3,7 +3,7 @@
 @section('content')
 <section class="restaurant_create">
     
-    <h1 class="text-center text-info mb-4">Nuovo Ristorante</h1>
+    <h1 class="text-center text-info mb-1">Nuovo Ristorante</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -20,7 +20,7 @@
         <div class="form-row mt-4">
 
             <div class="form-group col-md-4">
-                <label for="name">*Nome</label>
+                <label for="name">Nome</label>
                 <input type="text"
                 class="form-control @error('name') is-invalid @enderror"
                 id="name"
@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="address">*Indirizzo</label>
+                <label for="address">Indirizzo</label>
                 <input type="text"
                 class="form-control @error('address') is-invalid @enderror"
                 id="address"
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="p_iva">*Partita IVA</label>
+                <label for="p_iva">Partita IVA</label>
                 <input type="text"
                 class="form-control @error('p_iva') is-invalid @enderror"
                 id="p_iva"
@@ -57,10 +57,10 @@
 
         </div>
 
-        <div class="form-row flex-column mt-4">
+        <div class="form-row mt-4">
 
-            <div class="form-group">
-                <label for="shipping">Spese di spedizione (0 = spedizione gratuita)</label>
+            <div class="form-group col-md-4">
+                <label for="shipping">Spese di spedizione</label>
                 <input type="number"
                 class="form-control col-3 @error('shipping') is-invalid @enderror"
                 id="shipping"
@@ -73,8 +73,8 @@
                 required>
             </div>
 
-            <div class="form-group">
-                <label for="shipping_free">Seleziona la cifra oltre la quale la spedizione sarà gratuita</label>
+            <div class="form-group col-md-4">
+                <label for="shipping_free">Spedizione gratuita da</label>
                 <input type="number"
                 class="form-control col-3 @error('shipping_free') is-invalid @enderror"
                 id="shipping_free"
@@ -104,7 +104,7 @@
 
         <div class="form-row mt-4">
 
-            <div class="form-group col-md-6 offset-md-3 my-3">
+            <div class="form-group col-md-8 offset-md-2 my-3 text-center">
     
                 @foreach ($types as $type)
                     <div class="form-check form-check-inline">
@@ -124,7 +124,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.home") }}" class="btn btn-sm btn-info text-uppercase">torna alla home</a>
+            <a href="{{ route("admin.home") }}" class="btn btn-sm my_btn btn-primary text-uppercase">torna alla home</a>
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Salva ristorante</button>
         </div>
         
