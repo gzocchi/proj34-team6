@@ -1,4 +1,6 @@
 <template>
+
+  <!-- SEZIONE RISTORANTE SINGOLO  -->
   <section class="py-5 my-5" v-if="!loading && restaurant">
     <div class="row info">
       <div class="col-12 col-md-4">
@@ -8,7 +10,6 @@
           :alt="restaurant.slug"
         />
       </div>
-
       <div class="col-12 col-md-8">
         <h1>{{ restaurant.name }}</h1>
         <h3>Indirizzo: {{ restaurant.address }}</h3>
@@ -20,6 +21,11 @@
           Spedizione gratuita per ordini superiori a:
           {{ restaurant.shipping_free }} €
         </h6>
+        <i
+            v-for="i in 5"
+            :key="i"
+            :class="i <= starCount() ? 'fas fa-star' : 'far fa-star'"
+        ></i>
       </div>
     </div>
 
@@ -71,8 +77,15 @@ export default {
           console.log(err);
         });
     },
+    starCount: function() {
+      return Math.round(this.restaurant.vote);
+    }
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.fas.fa-star {
+    color: rgb(212, 0, 0);
+  }
+</style>

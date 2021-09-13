@@ -1,10 +1,14 @@
 <template>
-  <section class="text-center py-5 my-5">
-    <h1>Restaurants</h1>
+  <section class="text-center">
+    <div class="container-restaurants-p">
+      <h1>Lista dei Ristoranti</h1>
+      <p>Scegli quello che preferisci!</p>
+    </div>
 
     <div class="row">
+      <!-- originale  -->
       <RestaurantCard
-        class="col-md-4"
+      class="col-12"
         :restaurant="restaurant"
         v-for="restaurant in restaurants"
         :key="restaurant.slug"
@@ -18,7 +22,7 @@ import RestaurantCard from "../components/RestaurantCard";
 
 export default {
   name: "Restaurants",
-  components: { RestaurantCard },
+  components: { RestaurantCard},
   data() {
     return {
       srvApi: "http://127.0.0.1:8000",
@@ -43,4 +47,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container-restaurants-p {
+  margin-bottom: 10px;
+  h1 {
+    margin-bottom: 20px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+}
+// .row {
+//     box-shadow: 0px 0px 5px 0px;
+// }
+</style>

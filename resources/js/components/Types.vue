@@ -1,15 +1,53 @@
 <template>
-  <div class="types row" v-if="!loading && types">
-    <div
-      class="type_card col-md-4"
-      v-for="type in types"
-      :key="type.id"
-      :style=" `background-image: url(/storage/${type.image} )` "
-    >
-      <router-link :to="{ name: 'type', params: { slug: type.slug } }">
-        <span>{{ type.name }}</span></router-link
-      >
+  <div class="types" v-if="!loading && types">
+    <!-- TITOLO E ICONE  -->
+    <div class="container-titolo">
+      <h2>Non sai cosa scegliere?
+      <div class="container-animated-icons">
+        <i class="animated fas fa-hamburger"></i>
+        <i class="animated fas fa-pizza-slice"></i>
+        <i class="animated fas fa-hotdog"></i>
+        <i class="animated fas fa-utensils"></i>
+      </div>
+    </h2>
+    <p>Ti diamo noi una mano: scegli la categoria che ti interessa di più</p>
     </div>
+    <!-- // TITOLO E ICONE  -->
+
+    <!-- SKEW V-FOR  -->
+
+    <section class="container-skew">
+      <div
+        class="skewed-card"
+        v-for="type in types"
+        :key="type.id"
+      >
+        <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+            <div class="section-inner">
+              <img
+                :src="'/storage/' + type.image"
+                :alt="type.name"/>
+              <h2>{{ type.name }}</h2>
+            </div>
+        </router-link>
+      </div>
+    </section>
+
+    <!-- bottoni utili solo se si cambia paginazione da 12 a minore  -->
+    <button
+      v-show="current_page > 1"
+      class="btn btn-primary"
+      @click="getTypes(current_page - 1)">
+      Prev
+    </button>
+    <button
+      v-show="current_page < last_page"
+      class="btn btn-info"
+      @click="getTypes(current_page + 1)">
+          Next
+    </button>
+    <!-- // SKEW V-FOR  -->
+
   </div>
 
   <Loader v-else />
@@ -21,22 +59,30 @@ import Loader from "./Loader";
 export default {
   name: "Types",
   components: { Loader },
-  data() {
+  data: function() {
     return {
       srvApi: "http://127.0.0.1:8000",
       types: [],
       loading: true,
+      types: [],
+      current_page: 1,
+      last_page: 1,
     };
   },
   mounted() {
     this.getTypes();
   },
   methods: {
-    getTypes() {
+    getTypes: function(page = 1) {
       axios
-        .get(`${this.srvApi}/api/types`)
+        .get(`${this.srvApi}/api/types?page=${page}`)
         .then((res) => {
-          this.types = res.data;
+          console.log(res.data);
+          this.types = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
           if (this.types.length > 0) {
             this.loading = false;
           }
@@ -52,23 +98,205 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/front";
 
+main {
+  background-color: lightblue;
+}
+// general
 div.types {
+  padding-bottom: 4em;
+  // overflow-x: scroll;
+  margin: 20px 0;
   .type_card {
     text-align: center;
-
     a {
       display: block;
       padding: 100px 0;
       font-size: 2em;
       text-decoration: none;
-      color: $violet;
-
+      color: #e2004f;
       span {
         padding: 10px;
         border-radius: 5px;
         background-color: rgba(255, 255, 255, 0.5);
       }
-    }
+    } 
   }
 }
+.container-titolo {
+  margin-bottom: 90px;
+  h2 {
+    margin: 10px 0;
+  }
+  p {
+    margin: 20px 0;
+    font-weight: 600;
+  }
+}
+
+// skew types
+
+.container-skew::-webkit-scrollbar {
+  display: none;
+}
+.container-skew{
+  // overflow-x: auto;
+  height: 200px;
+  width: 90%;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: skewX(20deg) scale(1.35);
+  margin: 10px auto;
+  border-radius: 5px;
+  a:last-child {
+    overflow: hidden;
+  }
+}
+.skewed-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  height: 100%;
+  transition: 0.5s all ease-in-out;
+  overflow: hidden;
+  position: relative;
+  left: -10px;
+  transform-origin: right;
+  box-shadow: -10px 0px 5px #00000073;
+    .section-inner{
+    transform: skewX(-20deg) scale(0.65);
+    z-index: 0;
+    transform-origin: right;
+    position: relative;
+    left: -10px;
+    }
+    &:hover {
+    flex-grow: 1.7;
+    flex-shrink: 1;
+    flex-basis: 0;
+    transform: scale(1.05);
+    box-shadow: -10px 5px 10px;
+    transform-origin: right;
+    }
+    &:last-child{
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+      img {
+        height: 120px;
+      }
+      h2 {
+        transition: 0.2s ease-in-out;
+      }
+      &:hover h2 {
+        color: white;
+      }
+    }
+}
+
+
+// backgrounds cards 
+.skewed-card {
+  border-radius: 5px;
+  &:first-child{
+  background-color: $purple;
+  }
+  &:nth-child(2){
+  background-color: rgb(209, 61, 2);
+  }
+  &:nth-child(3){
+  background-color: $orange;
+  }
+  &:nth-child(4){
+  background-color: $green;
+  }
+  &:nth-child(5){
+  background-color: $violet;
+  }
+  &:nth-child(6){
+  background-color: #21A500;
+  }
+  &:nth-child(7){
+  background-color: $cyan;
+  }
+  &:nth-child(8){
+  background-color: $red;
+  }
+  &:nth-child(9){
+  background-color: #2e353b;
+  }
+  &:nth-child(10){
+  background-color: #2C2948;
+  }
+  &:nth-child(11){
+  background-color: $blue;
+  }
+  &:nth-child(12){
+  background-color: #8ff132;
+  }
+}
+// /skew types
+
+// animated icons
+.container-animated-icons {
+  position: relative;
+  top: -30px;
+  display: inline;
+  margin-left: 10px;
+}
+.animated {
+  width: 10px;
+  height: 10px;
+  color: #00CCBC;
+}
+.fa-hamburger {
+  position: relative;
+  animation: burger 6s infinite linear;
+}
+.fa-pizza-slice {
+  position: absolute;
+  animation: pizza 6s infinite linear;
+}
+.fa-hotdog {
+  position: absolute;
+  animation: hotdog 6s infinite linear;
+}
+.fa-utensils {
+  position: absolute;
+  animation: utensils 6s infinite linear;
+}
+@keyframes burger {
+  0%   {left:0px; top:0px;}
+  25%  {left:70px; top:0px;}
+  50%  {left:70px; top:50px;}
+  75%  {left:0px; top:50px;}
+  100% {left:0px; top:0px;}
+}
+@keyframes pizza {
+  0%  {left:70px; top:0px;}
+  25%  {left:70px; top:50px;}
+  50%  {left:0px; top:50px;}
+  75% {left:0px; top:0px;}
+  100% {left:70px; top:0px;}
+}
+@keyframes hotdog {
+  0%  {left:70px; top:50px;}
+  25%  {left:0px; top:50px;}
+  50% {left:0px; top:0px;}
+  75% {left:70px; top:0px;}
+  100% {left:70px; top:50px;}
+}
+@keyframes utensils {
+  0%  {left:0px; top:50px;}
+  25% {left:0px; top:0px;}
+  50% {left:70px; top:0px;}
+  75% {left:70px; top:50px;}
+  100%  {left:0px; top:50px;}
+}
+// /animated icons
 </style>

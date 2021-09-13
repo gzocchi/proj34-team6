@@ -3,6 +3,9 @@
     <div class="card-deck mt-4 mb-4 text-center">
       <div class="card mb-4 shadow-sm">
         <div class="card-header">
+          <img
+            :src="'/storage/' + dish.img"
+            :alt="dish.name"/>
           <h4 class="my-0 font-weight-normal">{{ dish.name }}</h4>
         </div>
         <div class="card-body">

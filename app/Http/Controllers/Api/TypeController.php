@@ -10,7 +10,7 @@ class TypeController extends Controller
 {
     public function index() {
 
-        $types = Type::all();
+        $types = Type::paginate(12);
 
         return response()->json($types);
     }
