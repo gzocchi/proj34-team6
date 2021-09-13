@@ -28,9 +28,23 @@ main {
         }
     }
 
-    section.restaurant{
-        h1{
-            color: $orange;
+    section.restaurant {
+        h1 {
+            color: $purple;
+        }
+        .card-header,
+        .card-footer {
+            background-color: $green;
+            span {
+                color: $purple;
+            }
+        }
+    }
+
+    section.dishes {
+        .badge.my_badge {
+            color: $purple;
+            background-color: $grey;
         }
     }
 }

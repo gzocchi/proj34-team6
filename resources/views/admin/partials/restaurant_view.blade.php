@@ -1,4 +1,4 @@
-<div class="row my-4">
+{{-- <div class="row my-4">
 
     <div class="col-12 col-md-2">
         @if (Arr::get($restaurant, 'logo'))
@@ -14,12 +14,12 @@
 
     </div>
 
-</div>
+</div> --}}
 
 <div class="card">
 
     <div class="card-header text-center">
-        -- Info Ristorante --
+        <span>-- Info Ristorante --</span> 
     </div>
 
     <div class="card-body">
@@ -50,7 +50,7 @@
         <div class="text-center">
 
             <a href="{{ route("admin.dishes.index") }}" class="btn btn-success mr-2">Menu ristorante</a>
-            <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn btn-primary mr-2">Modifica Ristorante</a>
+            <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="btn my_btn btn-primary mr-2">Modifica Ristorante</a>
             <form 
                 class="d-inline"
                 action="{{ route('admin.restaurants.destroy', Arr::get($restaurant, 'id')) }}"
@@ -68,15 +68,15 @@
 
     </div>
 
-    @if (Arr::get($restaurant, 'bg_image'))
+    {{-- @if (Arr::get($restaurant, 'bg_image'))
         <img src="{{ asset('storage/' . Arr::get($restaurant, 'bg_image')) }}" class="card-img-top" alt="{{ Arr::get($restaurant, 'name') }}">
-    @endif
+    @endif --}}
 
     <div class="card-footer text-center text-muted">
         @if (Arr::get($restaurant, 'vote'))
-        Il voto del tuo ristorante: {{ Arr::get($restaurant, 'vote') }}
+        <span>Recensioni ristorante: {{ Arr::get($restaurant, 'vote') }}</span> 
         @else
-        Il tuo ristorante non ha ancora ricevuto votazioni
+        <span>Il tuo ristorante non ha ancora ricevuto recensioni</span> 
         @endif
     </div>
 
