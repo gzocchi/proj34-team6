@@ -19,7 +19,7 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
-        $orders = Order::where('restaurant_id', $restaurant->id)->get();
+        $orders = Order::where('restaurant_id', $restaurant->id)->get()->toArray();
         return view('admin.orders.index', compact('orders'));
     }
 
