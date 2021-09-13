@@ -1,14 +1,11 @@
 <template>
   <div class="payment-success">
     <div class="content">
-        <img src="/img/logo_yellow.png" alt="logo">
+        <i class="fas fa-check"></i>
         <h1>Il pagamento è andato a buon fine.</h1>
-        <div>Riceverai presto una mail con i dati del tuo ordine.<br>
-        Grazie per aver scelto Deliveboo <span class="heart">&#10084;</span>
-        </div>
-        <router-link :to="{name:'home'}"><button>Vai alla home</button></router-link>
+        <span>Grazie per aver scelto Deliveboo!!</span>
+        <router-link :to="{name:'home'}"> <br> <button>Torna alla home</button></router-link>
       </div>
-        <div class="color"><img class="delivery" src="/img/delivery.png" alt="delivery"></div>
   </div>
 </template>
 
@@ -17,3 +14,32 @@ export default {
    name:"PaymentSuccess",
 }
 </script>
+
+<style scoped>
+
+i {
+  font-size: 40px;
+  color: green;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: green;
+}
+
+div {
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #00ccbc;
+  color: black;
+  padding: 5px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+</style>
