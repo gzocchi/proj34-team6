@@ -15,7 +15,7 @@
                 <td>#{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
-                <td style="width: 60px">
+                <!-- <td style="width: 60px">
                   <button
                     type="button"
                     class="btn btn-block btn-sm btn-outline-primary"
@@ -41,7 +41,7 @@
                   >
                     Delete
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
             <tfoot>
