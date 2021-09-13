@@ -15,7 +15,7 @@
                 <td>#{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
-                <td style="width: 60px">
+                <!-- <td style="width: 60px">
                   <button
                     type="button"
                     class="btn btn-block btn-sm btn-outline-primary"
@@ -41,7 +41,7 @@
                   >
                     Delete
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
             <tfoot>
@@ -198,6 +198,7 @@
 import * as cartLs from "cart-localstorage";
 import Loader from "../components/Loader";
 import vuebraintree from "vue-braintree";
+
 export default {
   name: "Payment_Fabio",
   props: {
@@ -220,11 +221,9 @@ export default {
         dishes: cartLs.list(),
         restaurantId: cartLs.list()[0].restaurant_id,
         customer_name: "",
-        // customer_email: "",
+        customer_mail: "",
         customer_address: "",
         customer_telephone: "",
-        // customer_cap : "",
-        // customer_city : "",
       },
       errors: {},
       any_errors: false,
@@ -265,7 +264,7 @@ export default {
       await axios
         .get("http://127.0.0.1:8000/api/orders/generate")
         .then((res) => {
-         console.log(res.data.token);
+        //  console.log(res.data.token);
           this.tokenApi = res.data.token;
           this.loader = true;
         })
@@ -288,18 +287,20 @@ export default {
             ...this.form,
           })
           .then((res) => {
-            localStorage.clear();
+            // console.log(res.data);
             if (res.data.errors) {
+              // console.log(res.data.errors);
               this.errors = res.data.errors;
               this.any_errors = true;
               this.loader = true;
             } else {
               this.any_errors = false;
-              return this.$router.push("/checkout/success");
+              cartLs.destroy();
+              return this.$router.push({ name: "PaymentSuccess" });
             }
           })
           .catch((err) => {
-            return this.$router.push("/checkout/error");
+            return this.$router.push({ name: "PaymentError" });
           });
       } catch (error) {
         this.loader = false;

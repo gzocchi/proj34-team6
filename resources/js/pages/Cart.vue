@@ -77,6 +77,8 @@
         </div>
       </div>
     </div>
+
+    <router-link :to="{name:'paymentF'}">Vai alla cassa (Fabio)</router-link>
   </section>
 
   <section class="text-center py-5 my-5" v-else>

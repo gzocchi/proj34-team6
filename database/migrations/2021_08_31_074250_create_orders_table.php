@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->id(); // order id
             $table->float('price', 6, 2);
             $table->boolean('paid');
+            $table->unsignedBigInteger('restaurant_id');
             // "parte customer"
             $table->string('customer_name', 60);
             $table->string('customer_address');
