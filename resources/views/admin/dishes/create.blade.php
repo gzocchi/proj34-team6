@@ -50,7 +50,7 @@
 
         <div class="form-row">
 
-            <div class="form-group col-md-4 offset-md-2 my-3">
+            <div class="form-group col-md-4 my-3">
                 <label for="img" class="custom-file-label">Carica Immagine</label>
                 <input type="file" name="img" class="custom-file-input @error('img') is-invalid @enderror" id="img">
             </div>
@@ -101,7 +101,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm btn-info text-uppercase">Torna al Menu</a>
+            <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm my_btn btn-primary text-uppercase">Torna al Menu</a>
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Salva Piatto</button>
         </div>
 

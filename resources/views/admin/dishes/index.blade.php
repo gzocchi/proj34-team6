@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
+<section class="dishes">
 
     @if (session('deleted'))
         <div class="alert alert-danger">
@@ -9,42 +9,46 @@
         </div>
     @endif
 
-    <a class="nav-link" href="{{ route('admin.dishes.create') }}">Aggiungi piatto</a>
+    <div class="row mb-5">
+        <a href="{{ route("admin.restaurants.show", Arr::get($dishes[0], 'restaurant_id')) }}" class="btn my_btn btn-primary mr-3">Torna al Ristorante</a>
+        <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Aggiungi piatto</a>
+    </div>
     
-        @foreach ($dishes as $dish)
-        <ul>
-            <li>
-                {{ Arr::get($dish, 'name')}}
-                <ul>
-                    <li>{{ $dish->description}}</li>
-                    <li>{{ $dish->price}}</li>
-                    <li>{{ $dish->img}}</li>
-                    <li>categoria: {{ $dish->category->name}}</li>
-                    <li>ristorante: {{ $dish->restaurant->name}}</li>
-                </ul>
-            </li>
-        </ul>
+    @foreach ($dishes as $dish)
 
-        @if (Arr::get($dish, 'img'))
-            <img class="img-fluid d-block" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
-        @else
-            <img class="img-fluid d-block" src="{{ asset('images/placeholder_dish.svg') }}" alt="{{ Arr::get($dish, 'name') }}">
-        @endif
-        
-        <div>
-            <a href="{{ route("admin.dishes.edit", Arr::get($dish, 'id')) }}" class="btn btn-sm btn-outline-info">Modifica</a>
+    <div class="row text-center my-3">
+        <div class="col-12 col-md-2">
+            @if (Arr::get($dish, 'img'))
+                <img class="img-fluid" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
+            @else
+                <img class="img-fluid" src="{{ asset('images/placeholder_dish.svg') }}" alt="{{ Arr::get($dish, 'name') }}">
+            @endif
+        </div>
+        <div class="col-12 col-md-8">
+
+            <span class=" badge my_badge my-2">{{ $dish->category->name}}</span>
+            <h4>{{ Arr::get($dish, 'name')}} - <span>{{ $dish->price}} €</span></h4>
+            <p>{{ $dish->description}}</p>
             
-            <form 
+        </div>
+        <div class="col-12 text-center">
+            <a href="{{ route("admin.dishes.edit", Arr::get($dish, 'id')) }}" class="btn btn-sm my_btn btn-success">Modifica</a>
+            
+            <form
+            class="d-inline"
             action="{{ route('admin.dishes.destroy', Arr::get($dish, 'id')) }}" method="POST"
             onSubmit = "return confirm(`Cancellare l'articolo '{{ addslashes(Arr::get($dish, 'name')) }}'?`)"
             >
             @csrf
             @method('DELETE')
         
-                <button type="submit" class="btn btn-sm btn-danger text-uppercase">Delete</button>
+                <button type="submit" class="btn btn-sm btn-danger text-uppercase">Elimina</button>
         
             </form>
         </div>
-        @endforeach
+    </div>
+
+        
+    @endforeach
 
 @endsection
