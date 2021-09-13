@@ -40,7 +40,7 @@
         </div>
 
         <div class="dashboard_card col-10 col-md-4 my-3">
-            <a class="d-block p-5 font-weight-bolder" href="#">Ordini</a>
+            <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.orders.index')}}">Ordini</a>
         </div>
 
     </div>
