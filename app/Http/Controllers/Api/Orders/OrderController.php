@@ -74,6 +74,7 @@ class OrderController extends Controller
         $dataOrder = [
             "price" => $amount,
             "paid" =>  true,
+            'restaurant_id' => $all_dishes[0]['restaurant_id'],
             "customer_name" => $request->customer_name,
             "customer_mail" => $request->customer_mail,
             "customer_address" => $request->customer_address,
