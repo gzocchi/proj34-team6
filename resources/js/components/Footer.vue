@@ -125,5 +125,9 @@ footer {
   .social:hover {
     filter: none;
   } 
+
+  .footer-item {
+    border-radius: 10% 1%;
+  }
 }
 </style>

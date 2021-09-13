@@ -33,6 +33,7 @@ export default {
   background-color: $green;
   background-image: -webkit-linear-gradient(100deg, $green 50%, $azure 50%);
   color: $purple;
+  border-radius: 10% 1%;
 
   h1 {
     font-weight: 700;

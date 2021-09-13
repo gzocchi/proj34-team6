@@ -1,34 +1,35 @@
 <template>
-  <div class="types" v-if="!loading && types">
+  <div class="my_container" v-if="!loading && types">
     <!-- TITOLO E ICONE  -->
     <div class="container-titolo">
       <h2>Non sai cosa scegliere?
-      <div class="container-animated-icons">
+      <div class="container-animated-icons mx-5">
         <i class="animated fas fa-hamburger"></i>
         <i class="animated fas fa-pizza-slice"></i>
         <i class="animated fas fa-hotdog"></i>
         <i class="animated fas fa-utensils"></i>
       </div>
     </h2>
-    <p>Ti diamo noi una mano: scegli la categoria che ti interessa di più</p>
+    <p class="my-5">Ti diamo noi una mano: scegli la categoria che ti interessa di più</p>
     </div>
     <!-- // TITOLO E ICONE  -->
 
     <!-- SKEW V-FOR  -->
 
-    <section class="container-skew">
+    <section class="row my-5">
       <div
-        class="skewed-card"
+        class="col-12 col-md-6 col-lg-2 my-3"
         v-for="type in types"
         :key="type.id"
+        :style="{ backgroundImage: `url(/storage/${type.image})` }"
       >
         <router-link :to="{ name: 'type', params: { slug: type.slug } }">
-            <div class="section-inner">
-              <img
-                :src="'/storage/' + type.image"
-                :alt="type.name"/>
-              <h2>{{ type.name }}</h2>
+          <div class="inner">
+            <!-- <img :src="'/storage/' + type.image" :alt="type.name"/> -->
+            <div class="layover">
+              <h3>{{ type.name }}</h3>
             </div>
+          </div>
         </router-link>
       </div>
     </section>
@@ -98,116 +99,65 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/front";
 
-main {
-  background-color: lightblue;
-}
-// general
-div.types {
-  padding-bottom: 4em;
-  // overflow-x: scroll;
-  margin: 20px 0;
-  .type_card {
-    text-align: center;
-    a {
-      display: block;
-      padding: 100px 0;
-      font-size: 2em;
-      text-decoration: none;
-      color: #e2004f;
-      span {
-        padding: 10px;
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-    } 
-  }
-}
-.container-titolo {
-  margin-bottom: 90px;
-  h2 {
-    margin: 10px 0;
-  }
-  p {
-    margin: 20px 0;
-    font-weight: 600;
-  }
-}
+.my_container {
+  width: 90%;
+  margin: 0 auto;  
 
-// skew types
-
-.container-skew::-webkit-scrollbar {
-  display: none;
-}
-.container-skew{
-  // overflow-x: auto;
-  height: 200px;
-  width: 90%;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: skewX(20deg) scale(1.35);
-  margin: 10px auto;
-  border-radius: 5px;
-  a:last-child {
-    overflow: hidden;
-  }
-}
-.skewed-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0;
-  height: 100%;
-  transition: 0.5s all ease-in-out;
-  overflow: hidden;
-  position: relative;
-  left: -10px;
-  transform-origin: right;
-  box-shadow: -10px 0px 5px #00000073;
-    .section-inner{
-    transform: skewX(-20deg) scale(0.65);
-    z-index: 0;
-    transform-origin: right;
+  div[class*="col-"] {
     position: relative;
-    left: -10px;
+    display: flex;
+    align-items: center;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10% 1%;
+    border-bottom: 2px solid $teal;
+    background-size: cover;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
     }
+    .layover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      background-color: rgba(#d0eb99, 0.7);
+
+      &:hover {
+        opacity: 1;
+        transition: 0.5s;
+        transform: scale(1.5);
+      }
+    }
+
     &:hover {
-    flex-grow: 1.7;
-    flex-shrink: 1;
-    flex-basis: 0;
-    transform: scale(1.05);
-    box-shadow: -10px 5px 10px;
-    transform-origin: right;
-    }
-    &:last-child{
-      overflow-x: hidden;
-    }
-    a {
-      text-decoration: none;
-      color: white;
-      img {
-        height: 120px;
-      }
-      h2 {
+      transform: scale(1.2);
+      transition: 0.5s;
+      z-index: 2;
+
+      h3 {
         transition: 0.2s ease-in-out;
-      }
-      &:hover h2 {
-        color: white;
+        color: $purple;
       }
     }
+  }
+
+  h2, p {
+    font-family: 'Rampart One', cursive;
+  }
 }
-
-
-// backgrounds cards 
-.skewed-card {
-  border-radius: 5px;
+div[class*="col-"] {
   &:first-child{
   background-color: $purple;
   }
   &:nth-child(2){
-  background-color: rgb(209, 61, 2);
+  background-color: $azure_dark;
   }
   &:nth-child(3){
   background-color: $orange;
@@ -219,7 +169,7 @@ div.types {
   background-color: $violet;
   }
   &:nth-child(6){
-  background-color: #21A500;
+  background-color: $green_dark;
   }
   &:nth-child(7){
   background-color: $cyan;
@@ -228,19 +178,18 @@ div.types {
   background-color: $red;
   }
   &:nth-child(9){
-  background-color: #2e353b;
+  background-color: $yellow;
   }
   &:nth-child(10){
-  background-color: #2C2948;
+  background-color: $indigo;
   }
   &:nth-child(11){
   background-color: $blue;
   }
   &:nth-child(12){
-  background-color: #8ff132;
+  background-color: $red;
   }
 }
-// /skew types
 
 // animated icons
 .container-animated-icons {

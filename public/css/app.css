@@ -10965,6 +10965,11 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
+.my_nav .dropdown-item:active {
+  background-color: #00ccbc;
+  color: white;
+}
+
 main {
   color: #2e3333;
   font-size: 0.9rem;

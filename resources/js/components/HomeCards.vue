@@ -38,10 +38,10 @@ export default {
 .container-card {
   display: flex;
   justify-content: space-around;
-  margin: 40px 0 80px;
+  margin: 100px 0;
 }
 .single-card {
-  border-radius: 20% 1%;
+  border-radius: 10% 1%;
   width: 30%;
   height: 500px;
   transition: 0.3s;

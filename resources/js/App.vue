@@ -57,8 +57,12 @@ export default {
 
 <style lang="scss">
 @import "../sass/front";
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
 
 body {
+
+  font-family: 'Original Surfer', cursive;
 
   .swal-modal {
     .swal-icon--warning__body,
