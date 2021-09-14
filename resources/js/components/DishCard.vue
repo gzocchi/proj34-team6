@@ -4,19 +4,25 @@
       <div class="card mb-4 shadow-sm">
         <div class="card-header">
           <img
+            class="img-fluid rounded"
             :src="'/storage/' + dish.img"
-            :alt="dish.name"/>
-          <h4 class="my-0 font-weight-normal">{{ dish.name }}</h4>
+            :alt="dish.name"
+          />
         </div>
+
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">${{ dish.price }}</h1>
+          <h4 class="m-0 card-title font-weight-normal">{{ dish.name }}</h4>
+          <span class="d-block font-weight-bold">{{ dish.price }}€</span>
+          <p v-if="dish.description" class="text-left p-3">
+            {{ dish.description }}
+          </p>
 
           <button
             type="button"
-            class="btn btn-block btn-outline-primary"
+            class="btn my_btn btn-primary mt-2"
             @click="addDish(dish)"
           >
-            Add to Cart
+            Aggiungi al Carrello
           </button>
         </div>
       </div>
@@ -75,4 +81,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/front";
+
+.card-header {
+  background-color: $pink;
+  img {
+    max-height: 100px;
+  }
+}
+
+.card-body {
+  h4 {
+    color: $green_dark;
+  }
+  span {
+    color: $purple;
+    font-size: 2em;
+  }
+
+  p {
+    background-color: $pink;
+    border-radius: 5px;
+  }
+}
 </style>
