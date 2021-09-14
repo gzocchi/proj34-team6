@@ -22,14 +22,14 @@ class DishesTableSeeder extends Seeder
 
             $dish = new Dish();
 
-            $restaurant = App\Restaurant::where('slug', Arr::get($item, 'restaurant_id'))->first();
-            $dish->restaurant_id = $restaurant->id;
+            $restaurant = App\Restaurant::where('slug', Arr::get($item, 'restaurant_slug'))->first();
+            $dish->restaurant_id = Arr::get($restaurant, 'id');
 
-            $category = App\Category::where('name', Arr::get($item, 'category_id'))->first();
-            $dish->category_id = $category->id;
+            $category = App\Category::where('name', Arr::get($item, 'category_name'))->first();
+            $dish->category_id = Arr::get($category, 'id');
 
-            $dish->name = $item['name'];
-            $dish->description = $item['description'];
+            $dish->name = Arr::get($item, 'name');
+            $dish->description = Arr::get($item, 'description');
 
             if (Arr::has($item, 'img')) {
                 $contents = file_get_contents($img_path . DIRECTORY_SEPARATOR . Arr::get($item, 'img'));
@@ -37,8 +37,8 @@ class DishesTableSeeder extends Seeder
                 $dish->img = $dst_path . DIRECTORY_SEPARATOR . Arr::get($item, 'img');
             }
 
-            $dish->price = $item['price'];
-            $dish->visible = $item['visible'];
+            $dish->price = Arr::get($item, 'price');
+            $dish->visible = Arr::get($item, 'visible');
             $dish->save();
         }
     }
