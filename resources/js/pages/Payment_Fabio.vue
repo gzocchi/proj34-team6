@@ -37,7 +37,7 @@
                     Spedizione: {{ shipping }}€<strong class="total"></strong>
                   </h6>
                   <h6 class="text-left">
-                    SubTotal: {{ cartLs.total() }}€<strong class="total"></strong>
+                    SubTotal: {{ cartLs.total().toFixed(2) }}€<strong class="total"></strong>
                   </h6>
 
                   <!-- totale visto  -->
