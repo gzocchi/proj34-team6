@@ -22,10 +22,10 @@ class DishesTableSeeder extends Seeder
 
             $dish = new Dish();
 
-            $restaurant = App\Restaurant::where('slug', Arr::get($item, 'restaurant_id'))->first();
+            $restaurant = App\Restaurant::where('slug', Arr::get($item, 'restaurant_slug'))->first();
             $dish->restaurant_id = $restaurant->id;
 
-            $category = App\Category::where('name', Arr::get($item, 'category_id'))->first();
+            $category = App\Category::where('name', Arr::get($item, 'category_name'))->first();
             $dish->category_id = $category['id'];
 
             $dish->name = $item['name'];
