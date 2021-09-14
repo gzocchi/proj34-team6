@@ -26,7 +26,7 @@ class DishesTableSeeder extends Seeder
             $dish->restaurant_id = $restaurant->id;
 
             $category = App\Category::where('name', Arr::get($item, 'category_id'))->first();
-            $dish->category_id = $category->id;
+            $dish->category_id = $category['id'];
 
             $dish->name = $item['name'];
             $dish->description = $item['description'];
