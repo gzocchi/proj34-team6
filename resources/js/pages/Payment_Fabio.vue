@@ -92,9 +92,10 @@
                   <h6 class="text-left">
                     SubTotal: {{ cartLs.total() }}€<strong class="total"></strong>
                   </h6>
-                  <h4 class="text-right">
-                    Totale: {{ cartLs.total() + shipping }}€
-                  </h4>
+                  <div>
+                    <h4 class="text-right" v-if="cartLs.total() < shipping_free ">Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h4>
+                    <h4 class="text-right" v-else>Totale: {{ cartLs.total().toFixed(2) }}€</h4>
+                  </div>
                 </div>
           </div>
 
@@ -271,9 +272,20 @@ export default {
   },
   mounted() {
      // Chiamata api ristorante shipping
-  //   this.getShipping(this.cartLs.list()[0].restaurant_id);
     this.generateKey();
   //   // this.paymentCart();
+  this.getShipping(this.cartLs.list()[0].restaurant_id);
+  },
+  watch: {
+    cartItem(val) {
+      if (this.shipping_free) {
+        return cartLs.total() > this.shipping_free
+          ? (this.orderFree = true)
+          : (this.orderFree = false);
+      } else {
+        this.orderFree = false;
+      }
+    },
   },
   methods: {
     getShipping(restaurant_id) {
@@ -282,6 +294,9 @@ export default {
         .then((res) => {
           this.shipping = res.data.shipping;
           this.shipping_free = res.data.shipping_free;
+          if (this.shipping == 0) {
+            this.orderFree = true;
+          }
         })
         .catch((err) => {
           console.log(err);

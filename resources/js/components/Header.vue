@@ -63,7 +63,7 @@
                         <i @click="cartLs.quantity(item.id, -1)" class="fas fa-minus-square fa-lg"></i>
                       </h6>
                       <h6>
-                        Subtotale: {{ item.price * item.quantity }}€
+                        Subtotale: {{ (item.price * item.quantity).toFixed(2) }}€
                       </h6>
                       <!-- ELIMINA  -->
                       <i @click="cartLs.remove(item.id)" class="fas fa-trash-alt fa-lg"></i>
@@ -71,7 +71,9 @@
                   </div>
 
                   <div class="cart-bottom">
-                    <h6>Totale: {{ cartLs.total() + shipping }}€</h6>
+                    <h6 v-if="cartLs.total() < shipping_free ">Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h6>
+                    <h6 v-else>Totale: {{ cartLs.total().toFixed(2) }}€</h6>
+                    
                   </div>
 
                   <!-- route per pagamento  -->
@@ -122,7 +124,7 @@ export default {
       required: true,
     },
   },
-  mounted() {
+  updated() {
     // Chiamata api ristorante shipping
     this.getShipping(this.cartLs.list()[0].restaurant_id);
   },
