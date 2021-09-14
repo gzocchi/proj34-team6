@@ -33,7 +33,7 @@
                 </div>
             </div>
                 <div class="card-footer">
-                  <h6 class="text-left">
+                  <h6 class="text-left" :class="{ 'text-annullato': (cartLs.total() > shipping_free) }">
                     Spedizione: {{ shipping }}€<strong class="total"></strong>
                   </h6>
                   <h6 class="text-left">
@@ -371,6 +371,10 @@ form
   width: 60%;
   margin: 0 auto;
 }
+// text annullato
+.text-annullato {
+  text-decoration: line-through;
+}
 
 // carrello vuoto error
 .fa-times {
@@ -378,7 +382,6 @@ form
   color: $red;
   padding: 10px;
 }
-
 .content h1 {
   text-align: center;
   margin-bottom: 10px;
