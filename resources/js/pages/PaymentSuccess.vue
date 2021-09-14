@@ -4,7 +4,7 @@
         <i class="fas fa-check"></i>
         <h1>Il pagamento è andato a buon fine.</h1>
         <span>Grazie per aver scelto Deliveboo!!</span>
-        <router-link :to="{name:'home'}"> <br> <button>Torna alla home</button></router-link>
+        <router-link :to="{name:'home'}"> <br> <button class="btn my_btn btn-primary my-3">Torna alla home</button></router-link>
       </div>
   </div>
 </template>
@@ -33,15 +33,6 @@ h1 {
 
 div {
   text-align: center;
-}
-
-button {
-  margin-top: 20px;
-  background-color: $azure;
-  color: black;
-  padding: 5px;
-  border-radius: 30px;
-  margin-bottom: 20px;
 }
 
 </style>

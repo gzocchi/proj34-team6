@@ -6,7 +6,7 @@
       <div>Siamo spiacenti, il pagamento non è andato a buon fine. <br>
         Riprova con un altro metodo di pagamento
       </div>
-      <router-link :to="{name:'home'}"><button>Torna alla home</button></router-link>
+      <router-link :to="{name:'home'}"><button class="btn my_btn btn-primary my-3">Torna alla home</button></router-link>
     </div>
   </div>
 </template>
@@ -35,15 +35,6 @@ h1 {
 
 div {
   text-align: center;
-}
-
-button {
-  margin-top: 20px;
-  background-color: $azure;
-  color: black;
-  padding: 5px;
-  border-radius: 30px;
-  margin-bottom: 20px;
 }
 
 </style>
