@@ -9,13 +9,17 @@
           </h6>
         </div>
         <div class="card-body">
-          <table class="table">
+
+          <!-- table da cancellare -->
+          <!-- <table class="table">
             <tbody class="cart">
               <tr v-for="item in cart" :key="item.id">
-                <td>#{{ item.id }}</td>
+                <td><img
+                        :src="'/storage/' + item.img"
+                        :alt="item.name"/></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
-                <!-- <td style="width: 60px">
+                <td style="width: 60px">
                   <button
                     type="button"
                     class="btn btn-block btn-sm btn-outline-primary"
@@ -41,7 +45,7 @@
                   >
                     Delete
                   </button>
-                </td> -->
+                </td>
               </tr>
             </tbody>
             <tfoot>
@@ -58,7 +62,41 @@
               </td>
               <td></td>
             </tfoot>
-          </table>
+          </table> -->
+
+          <!-- riepilogo ordine modificabile -->
+          <div class="container container-riepilogo">
+            <div class="riepilogo-piatto" v-for="item in cart" :key="item.id">
+                <div class="row">
+                  <div class="col">
+                    <img
+                          :src="'/storage/' + item.img"
+                          :alt="item.name"/>
+                  </div>
+                  <div class="col">{{ item.name }}</div>
+                  <div class="col">
+                    {{ item.quantity }}
+                    <i @click="cartLs.quantity(item.id, 1)" class="fas fa-plus-square fa-lg"></i>
+                        <!-- togli  -->
+                    <i @click="cartLs.quantity(item.id, -1)" class="fas fa-minus-square fa-lg"></i>
+                  </div>
+                  <div class="col">
+                    <i @click="cartLs.remove(item.id)" class="fas fa-trash-alt fa-lg"></i>
+                  </div>
+                </div>
+            </div>
+                <div class="card-footer">
+                  <h6 class="text-left">
+                    Spedizione: {{ shipping }}€<strong class="total"></strong>
+                  </h6>
+                  <h6 class="text-left">
+                    SubTotal: {{ cartLs.total() }}€<strong class="total"></strong>
+                  </h6>
+                  <h4 class="text-right">
+                    Totale: {{ cartLs.total() + shipping }}€
+                  </h4>
+                </div>
+          </div>
 
           <!-- FORM -->
           <v-form class="form">
@@ -191,7 +229,7 @@
     </div>
   </section>
 
-  <!-- <Loader v-else /> -->
+  <Loader v-else />
 </template>
 
 <script>
@@ -325,4 +363,39 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../../sass/front";
+
+.card-header {
+  background-color: $azure;
+}
+.container-riepilogo {
+  margin: 20px 0;
+  box-shadow: 0px 0px 5px;
+  .row {
+    align-items: center;
+    margin: 0;
+  }
+  .riepilogo-piatto {
+    img {
+      width: 50px;
+    }
+    i {
+      cursor: pointer;
+    }
+  }
+}
+
+form 
+.form {
+  margin: 30px 0;
+  box-shadow: 0px 0px 5px;
+}
+.v-input {
+  width: 60%;
+  margin: 0 auto;
+}
+
+//brain tree
+
+</style>
