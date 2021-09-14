@@ -15,18 +15,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+
+@import "../../sass/front";
 
 i {
   font-size: 40px;
-  color: green;
+  color: $green;
   padding: 10px;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 10px;
-  color: green;
+  color: $green;
 }
 
 div {
@@ -35,7 +37,7 @@ div {
 
 button {
   margin-top: 20px;
-  background-color: #00ccbc;
+  background-color: $azure;
   color: black;
   padding: 5px;
   border-radius: 30px;
