@@ -70,11 +70,20 @@ class OrderController extends Controller
         foreach ($all_dishes as $dish) {
             $amount += Arr::get($dish, 'price') * Arr::get($dish, 'quantity');
         }
+        
+        $restaurant = Restaurant::where('id', $all_dishes[0]['restaurant_id'])->first();
+        $shipping = $restaurant->shipping;
+        $shipping_free = $restaurant->shipping_free;
+        if ($amount > $shipping_free) {
+            $shipping = 0;
+        } else {
+            $amount += $shipping;
+        }
 
         $dataOrder = [
             "price" => $amount,
             "paid" =>  true,
-            'restaurant_id' => $all_dishes[0]['restaurant_id'],
+            'restaurant_id' => $restaurant->id,
             "customer_name" => $request->customer_name,
             "customer_mail" => $request->customer_mail,
             "customer_address" => $request->customer_address,
