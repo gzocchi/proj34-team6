@@ -2,7 +2,7 @@
   <section v-if="loader" class="text-center py-5 my-5">
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
-        <div class="card-header">
+        <div class="card-header text-white">
           <h2>Cart</h2>
           <h6>
             Spedizione gratuita per ordini superiori a: {{ shipping_free }} €
@@ -10,59 +10,6 @@
         </div>
         <div class="card-body">
 
-          <!-- table da cancellare -->
-          <!-- <table class="table">
-            <tbody class="cart">
-              <tr v-for="item in cart" :key="item.id">
-                <td><img
-                        :src="'/storage/' + item.img"
-                        :alt="item.name"/></td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td style="width: 60px">
-                  <button
-                    type="button"
-                    class="btn btn-block btn-sm btn-outline-primary"
-                    @click="cartLs.quantity(item.id, 1)"
-                  >
-                    +
-                  </button>
-                </td>
-                <td style="width: 60px">
-                  <button
-                    type="button"
-                    class="btn btn-block btn-sm btn-outline-primary"
-                    @click="cartLs.quantity(item.id, -1)"
-                  >
-                    -
-                  </button>
-                </td>
-                <td class="text-right">€{{ item.price }}</td>
-                <td class="text-right">
-                  <button
-                    class="btn btn-primary"
-                    @click="cartLs.remove(item.id)"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <td colspan="3"></td>
-              <td class="text-right">
-                Spedizione: {{ shipping }}<strong class="total"></strong>
-              </td>
-              <td class="text-right">
-                SubTotal: {{ cartLs.total() }}<strong class="total"></strong>
-              </td>
-              <td class="text-right">
-                Total: {{ cartLs.total() + shipping
-                }}<strong class="total"></strong>
-              </td>
-              <td></td>
-            </tfoot>
-          </table> -->
 
           <!-- riepilogo ordine modificabile -->
           <div class="container container-riepilogo">
@@ -92,9 +39,23 @@
                   <h6 class="text-left">
                     SubTotal: {{ cartLs.total() }}€<strong class="total"></strong>
                   </h6>
-                  <div>
+
+                  <!-- totale visto  -->
+                  <div v-if="cartLs.total() > 0">
                     <h4 class="text-right" v-if="cartLs.total() < shipping_free ">Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h4>
+
                     <h4 class="text-right" v-else>Totale: {{ cartLs.total().toFixed(2) }}€</h4>
+                  </div>
+                  <!-- totale 0 -->
+                  <div v-else>
+                    <div class="content">
+                      <i class="fas fa-times"></i>
+                      <h1>Ops, qualcosa è andato storto...</h1>
+                      <div>Siamo spiacenti, il carrello è vuoto. Come compagnia siamo propensi a far pagare al cliente solo ciò che compra. <br>
+                        Riprova scegliendo cosa inserire nel carrello!
+                      </div>
+                      <router-link :to="{name:'home'}"><button class="btn my_btn btn-primary my-3">Torna alla home</button></router-link>
+                    </div>                   
                   </div>
                 </div>
           </div>
@@ -411,6 +372,17 @@ form
   margin: 0 auto;
 }
 
-//brain tree
+// carrello vuoto error
+.fa-times {
+  font-size: 40px;
+  color: $red;
+  padding: 10px;
+}
+
+.content h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: $red;
+}
 
 </style>

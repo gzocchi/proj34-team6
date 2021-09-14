@@ -70,11 +70,20 @@
                     </div>
                   </div>
 
-                  <div class="cart-bottom">
-                    <h6 v-if="cartLs.total() < shipping_free ">Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h6>
+                  <!-- Cart Pieno  -->
+                  <div v-if="cartLs.total() > 0"  class="cart-bottom">
+                  <h6
+                    v-if="cartLs.total() < shipping_free"
+                    >Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h6>
+
                     <h6 v-else>Totale: {{ cartLs.total().toFixed(2) }}€</h6>
-                    
                   </div>
+
+                  <!-- cart vuoto -->
+                  <div v-else class="cart-bottom">
+                    <h6>Carrello Vuoto</h6>
+                  </div>
+                    
 
                   <!-- route per pagamento  -->
                   <div>
