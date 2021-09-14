@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :totalQuantity="total" />
+    <Header :totalQuantity="total" :cart="cartItem" />
 
     <Jumbotron />
 

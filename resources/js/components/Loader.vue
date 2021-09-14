@@ -1,5 +1,5 @@
 <template>
-  <section class="my-5 py-5">
+  <section class="my-5 py-5 text-center">
     <h1>Loading...</h1>
     <div class="loader"></div>
   </section>
@@ -23,12 +23,13 @@ section {
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
+  // border: 16px solid #f3f3f3;
   border-top: 16px solid $azure;
   border-radius: 50%;
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
+  margin: 0 auto;
 }
 
 @keyframes spin {

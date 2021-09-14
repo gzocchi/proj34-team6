@@ -1,12 +1,14 @@
 <template>
+  <!-- CARRELLO CON ITEM  -->
   <section class="text-center py-5 my-5" v-if="cart.length > 0">
+
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header">
-          <h2>Cart</h2>
+          <h2>Il tuo Carrello</h2>
 
           <h5 v-if="shipping > 0">Spese di spedizione {{ shipping }} €</h5>
-          <h5 v-else>Spedizione Gratuita!</h5>
+          <h5 v-else>La spesa di spedizione per questo ristorante è gratuita!</h5>
 
           <h6 v-if="shipping > 0 && shipping_free > 0">
             Spedizione gratuita per ordini superiori a:
@@ -15,9 +17,22 @@
         </div>
         <div class="card-body">
           <table class="table">
+            <!-- header tabella  -->
+            <thead>
+              <tr>
+                <td>prova tabella 1</td>
+                <td>prova tabella 2</td>
+                <td>prova tabella 3</td>
+                <td>prova tabella 4</td>
+                <td>prova tabella 5</td>
+                <td>prova tabella 6</td>
+                <!-- <td>prova tabella 7</td> -->
+              </tr>
+            </thead>
+            <!-- body tabella  -->
             <tbody class="cart">
               <tr v-for="item in cart" :key="item.id">
-                <td>#{{ item.id }}</td>
+                <!-- <td>#{{ item.id }}</td> -->
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
                 <td style="width: 60px">
@@ -44,11 +59,12 @@
                     class="btn btn-primary"
                     @click="cartLs.remove(item.id)"
                   >
-                    Delete
+                    Elimina dal carrello
                   </button>
                 </td>
               </tr>
             </tbody>
+            <!-- footer tabella  -->
             <tfoot>
               <td :colspan="[orderFree ? 5 : 3]"></td>
 
@@ -78,9 +94,12 @@
       </div>
     </div>
 
-    <router-link :to="{name:'paymentF'}">Vai alla cassa (Fabio)</router-link>
+  <!-- bottone vai al pagamento  -->
+    <router-link :to="{name:'paymentF'}"><button class="btn btn-success">Vai al pagamento</button></router-link>
   </section>
 
+
+  <!-- CARRELLO VUOTO  -->
   <section class="text-center py-5 my-5" v-else>
     <h1>Il tuo carrello è vuoto</h1>
     <router-link :to="{ name: 'home' }" class="nav-link"
@@ -146,4 +165,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../../sass/front";
+
+.card-header {
+  background-color: $azure;
+}
+</style>
