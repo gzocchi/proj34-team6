@@ -10955,6 +10955,10 @@ a.text-dark:focus {
   border-color: #00ccbc;
 }
 
+.card .card-header {
+  background-color: #d0eb99;
+}
+
 .my_nav .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link:hover {
   color: #00ccbc;
