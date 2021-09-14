@@ -24,7 +24,7 @@
                   <li class="list-group-item"></li>
                   <li class="list-group-item text-center"><p class="text-uppercase font-weight-bold d-inline-block">Dettaglio ordine:</li>
                   <ul class="list-group list-group-flush my-4">
-                        <li class="list-group-item d-inline-block"><img src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}"><p class="text-uppercase font-weight-bold d-inline-block">{{ $dish['name'] }} X {{ $dish['pivot']['quantity'] }}</p></li>
+                        <li class="list-group-item d-inline-block"><img src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}"><p class="text-uppercase font-weight-bold d-inline-block">{{ $dish['name'] }}</p> x {{ $dish['pivot']['quantity'] }}</li>
                         <li class="list-group-item text-center"><p class="text-uppercase font-weight-bold d-inline-block">Totale:</p> {{ $order['price'] }} &euro;</li>
                   </ul>
               </ul>

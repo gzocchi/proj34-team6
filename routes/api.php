@@ -37,11 +37,10 @@ Route::namespace('Api')
 
         // prova per dish_id
         Route::get('restaurants/{restaurant_id}/dishes/{id}', "DishController@show");
+
+        // token generate
+        Route::get('orders/generate',"Orders\OrderController@generate");
+
+        // pagamento
+        Route::post('orders/make/payment',"Orders\OrderController@makePayment");
     });
-     
-
-    // token generate
-    Route::get('orders/generate',"Api\Orders\OrderController@generate");
-
-    // pagamento
-    Route::post('orders/make/payment',"Api\Orders\OrderController@makePayment");
