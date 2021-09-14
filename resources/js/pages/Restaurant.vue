@@ -1,10 +1,8 @@
 <template>
-
   <!-- SEZIONE RISTORANTE SINGOLO  -->
   <section class="py-5 my-5" v-if="!loading && restaurant">
 
-    <div class="row info">
-      
+    <div class="row info mb-4">
       <div class="col-12 col-md-4">
         <img
           :src="'/storage/' + restaurant.bg_image"
@@ -19,28 +17,47 @@
           Spese di spedizione {{ restaurant.shipping }} €
         </span>
         <span class="font-italic d-block" v-else>Spedizione Gratuita!</span>
-        <span class="font-italic d-block" v-if="restaurant.shipping > 0 && restaurant.shipping_free > 0">
+        <span
+          class="font-italic d-block"
+          v-if="restaurant.shipping > 0 && restaurant.shipping_free > 0"
+        >
           Spedizione gratuita per ordini superiori a:
           {{ restaurant.shipping_free }} €
         </span>
         <i
-            v-for="i in 5"
-            :key="i"
-            :class="i <= starCount() ? 'fas fa-star' : 'far fa-star'"
+          v-for="i in 5"
+          :key="i"
+          :class="i <= starCount() ? 'fas fa-star' : 'far fa-star'"
         ></i>
       </div>
-
     </div>
 
-    <div class="row text-center">
+    <div
+      :id="key"
+      class="row text-cente"
+      v-for="(category, key) in dishes"
+      :key="key"
+    >
+      <div class="col-12 text-left category_title">
+        <span class="badge pl-3 py-2 d-block text-left">{{ key }}</span>
+      </div>
+
+      <DishCard
+        :dish="dish"
+        v-for="dish in category"
+        :key="dish.id"
+        class="col-sm-6 col-md-4 col-xl-3"
+      />
+    </div>
+
+    <!-- <div class="row text-center">
       <DishCard
         :dish="dish"
         v-for="dish in restaurant.dishes"
         :key="dish.id"
         class="col-sm-6 col-md-4 col-xl-3"
       />
-    </div>
-
+    </div> -->
   </section>
 
   <Loader v-else />
@@ -58,14 +75,15 @@ export default {
       srvApi: "http://127.0.0.1:8000",
       loading: true,
       restaurant: [],
-      categories: ''
+      categories: [],
+      dishes: {},
     };
   },
   mounted() {
     // restaurant slug ---> this.$route.params.slug
     // Chiamata api piatti - ristorante
-    this.getDishes(this.$route.params.slug);
     this.getCategories();
+    // this.getDishes(this.$route.params.slug);
   },
   methods: {
     getDishes(slug) {
@@ -74,6 +92,20 @@ export default {
         .then((res) => {
           this.restaurant = res.data;
           if (this.restaurant.slug) {
+            this.restaurant.dishes.forEach((dish) => {
+              let category = dish.category_id;
+              let categoryName = "";
+              this.categories.forEach((cat) => {
+                cat.id == category ? (categoryName = cat.name) : "";
+              });
+
+              if (this.dishes[categoryName]) {
+                this.dishes[categoryName].push(dish);
+              } else {
+                this.dishes[categoryName] = [dish];
+              }
+            });
+
             this.loading = false;
           } else {
             this.$router.push({ name: "not-found" });
@@ -83,7 +115,7 @@ export default {
           console.log(err);
         });
     },
-    starCount: function() {
+    starCount: function () {
       return Math.round(this.restaurant.vote);
     },
     getCategories() {
@@ -91,14 +123,15 @@ export default {
         .get(`${this.srvApi}/api/categories`)
         .then((res) => {
           this.categories = res.data;
+          this.getDishes(this.$route.params.slug);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    starCount: function() {
+    starCount: function () {
       return Math.round(this.restaurant.vote);
-    }
+    },
   },
 };
 </script>
@@ -107,9 +140,16 @@ export default {
 @import "../../sass/front";
 
 .fas.fa-star {
-    color: $red;
-  }
-h1{
+  color: $red;
+}
+h1 {
   color: $violet;
+}
+
+.category_title{
+  span{
+    color: white;
+    background-color: $violet;
+  }
 }
 </style>

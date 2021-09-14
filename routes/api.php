@@ -26,6 +26,7 @@ Route::namespace('Api')
         Route::get('type/{slug}', 'TypeController@show');
         // categorie piatti
         Route::get('categories', 'CategoryController@index');
+        Route::get('category/{category_id}', 'CategoryController@show');
 
         // recupero i ristoranti - tipologia
         Route::get('restaurants', 'RestaurantController@index');

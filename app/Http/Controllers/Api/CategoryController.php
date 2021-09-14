@@ -10,7 +10,14 @@ class CategoryController extends Controller
 {
     public function index() {
 
-        $category = Category::All();
+        $categories = Category::All();
+
+        return response()->json($categories);
+    }
+
+    public function show($category_id) {
+
+        $category = Category::where('id', $category_id)->first();
 
         return response()->json($category);
     }
