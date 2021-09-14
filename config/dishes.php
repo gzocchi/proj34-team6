@@ -69,7 +69,7 @@ return $dishes = [
         'category_name' => 'Antipasti',
         'name' => 'Xiaolongbao di vitello con zuppa al vapore',
         'description' => 'Farina di frumento, vitello e cipollina',
-        'img' => 'Xiaolongbao-vitello.jpeg',
+        'img' => 'xiaolongbao-vitello.jpeg',
         'price' => 7,
         'visible' => true
     ],
@@ -222,7 +222,7 @@ return $dishes = [
         'category_name' => 'Secondi Piatti',
         'name' => 'Moussaka tradizionale della casa',
         'description' => 'Sformato fatto in casa con carne trita scelta di Manzo, melanzane, rondelle di patate, fiocchi di formaggio, coperto con besciamella in crosta morbida',
-        'img' => '',
+        'img' => 'melanzane.jpeg',
         'price' => 9.90,
         'visible' => true
     ],
@@ -371,7 +371,7 @@ return $dishes = [
         'visible' => true
     ],
     [
-        'restaurant_slug' => 'rom-antica',
+        'restaurant_slug' => 'romantica',
         'category_name' => 'Pizze',
         'name' => 'Margherita',
         'description' => null,
@@ -380,7 +380,7 @@ return $dishes = [
         'visible' => true
     ],
     [
-        'restaurant_slug' => 'rom-antica',
+        'restaurant_slug' => 'romantica',
         'category_name' => 'Pizze',
         'name' => 'Marinara',
         'description' => null,
@@ -389,7 +389,7 @@ return $dishes = [
         'visible' => true
     ],
     [
-        'restaurant_slug' => 'rom-antica',
+        'restaurant_slug' => 'romantica',
         'category_name' => 'Pizze',
         'name' => 'Diavola',
         'description' => null,
@@ -398,7 +398,7 @@ return $dishes = [
         'visible' => true
     ],
     [
-        'restaurant_slug' => 'tao-sushi-&-dimsum',
+        'restaurant_slug' => 'tao-sushi-dimsum',
         'category_name' => 'Primi Piatti',
         'name' => 'Ravioli di Cristallo con Branzino',
         'description' => null,
@@ -407,7 +407,7 @@ return $dishes = [
         'visible' => true
     ],
     [
-        'restaurant_slug' => 'tao-sushi-&-dimsum',
+        'restaurant_slug' => 'tao-sushi-dimsum',
         'category_name' => 'Antipasti',
         'name' => 'Involtini di gambero e germogli di bambù',
         'description' => null,
@@ -416,7 +416,7 @@ return $dishes = [
         'visible' => true
     ],
     [
-        'restaurant_slug' => 'tao-sushi-&-dimsum',
+        'restaurant_slug' => 'tao-sushi-dimsum',
         'category_name' => 'Sushi',
         'name' => 'Sashimi salmone',
         'description' => null,
@@ -546,7 +546,7 @@ return $dishes = [
         'category_name' => 'Secondi Piatti',
         'name' => 'Chicken Curry',
         'description' => null,
-        'img' => 'chciken-curry.jpeg',
+        'img' => 'chicken-curry.jpeg',
         'price' => 12,
         'visible' => true
     ],
@@ -636,7 +636,7 @@ return $dishes = [
         'category_name' => 'Antipasti',
         'name' => 'Tortillas con Guacamole',
         'description' => 'Tortillas di mais artigianali con guacamole fatta in casa',
-        'img' => 'tortillas-guacamole.jpeg',
+        'img' => 'tortillas-guacamole.jpg',
         'price' => 9,
         'visible' => true
     ],
