@@ -18,7 +18,7 @@
 
 <section>
 
-    <h1>Nessun ordine da mostrare</h1>
+    <h1 class="text-center">Nessun ordine da mostrare</h1>
 
 </section>
 
