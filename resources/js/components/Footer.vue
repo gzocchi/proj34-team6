@@ -91,6 +91,7 @@ export default {
 @import "../../sass/front";
 
 footer {
+  margin-top: 40px;
   width: 100%;
   background-color: $footer_black;
   padding-top: 5rem;
