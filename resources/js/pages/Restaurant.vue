@@ -8,7 +8,7 @@
       <div class="col-12 col-md-4">
         <img
           :src="'/storage/' + restaurant.bg_image"
-          class="card-img-top"
+          class="card-img-top rounded"
           :alt="restaurant.slug"
         />
       </div>
@@ -58,12 +58,14 @@ export default {
       srvApi: "http://127.0.0.1:8000",
       loading: true,
       restaurant: [],
+      categories: ''
     };
   },
   mounted() {
     // restaurant slug ---> this.$route.params.slug
     // Chiamata api piatti - ristorante
     this.getDishes(this.$route.params.slug);
+    this.getCategories();
   },
   methods: {
     getDishes(slug) {
@@ -76,6 +78,19 @@ export default {
           } else {
             this.$router.push({ name: "not-found" });
           }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    starCount: function() {
+      return Math.round(this.restaurant.vote);
+    },
+    getCategories() {
+      axios
+        .get(`${this.srvApi}/api/categories`)
+        .then((res) => {
+          this.categories = res.data;
         })
         .catch((err) => {
           console.log(err);
