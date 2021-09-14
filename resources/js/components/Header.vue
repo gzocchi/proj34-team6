@@ -75,7 +75,10 @@
                   </div>
 
                   <!-- route per pagamento  -->
-                  <router-link :to="{name:'paymentF'}"><button class="btn btn-success">Vai al pagamento</button></router-link>
+                  <div>
+                    <router-link v-if="cartLs.total() == 0" :to="{name:'paymentF'}"><button disabled class="btn btn-success">Vai al pagamento</button></router-link>
+                    <router-link v-else :to="{name:'paymentF'}"><button class="btn btn-success">Vai al pagamento</button></router-link>
+                  </div>
                 </div>
               </transition>
           </li>

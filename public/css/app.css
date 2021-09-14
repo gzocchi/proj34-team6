@@ -10948,6 +10948,7 @@ a.text-dark:focus {
   background-color: #00ccbc;
 }
 
+.my_btn.btn-primary,
 .my_login .btn-primary,
 .my_register .btn-primary {
   background-color: #00ccbc;
@@ -11003,6 +11004,21 @@ main section.dashboard .dashboard_card a {
 }
 
 main section.restaurant h1 {
-  color: #ff8100;
+  color: #440063;
+}
+
+main section.restaurant .card-header,
+main section.restaurant .card-footer {
+  background-color: #d0eb99;
+}
+
+main section.restaurant .card-header span,
+main section.restaurant .card-footer span {
+  color: #440063;
+}
+
+main section.dishes .badge.my_badge {
+  color: #440063;
+  background-color: #bac3c3;
 }
 
