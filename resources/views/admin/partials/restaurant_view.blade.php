@@ -16,7 +16,7 @@
 
 </div> --}}
 
-<div class="card">
+<div class="card my-5">
 
     <div class="card-header text-center">
         <span>-- Info Ristorante --</span> 
@@ -74,7 +74,7 @@
 
     <div class="card-footer text-center text-muted">
         @if (Arr::get($restaurant, 'vote'))
-        <span>Recensioni ristorante: {{ Arr::get($restaurant, 'vote') }}</span> 
+        <span>Media voto ristorante: {{ Arr::get($restaurant, 'vote') }}/5</span> 
         @else
         <span>Il tuo ristorante non ha ancora ricevuto recensioni</span> 
         @endif

@@ -11,7 +11,7 @@
 
     @foreach ($restaurants as $restaurant)
 
-        @include('admin.partials.restaurant_view');
+        @include('admin.partials.restaurant_view')
         
     @endforeach
 

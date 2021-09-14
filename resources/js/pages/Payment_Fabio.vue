@@ -370,7 +370,7 @@ export default {
   background-color: $azure;
 }
 .container-riepilogo {
-  margin: 20px 0;
+  margin: 20px auto;
   box-shadow: 0px 0px 5px;
   .row {
     align-items: center;

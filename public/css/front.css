@@ -10948,3 +10948,8 @@ a.text-dark:focus {
   padding: 0;
 }
 
+.my_btn.btn-primary {
+  background-color: #00ccbc;
+  border-color: #00ccbc;
+}
+
