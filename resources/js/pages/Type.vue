@@ -1,5 +1,8 @@
 <template>
   <section class="text-center py-5 my-5" v-if="!loading && restaurants">
+
+    <!-- Tipo della pagina visualizzata -->
+    <h1 class="pb-5">{{ restaurants.length }} Ristoranti visualizzati corrispondono a: <span>"{{ $route.params.slug.charAt(0).toUpperCase() + $route.params.slug.slice(1) }}"</span></h1>
     <div class="row">
       <RestaurantCard
       class="col-12"
@@ -49,4 +52,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../../sass/front";
+
+</style>
