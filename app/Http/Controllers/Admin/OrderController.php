@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Order;
 use App\Restaurant;
+use App\Dish;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,8 @@ class OrderController extends Controller
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $orders = Order::where('restaurant_id', $restaurant->id)->get()->toArray();
-        return view('admin.orders.index', compact('orders'));
+        $dishes = Dish::where('id', $orders[0]['id'])->get()->toArray();
+        return view('admin.orders.index', compact('orders', 'dishes'));
     }
 
     /**
@@ -50,9 +52,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Order $order)
+    {   
+        $dishes = $order->dishes()->get()->toArray();
+        return view('admin.orders.show', compact('order', 'dishes'));
     }
 
     /**
