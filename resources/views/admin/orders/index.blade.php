@@ -10,10 +10,10 @@
 
         <div class="card my-5">
             <div class="card-header text-center d-flex justify-content-between">
-                <span>-- Panoramica Ordine --</span>
+                <span class="font-weight-bold">-- Panoramica Ordine --</span>
                 <div>   
-                <p class="text-center">{{ substr($order['created_at'], 0, 10) }}</p>
-                <p>{{ substr($order['created_at'], 11, 8) }}</p>
+                <p class="text-center font-weight-bold">{{ substr($order['created_at'], 0, 10) }}</p>
+                <p class="font-weight-bold">{{ substr($order['created_at'], 11, 8) }}</p>
                 </div>
             </div>
         

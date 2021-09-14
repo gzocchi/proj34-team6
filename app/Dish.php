@@ -28,6 +28,6 @@ class Dish extends Model
 
     // relazione piatto - ordine
     public function orders() {
-        return $this->belongsToMany('App\Order', 'order_dish', 'dish_id', 'order_id');
+        return $this->belongsToMany('App\Order', 'order_dish', 'dish_id', 'order_id')->withPivot('quantity');
     }
 }

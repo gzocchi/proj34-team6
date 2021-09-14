@@ -8,10 +8,10 @@
 
       <div class="card my-5">
           <div class="card-header text-center d-flex justify-content-between">
-              <span>-- Visualizzazione Ordine --</span>
+              <span class="font-weight-bold">-- Visualizzazione Ordine --</span>
               <div>   
-              <p class="text-center">{{ substr($order['created_at'], 0, 10) }}</p>
-              <p>{{ substr($order['created_at'], 11, 8) }}</p>
+              <p class="text-center font-weight-bold">{{ substr($order['created_at'], 0, 10) }}</p>
+              <p class="font-weight-bold">{{ substr($order['created_at'], 11, 8) }}</p>
               </div>
           </div>
       
@@ -24,7 +24,7 @@
                   <li class="list-group-item"></li>
                   <li class="list-group-item text-center"><p class="text-uppercase font-weight-bold d-inline-block">Dettaglio ordine:</li>
                   <ul class="list-group list-group-flush my-4">
-                        <li class="list-group-item d-inline-block"><img src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}"><p class="text-uppercase font-weight-bold d-inline-block">{{ $dish['name'] }}</p></li>
+                        <li class="list-group-item d-inline-block"><img src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}"><p class="text-uppercase font-weight-bold d-inline-block">{{ $dish['name'] }} X {{ $dish['pivot']['quantity'] }}</p></li>
                         <li class="list-group-item text-center"><p class="text-uppercase font-weight-bold d-inline-block">Totale:</p> {{ $order['price'] }} &euro;</li>
                   </ul>
               </ul>
