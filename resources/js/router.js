@@ -18,6 +18,9 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 const router = new VueRouter({
     mode: "history",
     linkExactActiveClass: "active",
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+    },
     routes: [
         {
             path: "/",
