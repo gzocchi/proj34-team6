@@ -15,7 +15,13 @@
     </head>
     <body>
         
-        <div id="root"></div>
+        <div id="root">
+            @if(auth()->check())
+            <script>
+                window.User = {!! auth()->user()  !!}
+            </script>
+            @endif
+        </div>
 
         <script src="{{ asset('js/front.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
