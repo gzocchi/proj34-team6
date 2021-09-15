@@ -10964,6 +10964,12 @@ a.text-dark:focus {
   opacity: 0.5;
 }
 
+@media screen and (max-width: 500px) {
+  .hidden_xs {
+    display: none;
+  }
+}
+
 .my_nav .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link:hover {
   color: #00ccbc;
@@ -11048,5 +11054,9 @@ main section.dishes .dish_row.disabled_dish img {
 main section.dishes .dish_row.disabled_dish .badge.my_badge {
   color: #bac3c3;
   background-color: #440063;
+}
+
+main section.order_show img {
+  max-height: 100px;
 }
 

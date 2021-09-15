@@ -32,7 +32,7 @@
                     <ul class="list-group list-group-flush my-4">
                         @foreach ($dishes as $dish)
                         <li class="list-group-item d-inline-block">
-                            <img class="img-fluid rounded float-left" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
+                            <img class="img-fluid rounded float-left hidden_xs" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
                             <p class="text-uppercase font-weight-bold d-inline-block ml-5">{{ $dish['name'] }} <span class="badge badge-info"> x {{ $dish['pivot']['quantity'] }}</span> </p> </li>
                         @endforeach
                         <li class="list-group-item text-center"><p class="text-uppercase font-weight-bold d-inline-block">Totale:</p> {{ $order['price'] }} &euro;</li>
