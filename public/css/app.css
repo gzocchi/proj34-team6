@@ -11031,3 +11031,8 @@ main section.dishes .badge.my_badge {
   background-color: #bac3c3;
 }
 
+main section.dishes .dish_row {
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #00a396;
+}
+
