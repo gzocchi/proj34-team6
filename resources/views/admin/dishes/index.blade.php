@@ -10,7 +10,7 @@
     @endif
 
     <div class="row mb-5">
-        <a href="{{ route("admin.restaurants.show", Arr::get($dishes[0], 'restaurant_id')) }}" class="btn my_btn btn-primary mr-3">Torna al Ristorante</a>
+        <a href="{{ route("admin.restaurants.show", Arr::get($dishes[0], 'restaurant_id')) }}" class="btn my_btn btn-primary mx-3">Torna al Ristorante</a>
         <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Aggiungi piatto</a>
     </div>
     
