@@ -73,11 +73,20 @@
 
                   <!-- Cart Pieno  -->
                   <div v-if="cartLs.total() > 0"  class="cart-bottom">
-                  <h6
-                    v-if="cartLs.total() < shipping_free"
-                    >Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h6>
-
-                    <h6 v-else>Totale: {{ cartLs.total().toFixed(2) }}€</h6>
+                  <div>
+                    <!-- se presente shipping  -->
+                    <h6
+                      v-if="cartLs.total() < shipping_free"
+                      >
+                      Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€
+                      <button v-on:click.stop="isOpen = !isOpen" @click="cartLs.destroy()" class="btn btn-danger"><i class="fas fa-trash-alt fa-lg"></i></button>
+                    </h6>
+                    <!-- se non è presente shipping  -->
+                      <h6 v-else>
+                        Totale: {{ cartLs.total().toFixed(2) }}€
+                        <button v-on:click.stop="isOpen = !isOpen" @click="cartLs.destroy()" class="btn btn-danger"><i class="fas fa-trash-alt fa-lg"></i></button>
+                      </h6>
+                    </div>
                   </div>
 
                   <!-- cart vuoto -->
@@ -244,6 +253,11 @@ span.badge {
 
   .cart-bottom {
     padding: 5px;
+    h6 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }
 </style>
