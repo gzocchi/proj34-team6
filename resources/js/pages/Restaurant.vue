@@ -1,6 +1,6 @@
 <template>
   <!-- SEZIONE RISTORANTE SINGOLO  -->
-  <section class="py-5 my-5" v-if="!loading && restaurant">
+  <section class="pt-md-5" v-if="!loading && restaurant">
 
     <div class="row info mb-4">
       <div class="col-12 col-md-4">
