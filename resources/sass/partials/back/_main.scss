@@ -47,9 +47,23 @@ main {
             background-color: $grey;
         }
 
-        .dish_row{
+        .dish_row {
             border-radius: 5px;
             box-shadow: 0px 0px 5px $azure_dark;
+
+            &.disabled_dish {
+                background-color: $grey;
+                box-shadow: 0px 0px 5px $grey;
+
+                img{
+                    opacity: 1;
+                }
+
+                .badge.my_badge {
+                    color: $grey;
+                    background-color: $purple;
+                }
+            }
         }
     }
 }
