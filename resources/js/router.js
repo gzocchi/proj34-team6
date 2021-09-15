@@ -9,11 +9,10 @@ import Cart from "./pages/Cart";
 import Type from "./pages/Type";
 import Restaurants from "./pages/Restaurants";
 import Restaurant from "./pages/Restaurant";
-import NotFound from "./pages/NotFound";
-import Payment_Stefano from "./pages/Payment_Stefano";
-import Payment_Fabio from "./pages/Payment_Fabio";
+import Payment from "./pages/Payment";
 import PaymentError from "./pages/PaymentError";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import NotFound from "./pages/NotFound";
 
 const router = new VueRouter({
     mode: "history",
@@ -48,14 +47,9 @@ const router = new VueRouter({
             component: Restaurant
         },
         {
-            path: "/paymentS",
-            name: "paymentS",
-            component: Payment_Stefano
-        },
-        {
-            path: "/paymentF",
-            name: "paymentF",
-            component: Payment_Fabio
+            path: "/payment",
+            name: "payment",
+            component: Payment
         },
         {
             path: "/payment/error",
