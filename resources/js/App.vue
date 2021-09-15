@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :totalQuantity="total" :cart="cartItem" :user="user" />
+    <Header :totalQuantity="total" :cart="cartItem" />
 
     <Jumbotron />
 
@@ -30,7 +30,6 @@ export default {
       cartLs,
       cartItem: [],
       total: 0,
-      user: User
     };
   },
   mounted() {

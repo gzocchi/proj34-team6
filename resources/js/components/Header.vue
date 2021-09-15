@@ -98,8 +98,7 @@
 
           
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/login" v-if="!user">Registrati o accedi</a>
-            <a class="nav-link" href="/admin" v-else><p class="user d-inline-block">Dashboard</p></a>
+            <a class="nav-link" href="/login" >Registrati o accedi</a>
           </li>
         </ul>
       </div>
@@ -134,7 +133,6 @@ export default {
       type: Number,
       required: true,
     },
-    user: {String}
   },
   updated() {
     // Chiamata api ristorante shipping
