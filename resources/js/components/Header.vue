@@ -32,7 +32,7 @@
           @click="isOpen = true">
               <a class="nav-link" href="#">
                 <i class="fa fa-shopping-cart"></i>
-                Carrello<span v-if="totalQuantity" class="badge">{{ totalQuantity }}</span>
+                Carrello<span v-if="totalQuantity" class="badge ml-2">{{ totalQuantity }}</span>
               </a>
               <transition name="fade" appear>
                 <div class="dropped-cart" v-if="isOpen">
@@ -107,7 +107,8 @@
 
           
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/login" >Registrati o accedi</a>
+            <a class="nav-link" href="/login" v-if="user == 'null'" >Registrati o accedi</a>
+            <a class="nav-link" href="/admin" v-else >Dashboard</a>
           </li>
         </ul>
       </div>
@@ -142,6 +143,7 @@ export default {
       type: Number,
       required: true,
     },
+    user: String
   },
   updated() {
     // Chiamata api ristorante shipping

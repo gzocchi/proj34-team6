@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :totalQuantity="total" :cart="cartItem" />
+    <Header :totalQuantity="total" :cart="cartItem" :user="user_name" />
 
     <Jumbotron />
 
@@ -30,6 +30,7 @@ export default {
       cartLs,
       cartItem: [],
       total: 0,
+      user_name: document.querySelector("meta[name='user-name']").getAttribute('content')
     };
   },
   mounted() {
