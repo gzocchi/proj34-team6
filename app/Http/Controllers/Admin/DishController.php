@@ -148,12 +148,13 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        $dishes = Dish::where('restaurant_id', $this->getRestaurantId())->get();
         if ($dish->img) {
             Storage::delete($dish->img);
         }
 
         $dish->delete();
+
+        $dishes = Dish::where('restaurant_id', $this->getRestaurantId())->get()->toArray();
 
         if (count($dishes) > 0) {
             return redirect()
