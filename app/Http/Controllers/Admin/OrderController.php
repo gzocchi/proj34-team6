@@ -21,7 +21,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         if ($restaurant != null) {
-            $orders = Order::where('restaurant_id', $restaurant->id)->get()->toArray();
+            $orders = Order::orderBy('id', 'desc')->where('restaurant_id', $restaurant->id)->get()->toArray();
             if ($orders != null) {
                 $dishes = Dish::where('id', $orders[0]['id'])->get()->toArray();
                 return view('admin.orders.index', compact('orders', 'dishes'));

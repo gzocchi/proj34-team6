@@ -101,7 +101,11 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm my_btn btn-primary text-uppercase">Torna al Menu</a>
+            @if (count($dishes) > 0)
+                <a href="{{ route("admin.dishes.index") }}" class="btn btn-sm my_btn btn-primary text-uppercase">Torna al Menu</a>
+            @else   
+                <a href="{{ route("admin.restaurants.index") }}" class="btn btn-sm my_btn btn-primary text-uppercase">Torna al ristorante</a>
+            @endif
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Salva Piatto</button>
         </div>
 

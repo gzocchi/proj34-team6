@@ -48,9 +48,13 @@
         </ul>
 
         <div class="text-center">
-
-            <a href="{{ route("admin.dishes.index") }}" class="text-uppercase font-weight-bold btn btn-success mr-2">Menu ristorante</a>
-            <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="text-uppercase font-weight-bold btn my_btn btn-primary my-2 mr-2">Modifica Ristorante</a>
+            
+            @if (count($restaurant->dishes) > 0)
+                <a href="{{ route("admin.dishes.index") }}" class="text-uppercase font-weight-bold btn btn-success mr-2">Menu ristorante</a>
+            @else
+                <a href="{{ route("admin.dishes.create") }}" class="text-uppercase font-weight-bold btn btn-success mr-2">Aggiungi il tuo primo piatto</a>
+            @endif
+            <a href="{{ route("admin.restaurants.edit", Arr::get($restaurant, 'id')) }}" class="text-uppercase font-weight-bold btn my_btn btn-primary mr-2">Modifica Ristorante</a>
             <form 
                 class="d-inline"
                 action="{{ route('admin.restaurants.destroy', Arr::get($restaurant, 'id')) }}"
