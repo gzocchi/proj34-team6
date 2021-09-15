@@ -38,7 +38,7 @@ export default {
 .container-card {
   display: flex;
   justify-content: space-around;
-  margin: 40px 0 80px;
+  margin: 5em 0;
 }
 .single-card {
   border-radius: 20% 1%;
