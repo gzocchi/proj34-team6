@@ -27,11 +27,11 @@ class OrderController extends Controller
                 return view('admin.orders.index', compact('orders', 'dishes'));
             }
             else {
-                return view('admin.orders.index');
+                return view('admin.orders.index', ['orders' => false]);
             }
         } 
 
-        return view('admin.orders.index', ['orders' => null]);
+        return view('admin.orders.index', ['orders' => false]);
     }
 
     /**
