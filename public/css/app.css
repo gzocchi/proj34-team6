@@ -11036,3 +11036,17 @@ main section.dishes .dish_row {
   box-shadow: 0px 0px 5px #00a396;
 }
 
+main section.dishes .dish_row.disabled_dish {
+  background-color: #bac3c3;
+  box-shadow: 0px 0px 5px #bac3c3;
+}
+
+main section.dishes .dish_row.disabled_dish img {
+  opacity: 1;
+}
+
+main section.dishes .dish_row.disabled_dish .badge.my_badge {
+  color: #bac3c3;
+  background-color: #440063;
+}
+

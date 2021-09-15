@@ -9,7 +9,7 @@
           <ul class="list-unstyled mb-0">
              <li><a href="#">Investitori</a></li>
              <li><a href="#">Chi Siamo</a></li>
-             <li><a href="#">Ristoranti</a></li>
+             <li><router-link :to="{ name: 'restaurants' }">Ristoranti</router-link></li>
              <li><a href="#">Altro</a></li>
              <li><a href="#">Pressroom</a></li>
              <li><a href="#">Il nostro blog</a></li>
