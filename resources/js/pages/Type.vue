@@ -4,7 +4,7 @@
     <!-- Tipo della pagina visualizzata -->
     <h1 class="pb-5">{{ restaurants.length }} Ristoranti visualizzati corrispondono a <span>"{{ $route.params.slug.charAt(0).toUpperCase() + $route.params.slug.slice(1) }}"</span></h1>
 
-    <div id="riga" style="width: 100%; border-bottom: 1px solid black; margin-bottom: 80px;"></div>
+    <div id="riga"></div>
 
     <div class="row">
       <RestaurantCard
@@ -57,5 +57,17 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/front";
+
+#riga {
+  width: 100%;
+  border-bottom: 1px solid $azure;
+  margin-bottom: 80px;
+}
+h1 {
+  color: $azure_dark;
+  span {
+    color: $purple;
+  }
+}
 
 </style>

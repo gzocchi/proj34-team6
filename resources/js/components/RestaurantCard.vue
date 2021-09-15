@@ -31,8 +31,8 @@
       </div>
 
       <div class="container-text-right">
-        <h3>Qua cosa ci scriviamo?</h3>
-        <h4><i class="far fa-money-bill-alt"></i> Consegna: {{ restaurant.shipping }}€</h4>
+        <h4 v-if="restaurant.shipping == 0" class="badge badge-danger">Consegna gratuita!</h4>
+        <h4 v-else><i class="far fa-money-bill-alt"></i> Consegna: {{ restaurant.shipping }}€</h4>
       </div>
       
     </div>

@@ -493,7 +493,7 @@ div.types {
 .container-skew{
   // overflow-x: auto;
   height: 200px;
-  width: 90%;  
+  width: 75%;  
   display: flex;
   align-items: center;
   justify-content: center;

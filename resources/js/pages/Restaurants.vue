@@ -5,6 +5,8 @@
       <p>Scegli quello che preferisci!</p>
     </div>
 
+    <div id="riga"></div>
+
     <div class="row">
       <!-- originale  -->
       <RestaurantCard
@@ -48,17 +50,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/front";
+
 .container-restaurants-p {
   margin-bottom: 10px;
   h1 {
     margin-bottom: 20px;
+    color: $azure_dark;
   }
   p {
+    color: $purple;
     font-weight: 500;
     font-size: 1.2em;
   }
 }
-// .row {
-//     box-shadow: 0px 0px 5px 0px;
-// }
+#riga {
+  width: 100%;
+  border-bottom: 1px solid $azure;
+  margin-bottom: 80px;
+}
+
 </style>
