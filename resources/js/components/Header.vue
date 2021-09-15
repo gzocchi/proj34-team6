@@ -27,7 +27,8 @@
           </li>
 
           <!-- dropdown carrello -->
-          <li class="nav-item nav-item-cart" 
+          <li class="nav-item nav-item-cart"
+          v-if="$route.name != 'payment'"
           @click="isOpen = true">
               <a class="nav-link" href="#">
                 <i class="fa fa-shopping-cart"></i>
