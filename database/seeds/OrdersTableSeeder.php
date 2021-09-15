@@ -26,13 +26,19 @@ class OrdersTableSeeder extends Seeder
         $randomDish = rand(0, (count($restaurantDishes) - 1));
         $randomQuantity = rand(1, 9);
 
+
         $order = [];
-        for ($i=0; $i < $randomQuantity; $i++) { 
+        for ($i = 0; $i < $randomQuantity; $i++) {
             # code...
         }
 
+
+
+        $date = date('Y-m-d H:i:s', strtotime('-' . (3) . ' days'));
+
+
         $amount = 0;
-        
+
         $dataOrder = [
             "price" => $amount,
             "paid" =>  true,
@@ -42,8 +48,13 @@ class OrdersTableSeeder extends Seeder
             "customer_address" => 'customer_address',
             "customer_telephone" => 'customer_telephone',
         ];
+        $newOrder = new Order();
+        $newOrder->fill($dataOrder);
+        $newOrder->created_at = $date;
+        $newOrder->save();
 
 
-        dd($randomDish);
+        // dd($date);
+        dd($date);
     }
 }
