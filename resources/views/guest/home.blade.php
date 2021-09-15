@@ -2,6 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        @if (Auth::check()) 
+            <meta name="user-name" content="{{ Auth::user()->name }}">
+        @else
+            <meta name="user-name" content="null">
+        @endif
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name') }}</title>
