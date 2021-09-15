@@ -7,7 +7,133 @@ return $dishes = [
         'name' => 'Lo Schiaffone',
         'description' => 'Hamburger di fassona, tabasco, jalapeno, cheddar, lattuga e pomodoro',
         'img' => 'lo_schiaffone.jpeg',
-        'price' => 11.75,
+        'price' => 8.45,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Dolci',
+        'name' => 'Cheesecake ai frutti di bosco',
+        'description' => 'Torta cheesecake classica decorata con gel rosso e frutti di bosco',
+        'img' => 'cheesecake_ai_frutti_di_bosco.jpeg',
+        'price' => 5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Dolci',
+        'name' => 'Sacher',
+        'description' => 'Sacher al cioccolato con ripieno di confettura di albicocche',
+        'img' => 'sacher.jpeg',
+        'price' => 5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Dolci',
+        'name' => 'Tiramisù',
+        'description' => 'Tiramisù classico con caffe’ e gocce di cioccolato',
+        'img' => 'tiramisu.jpeg',
+        'price' => 5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Dolci',
+        'name' => 'Mousse alla nocciola Rocher',
+        'description' => 'Mousse semifreddo alla nocciola glassato con cioccolato al latte e granella di nocciola',
+        'img' => 'mousse_rocher.jpeg',
+        'price' => 5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Dolci',
+        'name' => 'Mousse al pistacchio',
+        'description' => 'Mousse semifreddo al pistacchio glassato con cioccolato bianco aromatizzato al pistacchio',
+        'img' => 'mousse_pistacchio.jpeg',
+        'price' => 5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Bevande',
+        'name' => 'Acqua naturale',
+        'description' => '',
+        'img' => 'acqua_naturale.jpeg',
+        'price' => 2,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Bevande',
+        'name' => 'Acqua frizzante',
+        'description' => '',
+        'img' => 'acqua_frizzante.jpeg',
+        'price' => 2,
+        'visible' => false
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Bevande',
+        'name' => 'Coca-Cola 33 cl',
+        'description' => '',
+        'img' => 'coca_cola_33.jpeg',
+        'price' => 3,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Bevande',
+        'name' => 'Fanta 33 cl',
+        'description' => '',
+        'img' => 'fanta_33cl.jpeg',
+        'price' => 3,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Bevande',
+        'name' => 'Sprite 33 cl',
+        'description' => '',
+        'img' => 'sprite_33cl.jpeg',
+        'price' => 3,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Alcolici',
+        'name' => 'Ichnusa 33cl',
+        'description' => '',
+        'img' => 'ichnusa_33cl.jpeg',
+        'price' => 3.5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Alcolici',
+        'name' => 'Tennent\'s 33cl',
+        'description' => '',
+        'img' => 'tennent_33cl.jpeg',
+        'price' => 4,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Alcolici',
+        'name' => 'Corona 33cl',
+        'description' => '',
+        'img' => 'corona_33cl.jpeg',
+        'price' => 4,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Panini',
+        'name' => 'Senza Fare domande',
+        'description' => 'Hamburger di fassona, cheddar, bacon, cipolla caramellata e smokey baconnaise sauce',
+        'img' => 'senza_fare_domande.jpeg',
+        'price' => 8.45,
         'visible' => true
     ],
     [
@@ -15,8 +141,8 @@ return $dishes = [
         'category_name' => 'Panini',
         'name' => 'Chiamatemi Swarley',
         'description' => 'Hamburger di fassona, cheddar, salsa cheddar, senape al miele, lattuga e pomodoro',
-        'img' => 'swarley.jpeg',
-        'price' => 11.75,
+        'img' => 'chiamatemi_swarley.jpeg',
+        'price' => 7.95,
         'visible' => true
     ],
     [
@@ -24,9 +150,90 @@ return $dishes = [
         'category_name' => 'Panini',
         'name' => 'The PlayBook',
         'description' => 'Hamburger di fassona, lattuga, pomodoro, cheddar, cetriolini, bacon, crispy onion e burger sauce',
-        'img' => 'legen-dary.jpeg',
-        'price' => 11.95,
+        'img' => 'the_play_book.jpeg',
+        'price' => 8.45,
         'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Panini',
+        'name' => 'Robin Sparkles',
+        'description' => 'Battuta di fassona cruda, cheddar, bacon, pomodoro, mayo e lattuga',
+        'img' => 'robin_sparkles.jpeg',
+        'price' => 7.95,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Panini',
+        'name' => 'Giudice Biscottone',
+        'description' => 'Pollo fritto,bacon croccante, cheddar, pomodoro, mayo',
+        'img' => 'giudice_biscottone.jpeg',
+        'price' => 8.45,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Panini',
+        'name' => 'Il miglior hamburger di New York',
+        'description' => 'Hamburger di fassona, cheddar, lattuga, bacon, salsa bbq, cipolla caramellata e pomodoro',
+        'img' => 'il_miglior_di_new_york.jpeg',
+        'price' => 8.45,
+        'visible' => false
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Panini',
+        'name' => 'Il Lorenzo von Matterhorn',
+        'description' => 'Battuta di fassona cruda , guacamole, pomodoro e granella di pistacchi',
+        'img' => 'lorenzo_von_matterhorn .jpeg',
+        'price' => 8.45,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Panini',
+        'name' => 'Legend ...wait for it ...dary',
+        'description' => 'Pollo fritto,cipolla caramellata, mayo alla soia, cheddar e lattuga ',
+        'img' => 'legend_wait_dary.jpeg',
+        'price' => 7.95,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Contorni',
+        'name' => 'Patatine fritte',
+        'description' => '',
+        'img' => 'patatine_fritte.jpeg',
+        'price' => 3.5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Contorni',
+        'name' => 'Coleslaw',
+        'description' => '',
+        'img' => 'coleslaw.jpeg',
+        'price' => 3.5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Contorni',
+        'name' => 'Onion rings',
+        'description' => '',
+        'img' => 'onion_rings.jpeg',
+        'price' => 3.5,
+        'visible' => true
+    ],
+    [
+        'restaurant_slug' => 'how-i-met-your-burger',
+        'category_name' => 'Contorni',
+        'name' => 'Sweet potatoes',
+        'description' => '',
+        'img' => 'sweet_potatoes.jpeg',
+        'price' => 3.5,
+        'visible' => false
     ],
     [
         'restaurant_slug' => 'krusty-burger',
