@@ -16,7 +16,7 @@
     
     @foreach ($dishes as $dish)
 
-    <div class="row text-center my-3">
+    <div class="row dish_row text-center p-4 my-3">
         <div class="col-12 col-md-2">
             @if (Arr::get($dish, 'img'))
                 <img class="img-fluid" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
