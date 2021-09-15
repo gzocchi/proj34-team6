@@ -1,18 +1,5 @@
 <template>
   <div class="types" v-if="!loading && types">
-    <!-- TITOLO E ICONE  -->
-    <div class="container-titolo">
-      <h2>Non sai cosa scegliere?
-      <div class="container-animated-icons">
-        <i class="animated fas fa-hamburger"></i>
-        <i class="animated fas fa-pizza-slice"></i>
-        <i class="animated fas fa-hotdog"></i>
-        <i class="animated fas fa-utensils"></i>
-      </div>
-    </h2>
-    <p>Ti diamo noi una mano: scegli la categoria che ti interessa di più!</p>
-    </div>
-    <!-- // TITOLO E ICONE  -->
 
     <!-- SKEW V-FOR  -->
 
@@ -455,9 +442,7 @@ main {
 }
 // general
 div.types {
-  padding-bottom: 4em;
-  // overflow-x: scroll;
-  margin: 20px 0;
+  padding: 3em 0;
   .type_card {
     text-align: center;
     a {
@@ -472,16 +457,6 @@ div.types {
         background-color: rgba(255, 255, 255, 0.5);
       }
     } 
-  }
-}
-.container-titolo {
-  margin-bottom: 90px;
-  h2 {
-    margin: 10px 0;
-  }
-  p {
-    margin: 20px 0;
-    font-weight: 600;
   }
 }
 
@@ -595,62 +570,7 @@ div.types {
   }
 }
 
-// animated icons
-.container-animated-icons {
-  position: relative;
-  top: -30px;
-  display: inline;
-  margin-left: 10px;
-}
-.animated {
-  width: 10px;
-  height: 10px;
-  color: $indigo;
-}
-.fa-hamburger {
-  position: relative;
-  animation: burger 8s infinite linear;
-}
-.fa-pizza-slice {
-  position: absolute;
-  animation: pizza 8s infinite linear;
-}
-.fa-hotdog {
-  position: absolute;
-  animation: hotdog 8s infinite linear;
-}
-.fa-utensils {
-  position: absolute;
-  animation: utensils 8s infinite linear;
-}
-@keyframes burger {
-  0%   {left:0px; top:0px;}
-  25%  {left:70px; top:0px;}
-  50%  {left:70px; top:50px;}
-  75%  {left:0px; top:50px;}
-  100% {left:0px; top:0px;}
-}
-@keyframes pizza {
-  0%  {left:70px; top:0px;}
-  25%  {left:70px; top:50px;}
-  50%  {left:0px; top:50px;}
-  75% {left:0px; top:0px;}
-  100% {left:70px; top:0px;}
-}
-@keyframes hotdog {
-  0%  {left:70px; top:50px;}
-  25%  {left:0px; top:50px;}
-  50% {left:0px; top:0px;}
-  75% {left:70px; top:0px;}
-  100% {left:70px; top:50px;}
-}
-@keyframes utensils {
-  0%  {left:0px; top:50px;}
-  25% {left:0px; top:0px;}
-  50% {left:70px; top:0px;}
-  75% {left:70px; top:50px;}
-  100%  {left:0px; top:50px;}
-}
+
 
 //media query
 // 1250

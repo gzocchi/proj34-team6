@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="card-deck mt-4 mb-4 text-center">
+    <div
+      class="card-deck mt-4 mb-4 text-center"
+      :class="{ disabled_dish: !dish.visible }"
+    >
       <div class="card mb-4 shadow-sm">
         <div class="card-header">
           <img
@@ -18,6 +21,7 @@
           </p>
 
           <button
+            v-if="!dish.visible ? '' : 'disabled'"
             type="button"
             class="btn my_btn btn-primary mt-2"
             @click="addDish(dish)"
@@ -82,6 +86,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/front";
+
+.disabled_dish > * {
+  opacity: 0.5;
+}
 
 .card-header {
   background-color: $pink;
