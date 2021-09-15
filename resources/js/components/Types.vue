@@ -10,13 +10,15 @@
         <i class="animated fas fa-utensils"></i>
       </div>
     </h2>
-    <p>Ti diamo noi una mano: scegli la categoria che ti interessa di più</p>
+    <p>Ti diamo noi una mano: scegli la categoria che ti interessa di più!</p>
     </div>
     <!-- // TITOLO E ICONE  -->
 
     <!-- SKEW V-FOR  -->
 
-    <section class="container-skew">
+    <!-- DISPLAY NONE < 1250  -->
+    <div class="container-2000">
+      <section class="container-skew container-12">
       <div
         class="skewed-card"
         v-for="type in types"
@@ -32,20 +34,174 @@
         </router-link>
       </div>
     </section>
+    </div>
 
-    <!-- bottoni utili solo se si cambia paginazione da 12 a minore  -->
-    <button
-      v-show="current_page > 1"
-      class="btn btn-primary"
-      @click="getTypes(current_page - 1)">
-      Prev
-    </button>
-    <button
-      v-show="current_page < last_page"
-      class="btn btn-info"
-      @click="getTypes(current_page + 1)">
-          Next
-    </button>
+    <!-- DISPLAY NONE < 975-> 1250 -->
+    <!-- page 1  -->
+    <div class="container-1265">
+      <section class="container-skew container-6">
+        <div
+          class="skewed-card"
+          v-for="type in typesSix"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+      <!-- page 2  -->
+      <section class="container-skew container-6">
+        <div
+          class="skewed-card-2"
+          v-for="type in typesSixSecond"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+    </div>
+
+    <!-- DISPLAY >960 & <576 -->
+    <div class="container-960">
+      <!-- page 1  -->
+      <section class="container-skew container-4">
+        <div
+          class="skewed-card"
+          v-for="type in typesFour"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+      <!-- page 2  -->
+      <section class="container-skew container-4">
+        <div
+          class="skewed-card-2"
+          v-for="type in typesFourSecond"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+      <!-- page 3  -->
+      <section class="container-skew container-4">
+        <div
+          class="skewed-card-3"
+          v-for="type in typesFourThird"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+    </div>
+    <!-- // container 976  -->
+
+    <!-- DISPLAY NONE > 576  -->
+    <div class="container-576">
+    <!-- types PAGINAZIONE da 3  -->
+      <section class="container-skew container-3">
+        <div
+          class="skewed-card"
+          v-for="type in typesThree"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+      <!-- page 2  -->
+      <section class="container-skew container-3">
+        <div
+          class="skewed-card-2"
+          v-for="type in typesThreeSecond"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+      <!-- page 3  -->
+      <section class="container-skew container-3">
+        <div
+          class="skewed-card-3"
+          v-for="type in typesThreeThird"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+      <!-- page 4  -->
+      <section class="container-skew container-3">
+        <div
+          class="skewed-card-4"
+          v-for="type in typesThreeFourth"
+          :key="type.id"
+        >
+          <router-link :to="{ name: 'type', params: { slug: type.slug } }">
+              <div class="section-inner">
+                <img
+                  :src="'/storage/' + type.image"
+                  :alt="type.name"/>
+                <h2>{{ type.name }}</h2>
+              </div>
+          </router-link>
+        </div>
+      </section>
+    </div>
+
     <!-- // SKEW V-FOR  -->
 
   </div>
@@ -63,21 +219,47 @@ export default {
     return {
       srvApi: "http://127.0.0.1:8000",
       types: [],
+      // paginazione da 6
+      typesSix: [],
+      typesSixSecond: [],
+      // paginazione da 4 
+      typesFour: [],
+      typesFourSecond: [],
+      typesFourThird: [],
+      // paginazione da 3 
+      typesThree: [],
+      typesThreeSecond: [],
+      typesThreeThird: [],
+      typesThreeFourth: [],
       loading: true,
-      types: [],
       current_page: 1,
       last_page: 1,
     };
   },
   mounted() {
+    // pagina singola 
     this.getTypes();
+    // paginazione da 6 (2 pagine)
+    this.getTypesSix();
+    this.getTypesSixSecondPage();
+    // paginazione da 4 (3 pagine)
+    this.getTypesFour();
+    this.getTypesFourSecondPage();
+    this.getTypesFourThirdPage();
+    // paginazione da 3 (4 pagine)
+    this.getTypesThree();
+    this.getTypesThreeSecondPage();
+    this.getTypesThreeThirdPage();
+    this.getTypesThreeFourthPage();
   },
   methods: {
+
+    // paginazione da 12 TIPI per pagina
     getTypes: function(page = 1) {
       axios
         .get(`${this.srvApi}/api/types?page=${page}`)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.types = res.data.data;
 
           this.current_page = res.data.current_page;
@@ -88,9 +270,179 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     },
+
+    //paginazione da 6 TIPI per pagina
+    getTypesSix: function(page = 1) {
+      axios
+        .get(`${this.srvApi}/api/typessix?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesSix = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesSix.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+    getTypesSixSecondPage: function(page = 2) {
+      axios
+        .get(`${this.srvApi}/api/typessix?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesSixSecond = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesSixSecond.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+
+    // paginazione da 4 TIPI per pagina 
+    getTypesFour: function(page = 1) {
+      axios
+        .get(`${this.srvApi}/api/typesfour?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesFour = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesFour.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+    getTypesFourSecondPage: function(page = 2) {
+      axios
+        .get(`${this.srvApi}/api/typesfour?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesFourSecond = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesFourSecond.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+    getTypesFourThirdPage: function(page = 3) {
+      axios
+        .get(`${this.srvApi}/api/typesfour?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesFourThird = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesFourThird.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+
+    // paginazione da 3 TIPI per pagina
+    getTypesThree: function(page = 1) {
+      axios
+        .get(`${this.srvApi}/api/typesthree?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesThree = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesThree.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+    getTypesThreeSecondPage: function(page = 2) {
+      axios
+        .get(`${this.srvApi}/api/typesthree?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesThreeSecond = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesThreeSecond.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+    getTypesThreeThirdPage: function(page = 3) {
+      axios
+        .get(`${this.srvApi}/api/typesthree?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesThreeThird = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesThreeThird.length > 0) {
+            this.loading = false;
+          }
+        })
+            
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+    getTypesThreeFourthPage: function(page = 4) {
+      axios
+        .get(`${this.srvApi}/api/typesthree?page=${page}`)
+        .then((res) => {
+          // console.log(res.data);
+          this.typesThreeFourth = res.data.data;
+
+          this.current_page = res.data.current_page;
+          this.last_page = res.data.last_page;
+          
+          if (this.typesThreeFourth.length > 0) {
+            this.loading = false;
+          }
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    },
+
   },
 };
 </script>
@@ -141,18 +493,21 @@ div.types {
 .container-skew{
   // overflow-x: auto;
   height: 200px;
-  width: 90%;  
+  width: 75%;  
   display: flex;
   align-items: center;
   justify-content: center;
   transform: skewX(20deg) scale(1.35);
-  margin: 10px auto;
+  margin: 40px auto 80px;
   border-radius: 5px;
   a:last-child {
     overflow: hidden;
   }
 }
-.skewed-card {
+.skewed-card,
+.skewed-card-2,
+.skewed-card-3,
+.skewed-card-4 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,7 +554,6 @@ div.types {
     }
 }
 
-
 // backgrounds cards 
 .skewed-card {
   border-radius: 5px;
@@ -240,7 +594,6 @@ div.types {
   background-color: #8ff132;
   }
 }
-// /skew types
 
 // animated icons
 .container-animated-icons {
@@ -252,23 +605,23 @@ div.types {
 .animated {
   width: 10px;
   height: 10px;
-  color: #00CCBC;
+  color: $indigo;
 }
 .fa-hamburger {
   position: relative;
-  animation: burger 6s infinite linear;
+  animation: burger 8s infinite linear;
 }
 .fa-pizza-slice {
   position: absolute;
-  animation: pizza 6s infinite linear;
+  animation: pizza 8s infinite linear;
 }
 .fa-hotdog {
   position: absolute;
-  animation: hotdog 6s infinite linear;
+  animation: hotdog 8s infinite linear;
 }
 .fa-utensils {
   position: absolute;
-  animation: utensils 6s infinite linear;
+  animation: utensils 8s infinite linear;
 }
 @keyframes burger {
   0%   {left:0px; top:0px;}
@@ -298,5 +651,128 @@ div.types {
   75% {left:70px; top:50px;}
   100%  {left:0px; top:50px;}
 }
-// /animated icons
+
+//media query
+// 1250
+@media screen and (min-width: 1265px) {
+  .container-1265,
+  .container-960,
+  .container-576 {
+    display: none;
+  }
+  .container-2000 {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1264px) {
+  // paginazione da 12
+  .container-2000,
+  .container-960,
+  .container-576 {
+    display: none;
+  }
+  .skewed-card-2 {
+    &:nth-child(1){
+    background-color: $cyan;
+    }
+    &:nth-child(2){
+    background-color: $red;
+    }
+    &:nth-child(3){
+    background-color: #2e353b;
+    }
+    &:nth-child(4){
+    background-color: #2C2948;
+    }
+    &:nth-child(5){
+    background-color: $blue;
+    }
+    &:nth-child(6){
+    background-color: #8ff132;
+    }
+  }
+  
+}
+
+@media only screen and (max-width: 959px) {
+  // paginazione da 4
+  .container-2000,
+  .container-1265,
+  .container-576 {
+      display: none;
+  }
+  .skewed-card-2 {
+    &:nth-child(1){
+    background-color: $violet;
+    }
+    &:nth-child(2){
+    background-color: #21A500;
+    }
+    &:nth-child(3){
+    background-color: $cyan;
+    }
+    &:nth-child(4){
+    background-color: $red;
+    }
+  }
+  .skewed-card-3 {
+    &:nth-child(1){
+    background-color: #2e353b;
+    }
+    &:nth-child(2){
+    background-color: #2C2948;
+    }
+    &:nth-child(3){
+    background-color: $blue;
+    }
+    &:nth-child(4){
+    background-color: #8ff132;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  // paginazione da 4
+  .container-960 {
+    display: none;
+  }
+  .container-576 {
+    display: inline;
+  }
+  .skewed-card-2 {
+    &:nth-child(1){
+    background-color: $green;
+    }
+    &:nth-child(2){
+    background-color: $violet;
+    }
+    &:nth-child(3){
+    background-color: #21A500;
+    }
+  }
+  .skewed-card-3 {
+    &:nth-child(1){
+    background-color: $cyan;
+    }
+    &:nth-child(2){
+    background-color: $red;
+    }
+    &:nth-child(3){
+    background-color: #2e353b;
+    }
+  }
+  .skewed-card-4 {
+    &:nth-child(1){
+    background-color: #2C2948;
+    }
+    &:nth-child(2){
+    background-color: $blue;
+    }
+    &:nth-child(3){
+    background-color: #8ff132;
+    }
+  }
+}
+
 </style>

@@ -23,6 +23,17 @@ Route::namespace('Api')
 
         // tipologie ristoranti
         Route::get('types', 'TypeController@index');
+
+        // paginazione da 6
+        Route::get('typessix', 'TypeController@indexSix');
+        
+        // // tipologie paginazione da 4
+        Route::get('typesfour', 'TypeController@indexFour');
+
+        // // tipologie paginazione da 3
+        Route::get('typesthree', 'TypeController@indexThree');
+
+        
         Route::get('type/{slug}', 'TypeController@show');
         // categorie piatti
         Route::get('categories', 'CategoryController@index');
