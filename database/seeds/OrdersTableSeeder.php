@@ -49,7 +49,6 @@ class OrdersTableSeeder extends Seeder
 
                     $newDish['quantity'] = rand(1, 5);
                     $newDish['restaurant_id'] = $restaurant->id;
-                    $newDish['date'] = date('Y-m-d H:i:s', strtotime('-' . ($i + 1) . ' days'));
 
                     $realDish = Dish::where('name', $newDish['name'])->where('restaurant_id', $restaurant->id)->first();
                     $newDish['id'] = $realDish->id;
@@ -92,7 +91,7 @@ class OrdersTableSeeder extends Seeder
 
         $newOrder = new Order();
         $newOrder->fill($dataOrder);
-        $newOrder->created_at = $newDish['date'];
+        $newOrder->created_at = date('Y-m-d H:i:s', strtotime('-' . mt_rand(1,30) . ' days'));;
         $newOrder->save();
 
         foreach ($orderDishes as $dish) {
