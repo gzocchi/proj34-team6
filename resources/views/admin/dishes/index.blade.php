@@ -16,7 +16,7 @@
     
     @foreach ($dishes as $dish)
 
-    <div class="row dish_row p-4 my-3">
+    <div class="row dish_row p-4 my-3 @if(!Arr::get($dish, 'visible')) disabled_dish @endif">
         <div class="col-12 col-md-2 text-center">
             @if (Arr::get($dish, 'img'))
                 <img class="img-fluid" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
@@ -38,6 +38,11 @@
                 <li>
                     <span class="font-weight-bold">Descrizione: </span>{{ $dish->description}}
                 </li>
+                @if (!Arr::get($dish, 'visible'))
+                    
+                <span class="badge badge-danger">Piatto non disponibile</span>
+                    
+                @endif
             </ul>
         </div>
         <div class="col-12 text-center">
