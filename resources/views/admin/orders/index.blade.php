@@ -11,11 +11,11 @@
         @foreach ($orders as $order)
 
             <div class="card my-5">
-                <div class="card-header text-center d-flex justify-content-between">
+                <div class="card-header text-center">
                     <span class="font-weight-bold">-- Panoramica Ordine --</span>
-                    <div>   
-                    <p class="text-center font-weight-bold">{{ substr($order['created_at'], 0, 10) }}</p>
-                    <p class="font-weight-bold">{{ substr($order['created_at'], 11, 8) }}</p>
+                    <div class="mt-1 text-right">   
+                    <span class="text-center font-weight-bold mr-3">{{ substr($order['created_at'], 0, 10) }}</span>
+                    <span class="font-weight-bold">{{ substr($order['created_at'], 11, 8) }}</span>
                     </div>
                 </div>
             
