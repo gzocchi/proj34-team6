@@ -50,7 +50,8 @@ class DishController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.dishes.create', compact('categories'));
+        $dishes = Dish::where('restaurant_id', $this->getRestaurantId())->get();
+        return view('admin.dishes.create', compact(['categories', 'dishes']));
     }
 
     /**
@@ -147,14 +148,22 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        $dishes = Dish::where('restaurant_id', $this->getRestaurantId())->get();
         if ($dish->img) {
             Storage::delete($dish->img);
         }
 
         $dish->delete();
 
-        return redirect()
-            ->route('admin.dishes.index')
-            ->with('deleted', "Piatto '" . $dish->name . "' eliminato!");
+        if (count($dishes) > 0) {
+            return redirect()
+                ->route('admin.dishes.index')
+                ->with('deleted', "Piatto '" . $dish->name . "' eliminato!");
+        }
+        else {
+            return redirect()
+                ->route('admin.restaurants.index')
+                ->with('deleted', "Piatto '" . $dish->name . "' eliminato!");
+        }
     }
 }
