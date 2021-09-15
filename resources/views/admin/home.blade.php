@@ -39,8 +39,8 @@
             @endif
         </div>
 
-        <div class="dashboard_card col-10 col-md-4 my-3">
-            <a class="d-block p-5 font-weight-bolder" href="{{ route('admin.orders.index')}}">Ordini</a>
+        <div class="dashboard_card col-10 col-md-4 my-3 {{ (count(Auth::user()->restaurants) == 0) ? 'disabled-link' : '' }}">
+            <a class="d-block p-5 font-weight-bolder {{ (count(Auth::user()->restaurants) == 0) ? 'disabled-link' : '' }}" href="{{ route('admin.orders.index')}}">Ordini</a>
         </div>
 
     </div>

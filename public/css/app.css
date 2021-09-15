@@ -10959,6 +10959,11 @@ a.text-dark:focus {
   background-color: #d0eb99;
 }
 
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .my_nav .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link:hover {
   color: #00ccbc;

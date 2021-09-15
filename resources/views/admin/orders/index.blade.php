@@ -52,9 +52,9 @@
 
 <section>
 
-    <h1 class="text-center">Nessun ordine da mostrare</h1>
+    <h1 class="text-center my-5">Nessun ordine da mostrare</h1>
 
-    <div>
+    <div class="text-center my-5">
   
         <a href="{{ route("admin.home") }}" class="btn my_btn btn-primary">Dashboard</a>
 
