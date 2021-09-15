@@ -23,7 +23,27 @@ class OrdersTableSeeder extends Seeder
             }
         }
 
-        // $quantity = rand(1, 9);
-        dd($restaurantDishes);
+        $randomDish = rand(0, (count($restaurantDishes) - 1));
+        $randomQuantity = rand(1, 9);
+
+        $order = [];
+        for ($i=0; $i < $randomQuantity; $i++) { 
+            # code...
+        }
+
+        $amount = 0;
+        
+        $dataOrder = [
+            "price" => $amount,
+            "paid" =>  true,
+            'restaurant_id' => 'id',
+            "customer_name" => 'customer_name',
+            "customer_mail" => 'customer_mail',
+            "customer_address" => 'customer_address',
+            "customer_telephone" => 'customer_telephone',
+        ];
+
+
+        dd($randomDish);
     }
 }
