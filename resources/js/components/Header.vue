@@ -106,7 +106,7 @@
           <!-- // dropdown carrello -->
 
           
-          <li class="nav-item ml-3">
+          <li class="nav-item">
             <a class="nav-link" href="/login" v-if="user == 'null'" >Registrati o accedi</a>
             <a class="nav-link" href="/admin" v-else >Dashboard</a>
           </li>
