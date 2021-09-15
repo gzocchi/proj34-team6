@@ -16,8 +16,8 @@
     
     @foreach ($dishes as $dish)
 
-    <div class="row text-center my-3">
-        <div class="col-12 col-md-2">
+    <div class="row dish_row p-4 my-3">
+        <div class="col-12 col-md-2 text-center">
             @if (Arr::get($dish, 'img'))
                 <img class="img-fluid" src="{{ asset('storage/' . Arr::get($dish, 'img')) }}" alt="{{ Arr::get($dish, 'name') }}">
             @else
@@ -25,11 +25,20 @@
             @endif
         </div>
         <div class="col-12 col-md-8">
-
-            <span class=" badge my_badge my-2">{{ $dish->category->name}}</span>
-            <h4>{{ Arr::get($dish, 'name')}} - <span>{{ $dish->price}} €</span></h4>
-            <p>{{ $dish->description}}</p>
-            
+            <ul>
+                <li>
+                    <span class="font-weight-bold">Categoria: </span><span class=" badge my_badge">{{ $dish->category->name}}</span>
+                </li>
+                <li>
+                    <span class="font-weight-bold">Nome: </span>{{ Arr::get($dish, 'name')}}
+                </li>
+                <li>
+                    <span class="font-weight-bold">Prezzo: </span>{{ $dish->price}} €
+                </li>
+                <li>
+                    <span class="font-weight-bold">Descrizione: </span>{{ $dish->description}}
+                </li>
+            </ul>
         </div>
         <div class="col-12 text-center">
             <a href="{{ route("admin.dishes.edit", Arr::get($dish, 'id')) }}" class="btn btn-sm my_btn btn-success">Modifica</a>
