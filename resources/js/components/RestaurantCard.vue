@@ -77,6 +77,8 @@ export default {
   transition: 0.5s;
   margin: 2px 0;
   padding: 10px;
+  border: none;
+  box-shadow: 0px 0px 5px $azure_dark;
   color: black;
   &:hover {
     transform: scale(1.01);
