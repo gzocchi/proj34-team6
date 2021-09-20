@@ -11012,10 +11012,6 @@ main section.dashboard .dashboard_card a {
   color: inherit;
 }
 
-main section.restaurant h1 {
-  color: #440063;
-}
-
 main section.restaurant .card-header,
 main section.restaurant .card-footer {
   background-color: #d0eb99;
@@ -11048,5 +11044,58 @@ main section.dishes .dish_row.disabled_dish img {
 main section.dishes .dish_row.disabled_dish .badge.my_badge {
   color: #bac3c3;
   background-color: #440063;
+}
+
+main .container-restaurant {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 2px 0px;
+  padding: 20px;
+}
+
+main .container-restaurant img {
+  width: 150px;
+}
+
+main .container-restaurant .title h2 {
+  width: 100%;
+}
+
+main .container-restaurant .title h2 .badge-absolute {
+  position: absolute;
+  font-size: 0.5em;
+}
+
+main .container-restaurant ul .list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0;
+  background-color: #fff;
+}
+
+main .container-restaurant ul .list-group-item p {
+  margin-bottom: 0.5rem;
+}
+
+main .container-restaurant .container-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+main .container-restaurant .container-buttons a,
+main .container-restaurant .container-buttons form {
+  margin: 0.5em;
+}
+
+main .container-restaurant .container-buttons .my_btn:hover {
+  background-color: #00a396;
+}
+
+main .container-restaurant .container-voto {
+  text-align: center;
 }
 
