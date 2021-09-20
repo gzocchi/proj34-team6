@@ -4,8 +4,10 @@
     <!-- TITOLO E ICONE  -->
     <div class="container-titolo">
       <img id="img-title" src="/images/logo-DeliveBoo.svg" height="30" alt="DeliveBoo" />
-      <div class="title-animation">
-        <h1 class="text-center">Non sai cosa scegliere?</h1>
+
+      <h1 class="text-center">Non sai cosa scegliere?</h1>
+
+      <div class="title-animation container">
 
         <div class="container-animated-icons">
           <i class="animated fas fa-hamburger"></i>
@@ -15,6 +17,7 @@
         </div>
         
       </div>
+
       <p class="text-center">Ti diamo noi una mano: scegli la categoria che ti interessa di più!</p>
     </div>
     <!-- // TITOLO E ICONE  -->
@@ -59,14 +62,14 @@ export default {
 
 
 // animated icons
-.title-animation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+// .title-animation {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+// }
 .container-animated-icons {
-  width: 100%;
+  // width: 100%;
   position: relative;
   top: -30px;
   left: 45%;

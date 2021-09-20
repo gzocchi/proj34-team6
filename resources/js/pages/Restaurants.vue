@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center">
+  <section class="text-center py-5">
     <div class="container-restaurants-p">
       <h1>Lista dei Ristoranti</h1>
       <p>Scegli quello che preferisci!</p>
@@ -65,7 +65,7 @@ export default {
   }
 }
 #riga {
-  width: 100%;
+  // width: 100%;
   border-bottom: 1px solid $azure;
   margin-bottom: 80px;
 }
