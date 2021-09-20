@@ -287,9 +287,9 @@ export default {
         });
     },
     onSuccess(payload) {
-      this.loader = false;
-      this.form.token = payload.nonce;
+      // this.loader = false;
       this.buy();
+      this.form.token = payload.nonce;
     },
     onError(error) {
       let message = error.message;
