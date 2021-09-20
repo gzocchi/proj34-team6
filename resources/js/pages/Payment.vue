@@ -1,5 +1,5 @@
 <template>
-  <section v-if="loader" class="text-center py-5 my-5">
+  <section v-if="loader" class="text-center py-5">
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header text-white">
