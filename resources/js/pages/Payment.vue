@@ -3,7 +3,7 @@
     <div class="row">
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header text-white">
-          <h2>Cart</h2>
+          <h2>Riepilogo Carrello</h2>
           <h6>
             Spedizione gratuita per ordini superiori a: {{ shipping_free }} €
           </h6>
@@ -37,7 +37,7 @@
                     Spedizione: {{ shipping }}€<strong class="total"></strong>
                   </h6>
                   <h6 class="text-left">
-                    SubTotal: {{ cartLs.total().toFixed(2) }}€<strong class="total"></strong>
+                    Subtotale: {{ cartLs.total().toFixed(2) }}€<strong class="total"></strong>
                   </h6>
 
                   <!-- totale visto  -->
@@ -181,7 +181,7 @@
                       d="M18 9H20V21H4V9H6C6 5.69158 8.69158 3 12 3C15.3084 3 18 5.69158 18 9ZM6 19H18V11H6V19ZM8 9H16C16 6.79442 14.2056 5 12 5C9.79442 5 8 6.79442 8 9ZM11.5 16V14H12.5V16H11.5Z"
                     ></path>
                   </svg>
-                  Paga
+                  <span class="btn_payment">Effettua Pagamento</span>
                 </v-btn>
               </template>
             </v-braintree>
@@ -386,6 +386,10 @@ form
   text-align: center;
   margin-bottom: 10px;
   color: $red;
+}
+
+.btn_payment{
+color: black;
 }
 
 </style>
