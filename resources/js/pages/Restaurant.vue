@@ -24,11 +24,7 @@
           Spedizione gratuita per ordini superiori a:
           {{ restaurant.shipping_free }} €
         </span>
-        <i
-          v-for="i in 5"
-          :key="i"
-          :class="i <= starCount() ? 'fas fa-star' : 'far fa-star'"
-        ></i>
+        <Stars :restaurant="restaurant" />
       </div>
     </div>
 
@@ -66,10 +62,11 @@
 <script>
 import Loader from "../components/Loader";
 import DishCard from "../components/DishCard";
+import Stars from "../components/Stars";
 
 export default {
   name: "Restaurant",
-  components: { Loader, DishCard },
+  components: { Loader, DishCard, Stars },
   data() {
     return {
       srvApi: "http://127.0.0.1:8000",
@@ -114,9 +111,6 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-    },
-    starCount: function () {
-      return Math.round(this.restaurant.vote);
     },
     getCategories() {
       axios
