@@ -1,5 +1,5 @@
 <template>
-  <section class="text-center py-5 my-5" v-if="!loading && restaurants">
+  <section class="text-center py-5" v-if="!loading && restaurants">
 
     <!-- Tipo della pagina visualizzata -->
     <h1 class="pb-5">{{ restaurants.length }} Ristoranti visualizzati corrispondono a <span>"{{ $route.params.slug.charAt(0).toUpperCase() + $route.params.slug.slice(1) }}"</span></h1>
@@ -49,6 +49,7 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+          this.$router.push({ name: "not-found" });
         });
     },
   },
@@ -59,7 +60,7 @@ export default {
 @import "../../sass/front";
 
 #riga {
-  width: 100%;
+  // width: 100%;
   border-bottom: 1px solid $azure;
   margin-bottom: 80px;
 }

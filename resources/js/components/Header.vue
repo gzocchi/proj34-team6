@@ -1,7 +1,8 @@
 <template>
-  <header class="container">
-    <nav class="my_nav navbar navbar-expand-lg navbar-light bg-white">
-      <router-link :to="{ name: 'home' }" class="navbar-brand">
+  <header >
+    <nav class="container-fluid my_nav navbar fixed-top navbar-expand-lg navbar-light bg-white">
+      <div class="container">
+        <router-link :to="{ name: 'home' }" class="navbar-brand">
         <img src="/images/logo-DeliveBoo.svg" height="30" alt="DeliveBoo" />
       </router-link>
 
@@ -97,8 +98,8 @@
 
                   <!-- route per pagamento  -->
                   <div>
-                    <router-link v-if="cartLs.total() == 0" :to="{name:'payment'}"><button disabled class="btn btn-success">Vai al pagamento</button></router-link>
-                    <router-link v-else :to="{name:'payment'}"><button class="btn btn-success">Vai al pagamento</button></router-link>
+                    <router-link v-if="cartLs.total() == 0" :to="{name:'payment'}"><button disabled class="btn btn-block btn-success">Vai al pagamento</button></router-link>
+                    <router-link v-else :to="{name:'payment'}"><button class="btn btn-block btn-success">Vai al pagamento</button></router-link>
                   </div>
                 </div>
               </transition>
@@ -112,6 +113,9 @@
           </li>
         </ul>
       </div>
+      </div>
+
+      
     </nav>
 
     <!-- <Jumbotron /> -->
@@ -250,9 +254,9 @@ span.badge {
       }
     }
   }
-  .btn-success {
-    width: 100%;
-  }
+  // .btn-success {
+  //   width: 100%;
+  // }
 
   .cart-bottom {
     padding: 5px;
