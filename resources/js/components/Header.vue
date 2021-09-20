@@ -147,10 +147,11 @@ export default {
   },
   updated() {
     // Chiamata api ristorante shipping
-    this.getShipping(this.cartLs.list()[0].restaurant_id);
+    if (this.cartLs.list().length > 0)
+      this.getShipping(this.cartLs.list()[0].restaurant_id);
   },
   watch: {
-    cartItem(val) {
+    cartItem() {
       if (this.shipping_free) {
         return cartLs.total() > this.shipping_free
           ? (this.orderFree = true)
