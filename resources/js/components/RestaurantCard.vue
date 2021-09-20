@@ -22,11 +22,7 @@
         <!-- container voto e stelle  -->
         <div class="container-vote">
           <h5>Vote: {{ restaurant.vote }}</h5>
-          <i
-            v-for="i in 5"
-            :key="i"
-            :class="i <= starCount() ? 'fas fa-star' : 'far fa-star'"
-        ></i>
+          <Stars :restaurant="restaurant" />
         </div>
       </div>
 
@@ -42,18 +38,18 @@
 </template>
 
 <script>
+import Stars from "./Stars";
+
 export default {
   name: "RestaurantCard",
+  components: {
+    Stars
+  },
   props: {
     restaurant: {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    starCount: function() {
-            return Math.round(this.restaurant.vote);
-        }
   }
 };
 </script>
