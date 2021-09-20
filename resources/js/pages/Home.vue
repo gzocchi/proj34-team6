@@ -52,10 +52,13 @@ export default {
   padding: 2em 0;
   h1 {
     margin: 1em 0;
+    font-weight: 600;
+    color: $azure;
   }
   p {
     margin: 1em 0;
     font-weight: 600;
+    color: $purple;
   }
 }
   
