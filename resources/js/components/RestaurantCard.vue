@@ -82,12 +82,12 @@ export default {
   color: black;
   &:hover {
     transform: scale(1.01);
-    box-shadow: 0px 0px 10px 0px;
+    box-shadow: 0px 0px 8px 0px $azure_dark;
     z-index: 1;
   }
   &:hover h1 {
     // color: rgb(190, 124, 0);
-    color: $orange;
+    color: $purple;
   }
   a:hover {
     text-decoration: none;
