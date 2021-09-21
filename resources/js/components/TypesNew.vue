@@ -59,21 +59,21 @@ export default {
 
   /* ----- scrollbar ----- */
   /* width */
-  // ::-webkit-scrollbar {
-  //   width: 5px;
-  // }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
   /* Track */
-  // ::-webkit-scrollbar-track {
-  //   background: #ffffff;
-  // }
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
   /* Handle */
-  // ::-webkit-scrollbar-thumb {
-  //   background: $purple;
-  //   border-radius: 15px;
-  // }
+  &::-webkit-scrollbar-thumb {
+    background: $purple;
+    border-radius: 15px;
+  }
   /* Handle on hover */
-  // ::-webkit-scrollbar-thumb:hover {
-  //   background: $purple;
-  // }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $purple;
+  }
 }
 </style>
