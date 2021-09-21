@@ -13,6 +13,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendCustomerMail;
+use App\Mail\SendUserMail;
 use App\Http\Requests\Orders\OrdersRequest; // utile?
 
 class OrderController extends Controller
@@ -130,8 +133,8 @@ class OrderController extends Controller
             //     "x" => $user['name'],
             // ];
 
-            // Mail::to($request->payer_email)->send(new SendMail($newOrder));
-            // Mail::to($user['email'])->send(new SendAdminMail($newOrder));
+            Mail::to($request->customer_mail)->send(new SendCustomerMail());
+            // Mail::to($user['email'])->send(new SendUserMail);
 
             return response()->json($data, 200);
         } else {
