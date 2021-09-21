@@ -118,22 +118,22 @@ class OrderController extends Controller
             }
 
             // info USER + RESTAURANTS ?
-            // $user= User::where("id", $dish->restaurant_id["user_id"])->get()->first();
+            // $user= User::where("id", $dish['restaurant_id']["user_id"])->get()->first();
 
-            // $newOrder =  [
-            //     "total" => $amount,
-            //     // ?
-            //     "restaurant_name" => $dish->restaurant_id->name,
-            //     "restaurant_id" => $dish->restaurant_id->id,
+            $mailOrder =  [
+                "total" => $amount,
+                "restaurant_name" => $restaurant->name,
+                "restaurant_address" => $restaurant->address,
+                "restaurant_telephone" => "3343333333",
+                "customer_name" => $request->customer_name,
+                "customer_address" => $request->customer_address,
+                "customer_telephone" => $request->customer_telephone,
+                "customer_mail" => $request->customer_mail,
+                "shipping" => $shipping,
+                "all_dishes" => $all_dishes
+            ];
 
-            //     "customer_name" => $request->customer_name,
-            //     "customer_address" => $request->customer_address,
-
-            //     "all_dishes" => $all_dishes,
-            //     "x" => $user['name'],
-            // ];
-
-            Mail::to($request->customer_mail)->send(new SendCustomerMail());
+            Mail::to($request->customer_mail)->send(new SendCustomerMail($mailOrder));
             // Mail::to($user['email'])->send(new SendUserMail);
 
             return response()->json($data, 200);

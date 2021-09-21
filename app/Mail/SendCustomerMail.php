@@ -16,9 +16,10 @@ class SendCustomerMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    private $order;
+    public function __construct($data)
     {
-        //
+        $this->order = $data;
     }
 
     /**
@@ -28,6 +29,6 @@ class SendCustomerMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.order_success');
+        return $this->view('email.order_success', ['order' => $this->order]);
     }
 }
