@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="types">
 
-    <!-- TITOLO E ICONE  -->
+    
     <div class="container-titolo">
       <img id="img-title" src="/images/logo-DeliveBoo.svg" height="30" alt="DeliveBoo" />
 
@@ -24,7 +24,8 @@
     
 
     <!-- scleta per tipologie di ristoranti  -->
-    <Types />
+    <!-- <Types /> -->
+    <TypesNew />
 
     <!-- card info generiche  -->
     <HomeCards />
@@ -33,13 +34,15 @@
 </template>
 
 <script>
-import Types from "../components/Types";
+// import Types from "../components/Types";
+import TypesNew from "../components/TypesNew";
 import HomeCards from "../components/HomeCards";
 
 export default {
   name: "Home",
   components: {
-    Types,
+    // Types,
+    TypesNew,
     HomeCards
   },
 };
