@@ -66,10 +66,55 @@ main {
             }
         }
     }
-
-    section.order_show{
-        img{
-            max-height: 100px;
+    .container-restaurant {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        box-shadow: 0px 0px 2px 0px;
+        padding: 20px;
+        img {
+            width: 150px;
         }
+        .title {
+            h2 {
+                width: 100%;
+                .badge-absolute {
+                position: absolute;
+                font-size: 0.5em;
+                }
+            } 
+        }
+        ul .list-group-item {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0;
+            background-color: #fff;
+            p {
+                margin-bottom: 0.5rem;
+            }
+        }
+        .container-buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            a,
+            form {
+                margin: 0.5em;
+            }
+            .my_btn:hover {
+                background-color: $azure_dark;
+            }
+        }
+        .container-voto {
+            text-align: center;
+
+        section.order_show{
+            img {
+                max-height: 100px;
+            }
+        }
+    }
     }
 }
