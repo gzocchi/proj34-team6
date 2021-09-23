@@ -47,33 +47,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/front";
 
+@include scrollbars(10px, $purple);
+
 .row {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
-
-  /* ----- scrollbar ----- */
-  /* width */
-  &::-webkit-scrollbar {
-    height: 10px;
-  }
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: $purple;
-    border-radius: 15px;
-  }
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: $purple;
-  }
 }
 </style>

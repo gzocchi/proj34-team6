@@ -1,7 +1,35 @@
 @import "~bootstrap/scss/bootstrap";
 
 // Variables
-@import 'variables';
+@import "variables";
+
+@mixin scrollbars(
+    $size,
+    $foreground-color,
+    $radius: 15px,
+    $background-color: transparent ){
+    ::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: $background-color;
+        border-radius: $radius;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: $foreground-color;
+        border-radius: $radius;
+    }
+
+
+    // For Internet Explorer
+    body {
+        scrollbar-face-color: $foreground-color;
+        scrollbar-track-color: $background-color;
+    }
+}
 
 * {
     box-sizing: border-box;
@@ -9,12 +37,11 @@
     padding: 0;
 }
 
-body{
+body {
     padding-top: 80px;
 }
 
-
-.my_btn.btn-primary{
+.my_btn.btn-primary {
     background-color: $azure;
     border-color: $azure;
 }
