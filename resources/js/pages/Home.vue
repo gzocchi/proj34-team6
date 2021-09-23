@@ -2,12 +2,12 @@
   <section class="types">
 
     
-    <div class="container-titolo">
-      <img id="img-title" src="/images/logo-DeliveBoo.svg" height="30" alt="DeliveBoo" />
+    <div class="container-titolo mb-5">
+      <img id="img-title" class="mb-4" src="/images/logo-DeliveBoo.svg" height="30" alt="DeliveBoo" />
 
-      <h1 class="text-center">Non sai cosa scegliere?</h1>
+      <h1 class="text-center m-0">Non sai cosa scegliere?</h1>
 
-      <div class="title-animation container">
+      <div class="title-animation container my-5">
 
         <div class="container-animated-icons">
           <i class="animated fas fa-hamburger"></i>
@@ -18,7 +18,8 @@
         
       </div>
 
-      <p class="text-center">Ti diamo noi una mano: scegli la categoria che ti interessa di più!</p>
+      <p class="text-center m-0">Ti diamo noi una mano: scegli la categoria che ti interessa di più!</p>
+
     </div>
     <!-- // TITOLO E ICONE  -->
     
@@ -50,16 +51,17 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/front";
+
 .container-titolo {
-  margin: 2em 0 4em;
+  // margin: 2em 0 4em;
   padding: 2em 0;
   h1 {
-    margin: 1em 0;
+    // margin: 1em 0;
     font-weight: 600;
     color: $azure;
   }
   p {
-    margin: 1em 0;
+    // margin: 1em 0;
     font-weight: 600;
     color: $purple;
   }
