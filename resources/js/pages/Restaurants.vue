@@ -10,7 +10,7 @@
     <div class="row">
       <!-- originale  -->
       <RestaurantCard
-      class="col-12"
+      class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2"
         :restaurant="restaurant"
         v-for="restaurant in restaurants"
         :key="restaurant.slug"

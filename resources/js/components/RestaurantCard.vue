@@ -4,14 +4,14 @@
         >
   <div class="card row">
     <!-- parte img  -->
-    <div class="container-img col-12 col-md-4">
+    <div class="container-img col-12 col-md-5 col-lg-4">
       <img
         :src="'/storage/' + restaurant.bg_image"
         class="card-img-top"
         :alt="restaurant.slug"/>
     </div>
     <!-- parte testo  -->
-    <div class="card-body col-12 col-md-8">
+    <div class="card-body col-12 col-md-7 col-lg-8">
       <!-- testo card di sinistra  -->
       <div class="container-text-left">
         <!-- container titolo e indirizzo  -->
