@@ -60,7 +60,7 @@ export default {
   /* ----- scrollbar ----- */
   /* width */
   &::-webkit-scrollbar {
-    width: 5px;
+    height: 10px;
   }
   /* Track */
   &::-webkit-scrollbar-track {
