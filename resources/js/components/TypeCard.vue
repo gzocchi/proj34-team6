@@ -45,7 +45,6 @@ export default {
   background: {
     position: center;
     size: cover;
-    color: $azure;
   }
 
   &:not(:last-child) {
@@ -57,11 +56,11 @@ export default {
     text-decoration: none;
     color: $purple;
     background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.1s linear;
 
     &:hover {
       transform: scale(1.2);
       background-color: rgba($azure, 0.8);
-      transition: 0.1s linear;
     }
   }
 }
