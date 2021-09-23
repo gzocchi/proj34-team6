@@ -47,12 +47,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/front";
 
-@include scrollbars(10px, $purple);
 
 .row {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  @include scrollbars(10px, $purple);
 }
 </style>

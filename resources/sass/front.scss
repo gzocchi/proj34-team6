@@ -8,17 +8,17 @@
     $foreground-color,
     $radius: 15px,
     $background-color: transparent ){
-    ::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         width: $size;
         height: $size;
     }
 
-    ::-webkit-scrollbar-track {
+    &::-webkit-scrollbar-track {
         background: $background-color;
         border-radius: $radius;
     }
 
-    ::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb {
         background: $foreground-color;
         border-radius: $radius;
     }

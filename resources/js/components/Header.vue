@@ -207,8 +207,8 @@ span.badge {
   position: relative;
 }
 
-@include scrollbars(7px, $green, 5px);
 .dropped-cart {
+  @include scrollbars(7px, $green, 5px);
   // border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
