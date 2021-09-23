@@ -13,7 +13,7 @@
           />
         </div>
 
-        <div class="card-body d-flex flex-column justify-content-between">
+        <div class="card-body d-flex flex-column justify-content-between align-items-center">
           <h4 class="m-0 card-title font-weight-normal">{{ dish.name }}</h4>
           <span class="d-block font-weight-bold">{{ dish.price }}€</span>
           <p v-if="dish.description" class="text-left p-3">
@@ -87,8 +87,14 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/front";
 
-.disabled_dish > * {
+.disabled_dish{
+  & > * {
   opacity: 0.5;
+  filter: grayscale(1);
+  }
+  .card-body > span {
+    text-decoration: line-through;
+  }
 }
 
 .card-header {
