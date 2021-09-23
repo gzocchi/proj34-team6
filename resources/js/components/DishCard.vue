@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex align-items-stretch">
     <div
-      class="card-deck mt-4 mb-4 text-center"
+      class="card-deck mt-4 mb-4 text-center d-flex justify-content-between"
       :class="{ disabled_dish: !dish.visible }"
     >
       <div class="card mb-4 shadow-sm">
@@ -13,7 +13,7 @@
           />
         </div>
 
-        <div class="card-body">
+        <div class="card-body d-flex flex-column justify-content-between">
           <h4 class="m-0 card-title font-weight-normal">{{ dish.name }}</h4>
           <span class="d-block font-weight-bold">{{ dish.price }}€</span>
           <p v-if="dish.description" class="text-left p-3">
