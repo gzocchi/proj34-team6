@@ -4,7 +4,7 @@
       <div class="card mb-4 shadow-sm col-12">
         <div class="card-header text-white">
           <h2>Riepilogo Carrello</h2>
-          <h6>
+          <h6 v-if="shipping_free > 0">
             Spedizione gratuita per ordini superiori a: {{ shipping_free }} €
           </h6>
         </div>
@@ -33,7 +33,7 @@
                 </div>
             </div>
                 <div class="card-footer">
-                  <h6 class="text-left" :class="{ 'text-annullato': (cartLs.total() > shipping_free) }">
+                  <h6 class="text-left" :class="{ 'text-annullato': (cartLs.total() > shipping_free) && shipping_free > 0 }">
                     Spedizione: {{ shipping }}€<strong class="total"></strong>
                   </h6>
                   <h6 class="text-left">
@@ -42,7 +42,7 @@
 
                   <!-- totale visto  -->
                   <div v-if="cartLs.total() > 0">
-                    <h4 class="text-right" v-if="cartLs.total() < shipping_free ">Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h4>
+                    <h4 class="text-right" v-if="cartLs.total() < shipping_free || shipping_free === 0">Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€</h4>
 
                     <h4 class="text-right" v-else>Totale: {{ cartLs.total().toFixed(2) }}€</h4>
                   </div>
