@@ -42,9 +42,12 @@ export default {
   flex: 0 0 auto;
   overflow: hidden;
   border-radius: 10px;
-  background-position: center;
-  background-size: cover;
-  background-color: $azure;
+  background: {
+    position: center;
+    size: cover;
+    color: $azure;
+  }
+
   &:not(:last-child) {
     margin-right: 10px;
   }
@@ -54,9 +57,11 @@ export default {
     text-decoration: none;
     color: $purple;
     background-color: rgba(255, 255, 255, 0.2);
+
     &:hover {
       transform: scale(1.2);
-       background-color: rgba($azure, 0.8);
+      background-color: rgba($azure, 0.8);
+      transition: 0.1s linear;
     }
   }
 }
