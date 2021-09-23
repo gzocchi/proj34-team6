@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex align-items-stretch">
     <div
       class="card-deck mt-4 mb-4 text-center"
       :class="{ disabled_dish: !dish.visible }"
