@@ -77,7 +77,7 @@
                   <div>
                     <!-- se presente shipping  -->
                     <h6
-                      v-if="cartLs.total() < shipping_free"
+                      v-if="cartLs.total() < shipping_free || shipping_free === 0"
                       >
                       Totale: {{ (cartLs.total() + shipping).toFixed(2) }}€
                       <button v-on:click.stop="isOpen = !isOpen" @click="cartLs.destroy()" class="btn btn-danger"><i class="fas fa-trash-alt fa-lg"></i></button>
