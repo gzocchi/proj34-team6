@@ -25,7 +25,7 @@
     
 
     <!-- scleta per tipologie di ristoranti  -->
-    <!-- <Types /> -->
+    <Types />
     <TypesNew />
 
     <!-- card info generiche  -->
@@ -35,14 +35,14 @@
 </template>
 
 <script>
-// import Types from "../components/Types";
+import Types from "../components/Types";
 import TypesNew from "../components/TypesNew";
 import HomeCards from "../components/HomeCards";
 
 export default {
   name: "Home",
   components: {
-    // Types,
+    Types,
     TypesNew,
     HomeCards
   },
